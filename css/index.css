@@ -276,6 +276,36 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
 #aside-content .card-info .site-data{margin:12px 0 4px}
 #aside-content .card-info .card-info-social-icons i{transition:.3s}
 #aside-content .card-info .card-info-social-icons i:hover{transform:rotate(360deg)}
+
+/* Social icons — brand colors + size */
+#aside-content .card-info .card-info-social-icons{
+  display:flex;justify-content:center;gap:14px; /* nicer spacing */
+}
+#aside-content .card-info .card-info-social-icons a{
+  color:inherit; /* don't force blue */
+  text-decoration:none;
+}
+#aside-content .card-info .card-info-social-icons i{
+  font-size:1.9rem; /* <-- increase icon size */
+  line-height:1;
+}
+
+/* Brand colors */
+.social-github{ color:#24292f; }          /* GitHub */
+[data-theme="dark"] .social-github{ color:#f0f6fc; } /* readable on dark */
+
+.social-linkedin{ color:#0A66C2; }        /* LinkedIn */
+.social-arxiv{ color:#B31B1B; }           /* arXiv */
+.social-scholar{ color:#4285F4; }         /* Google Scholar */
+.social-email{ color:#EA4335; }           /* Email (Gmail red vibe) */
+
+/* Subtle hover pop without changing colors */
+#aside-content .card-info .card-info-social-icons a:hover i{
+  transform:scale(1.08) rotate(0deg);
+}
+
+
+
 #aside-content .item-headline{padding-bottom:6px;font-size:1.1em}
 @media (min-width:900px){
   #aside-content .sticky_layout{position:sticky;top:20px;transition:top .3s}
