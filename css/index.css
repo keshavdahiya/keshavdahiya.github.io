@@ -19,9 +19,9 @@
   --light-grey:#eee;
   --dark-grey:#cacaca;
 
-  --btn-bg:#49b1f5;
+  --btn-bg:#555; /* modern gray */
   --btn-color:#fff;
-  --btn-hover-color:#ff7242;
+  --btn-hover-color:#2b3a67; /* light navy on hover */
 
   --card-bg:#fff;
   --card-meta:#858585;
@@ -46,7 +46,7 @@
   --timeline-bg:#e4f3fd;
   --pseudo-hover:#ff7242;
 
-  --link:#2d7df6;
+  --link:#2b3a67; /* light navy links */
 }
 
 /* Dark theme */
@@ -277,32 +277,39 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
 #aside-content .card-info .card-info-social-icons i{transition:.3s}
 #aside-content .card-info .card-info-social-icons i:hover{transform:rotate(360deg)}
 
-/* Social icons — brand colors + size */
+/* Social icons — spacing + brand colors + hover polish */
 #aside-content .card-info .card-info-social-icons{
-  display:flex;justify-content:center;gap:14px; /* nicer spacing */
+  display:flex;
+  justify-content:center;
+  gap:14px;
 }
+
 #aside-content .card-info .card-info-social-icons a{
-  color:inherit; /* don't force blue */
   text-decoration:none;
+  transition:transform 0.2s ease, opacity 0.2s ease;
 }
+
 #aside-content .card-info .card-info-social-icons i{
-  font-size:1.9rem; /* <-- increase icon size */
+  font-size:2rem;        /* adjust size as you like */
   line-height:1;
 }
 
 /* Brand colors */
-.social-github{ color:#24292f; }          /* GitHub */
-[data-theme="dark"] .social-github{ color:#f0f6fc; } /* readable on dark */
+.social-github   i{ color:#24292f; }      /* GitHub black */
+.social-linkedin i{ color:#0A66C2; }      /* LinkedIn blue */
+.social-arxiv    i{ color:#B31B1B; }      /* arXiv red */
+.social-scholar  i{ color:#4285F4; }      /* Google Scholar blue */
+.social-email    i{ color:#EA4335; }      /* Gmail red */
 
-.social-linkedin{ color:#0A66C2; }        /* LinkedIn */
-.social-arxiv{ color:#B31B1B; }           /* arXiv */
-.social-scholar{ color:#4285F4; }         /* Google Scholar */
-.social-email{ color:#EA4335; }           /* Email (Gmail red vibe) */
+/* Optional: dark theme adjustment */
+[data-theme="dark"] .social-github i{ color:#f0f6fc; }
 
-/* Subtle hover pop without changing colors */
+/* Hover effects (slightly brighten) */
 #aside-content .card-info .card-info-social-icons a:hover i{
-  transform:scale(1.08) rotate(0deg);
+  opacity:0.8;
+  transform:scale(1.15);
 }
+
 
 
 
@@ -477,9 +484,20 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
 /* --------------------------------------
    15) Footer
 --------------------------------------- */
-#footer{background:#49b1f5}
-#footer-wrap{padding:40px 20px;text-align:center;color:var(--light-grey)}
-#footer-wrap a{color:var(--light-grey)}
+#footer{background:#444}
+#footer-wrap{
+  padding:40px 20px;
+  text-align:center;
+  color:#ddd;
+}
+#footer-wrap a{
+  color:#ddd;
+  transition:.2s;
+}
+#footer-wrap a:hover{
+  color:#ffffff;
+}
+
 
 /* --------------------------------------
    16) Read mode (lean)
