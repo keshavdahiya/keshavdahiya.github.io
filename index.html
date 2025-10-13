@@ -6,165 +6,69 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover">
   <title>Home | Keshav Dahiya</title>
 
+  <!-- Basic meta (kept lightweight) -->
   <meta name="author" content="Keshav Dahiya">
-  <meta name="copyright" content="Keshav Dahiya">
-  <meta name="format-detection" content="telephone=no">
-  <meta name="theme-color" content="ffffff">
-  <meta name="description" content="Personal Information">
+  <meta name="description" content="Personal website of Keshav Dahiya">
+  <meta name="theme-color" content="#ffffff">
 
-  <meta property="og:type" content="article">
+  <!-- (Optional) Social preview — safe to remove if you don't want them -->
+  <meta property="og:type" content="website">
   <meta property="og:title" content="Keshav Dahiya">
   <meta property="og:url" content="https://keshavdahiya.github.io/index.html">
   <meta property="og:site_name" content="Keshav Dahiya">
-  <meta property="og:description" content="Personal Information ">
-  <meta property="og:locale" content="en_US">
+  <meta property="og:description" content="Personal website of Keshav Dahiya">
   <meta property="og:image" content="https://keshavdahiya.github.io/Images/profile.jpg">
-
-  <meta property="article:author" content="Keshav Dahiya">
-
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": "Keshav Dahiya",
-    "url": "https://keshavdahiya.github.io/index.html",
-    "image": "https://keshavdahiya.github.io/Images/profile.jpg",
-    "author": [
-      { "@type": "Person", "name": "Keshav Dahiya", "url": "https://keshavdahiya.github.io/" }
-    ]
-  }
-  </script>
+  <meta property="og:locale" content="en_US">
 
   <link rel="canonical" href="https://keshavdahiya.github.io/index.html">
   <link rel="preconnect" href="//cdn.jsdelivr.net"/>
+
+  <!-- Styles -->
   <link rel="stylesheet" href="/css/index.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Mate:ital@0;1&display=swap" rel="stylesheet">
-  <meta name="generator" content="Hexo 5.4.2">
 
+  <!-- Theme config (kept, but TOC disabled) -->
   <script>
     (() => {
       const saveToLocal = {
-        set: (key, value, ttl) => {
-          if (!ttl) return
-          const expiry = Date.now() + ttl * 86400000
-          localStorage.setItem(key, JSON.stringify({ value, expiry }))
-        },
-        get: key => {
-          const itemStr = localStorage.getItem(key)
-          if (!itemStr) return undefined
-          const { value, expiry } = JSON.parse(itemStr)
-          if (Date.now() > expiry) {
-            localStorage.removeItem(key)
-            return undefined
-          }
-          return value
-        }
+        set: (k,v,t)=>{ if(!t) return; const e=Date.now()+t*86400000; localStorage.setItem(k, JSON.stringify({value:v, expiry:e})) },
+        get: (k)=>{ const s=localStorage.getItem(k); if(!s) return; const {value,expiry}=JSON.parse(s); if(Date.now()>expiry){ localStorage.removeItem(k); return } return value }
       }
-
       window.btf = {
         saveToLocal,
-        getScript: (url, attr = {}) => new Promise((resolve, reject) => {
-          const script = document.createElement('script')
-          script.src = url
-          script.async = true
-          Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
-          script.onload = script.onreadystatechange = () => {
-            if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
-          }
-          script.onerror = reject
-          document.head.appendChild(script)
-        }),
-        getCSS: (url, id) => new Promise((resolve, reject) => {
-          const link = document.createElement('link')
-          link.rel = 'stylesheet'
-          link.href = url
-          if (id) link.id = id
-          link.onload = link.onreadystatechange = () => {
-            if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
-          }
-          link.onerror = reject
-          document.head.appendChild(link)
-        }),
-        addGlobalFn: (key, fn, name = false, parent = window) => {
-          if (!false && key.startsWith('pjax')) return
-          const globalFn = parent.globalFn || {}
-          globalFn[key] = globalFn[key] || {}
-          globalFn[key][name || Object.keys(globalFn[key]).length] = fn
-          parent.globalFn = globalFn
-        }
+        getScript:(url,attr={})=>new Promise((res,rej)=>{const s=document.createElement('script'); s.src=url; s.async=true; Object.entries(attr).forEach(([k,v])=>s.setAttribute(k,v)); s.onload=s.onreadystatechange=()=>{ if(!s.readyState||/loaded|complete/.test(s.readyState)) res() }; s.onerror=rej; document.head.appendChild(s)}),
+        getCSS:(url,id)=>new Promise((res,rej)=>{const l=document.createElement('link'); l.rel='stylesheet'; l.href=url; if(id) l.id=id; l.onload=l.onreadystatechange=()=>{ if(!l.readyState||/loaded|complete/.test(l.readyState)) res() }; l.onerror=rej; document.head.appendChild(l)}),
+        addGlobalFn:(key,fn,name=false,parent=window)=>{ if(!false && key.startsWith('pjax')) return; const g=parent.globalFn||{}; g[key]=g[key]||{}; g[key][name||Object.keys(g[key]).length]=fn; parent.globalFn=g; }
       }
-
-      const activateDarkMode = () => {
-        document.documentElement.setAttribute('data-theme', 'dark')
+      const setTheme = (mode) => {
+        document.documentElement.setAttribute('data-theme', mode)
         const m = document.querySelector('meta[name="theme-color"]')
-        if (m) m.setAttribute('content', '#0d0d0d')
+        if (m) m.setAttribute('content', mode === 'dark' ? '#0d0d0d' : '#ffffff')
       }
-      const activateLightMode = () => {
-        document.documentElement.setAttribute('data-theme', 'light')
-        const m = document.querySelector('meta[name="theme-color"]')
-        if (m) m.setAttribute('content', 'ffffff')
-      }
-
-      btf.activateDarkMode = activateDarkMode
-      btf.activateLightMode = activateLightMode
-
       const theme = saveToLocal.get('theme')
-      theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+      if (theme) setTheme(theme)
 
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
       }
 
-      const detectApple = () => {
-        if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
-          document.documentElement.classList.add('apple')
-        }
+      // Disable TOC
+      window.GLOBAL_CONFIG = {
+        percent: { toc: false, rightside: true }
       }
-      detectApple()
+      window.GLOBAL_CONFIG_SITE = {
+        title: 'Homepage',
+        isToc: false,
+        pageType: 'post'
+      }
     })()
-  </script>
-
-  <script>
-    const GLOBAL_CONFIG = {
-      root: '/',
-      algolia: undefined,
-      localSearch: undefined,
-      translate: undefined,
-      highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
-      copy: { success: 'Copy Successful', error: 'Copy Failed', noSupport: 'Browser Not Supported' },
-      relativeDate: { homepage: true, post: true },
-      runtime: '',
-      dateSuffix: { just: 'Just now', min: 'minutes ago', hour: 'hours ago', day: 'days ago', month: 'months ago' },
-      copyright: undefined,
-      lightbox: 'null',
-      Snackbar: undefined,
-      infinitegrid: { js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js', buttonText: 'Load More' },
-      isPhotoFigcaption: false,
-      islazyloadPlugin: false,
-      isAnchor: false,
-      percent: {
-        toc: false,           /* disabled TOC percentage */
-        rightside: true
-      },
-      autoDarkmode: false
-    }
-  </script>
-  <script id="config-diff">
-    var GLOBAL_CONFIG_SITE = {
-      title: 'Homepage',
-      isHighlightShrink: false,
-      isToc: false,          /* disable TOC entirely */
-      pageType: 'post'
-    }
   </script>
 </head>
 
 <body>
-  <!-- Sidebar -->
+  <!-- Sidebar (left) -->
   <div id="sidebar">
     <div id="menu-mask"></div>
     <div id="sidebar-menus">
@@ -172,13 +76,13 @@
         <img src="/Images/profile.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/>
       </div>
 
-      <!-- Left menu (kept) -->
+      <!-- Left menu -->
       <div class="menus_items">
         <div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-brands fa-studiovinari"></i><span> Home</span></a></div>
         <div class="menus_item"><a class="site-page" href="/CV/Keshav_CV_Website.pdf"><i class="fa-fw fa-regular fa-id-card"></i><span> CV</span></a></div>
         <div class="menus_item"><a class="site-page" href="/Research/"><i class="fa-fw fa-solid fa-pen-to-square"></i><span> Research</span></a></div>
         <div class="menus_item"><a class="site-page" href="/Projects/"><i class="fa-fw fa-regular fa-folder-open"></i><span> Projects</span></a></div>
-        <div class="menus_item"><a class="site-page" href="/Teaching/"><i class="fa-fw fa-solid fa-person-chalkboard"></i><span> Teaching</span></a></div>
+        <div class="menus_item"><a class="site-page" href="/Teaching/"><i class="fa-fw fa-solid fa-chalkboard"></i><span> Teaching</span></a></div>
       </div>
     </div>
   </div>
@@ -197,7 +101,7 @@
             <div class="menus_item"><a class="site-page" href="/CV/Keshav_CV_Website.pdf"><i class="fa-fw fa-regular fa-id-card"></i><span> CV</span></a></div>
             <div class="menus_item"><a class="site-page" href="/Research/"><i class="fa-fw fa-solid fa-pen-to-square"></i><span> Research</span></a></div>
             <div class="menus_item"><a class="site-page" href="/Projects/"><i class="fa-fw fa-regular fa-folder-open"></i><span> Projects</span></a></div>
-            <div class="menus_item"><a class="site-page" href="/Teaching/"><i class="fa-fw fa-solid fa-person-chalkboard"></i><span> Teaching</span></a></div>
+            <div class="menus_item"><a class="site-page" href="/Teaching/"><i class="fa-fw fa-solid fa-chalkboard"></i><span> Teaching</span></a></div>
           </div>
           <div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div>
         </div>
@@ -209,103 +113,70 @@
         <div id="post-info">
           <h1 class="post-title">Keshav Dahiya</h1>
           <div id="post-meta">
-              <div class="meta-firstline">
-                <span class="post-meta-date">
-                  <i class="fa-fw post-meta-icon fas fa-history"></i>
-                  <span class="post-meta-label">Updated</span>
-                  <time id="auto-update-time"></time>
-                </span>
-              </div>
-              <div class="meta-secondline"></div>
+            <div class="meta-firstline">
+              <span class="post-meta-date">
+                <i class="fa-fw post-meta-icon fas fa-history"></i>
+                <span class="post-meta-label">Updated</span>
+                <time id="auto-update-time"></time>
+              </span>
             </div>
-
-            <script>
-            document.addEventListener("DOMContentLoaded", () => {
-              const t = document.getElementById("auto-update-time");
-              if (t) {
-                const d = new Date(document.lastModified);
-                const yyyy = d.getFullYear();
-                const mm = String(d.getMonth() + 1).padStart(2, "0");
-                const dd = String(d.getDate()).padStart(2, "0");
-                const formatted = `${yyyy}-${mm}-${dd}`;
-                t.textContent = formatted;
-                t.setAttribute("datetime", d.toISOString());
-                t.setAttribute("title", "Updated " + d.toLocaleString());
-              }
-            });
-            </script>
-
+            <div class="meta-secondline"></div>
+          </div>
         </div>
 
         <article class="container post-content" id="article-container">
-          <div id="post-outdate-notice" data='{"limitDay":365,"messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated.","postUpdate":"2025-10-08 13:19:24"}' hidden></div>
-
           <!-- Personal Information -->
           <h3 id="Personal-Information"><a href="#Personal-Information" class="headerlink" title="Personal Information"></a><a href="#Personal-Information" title="Personal Information"></a>Personal Information</h3>
-          <p>I am a Ph.D. candidate in Mathematics at Indiana University Indianapolis, advised by Prof. Evgeny Mukhin. 
-            My research interests include quantum algebras, representation theory, and mathematical physics. 
+          <p>I am a Ph.D. candidate in Mathematics at Indiana University Indianapolis, advised by Prof. Evgeny Mukhin.
+            My research interests include quantum algebras, representation theory, and mathematical physics.
             I am also interested in data-driven applications of mathematical ideas in science and engineering.</p>
 
-            <ul>
-              <li>Email: <a href="mailto:kkeshav@iu.edu">kkeshav@iu.edu</a></li>
-              <li>Address: Department of Mathematical Sciences, Indiana University Indianapolis, IN 46202</li>
-              <li><a class="btn-beautify blue" href="/CV/Keshav_CV_Website.pdf" title="Academic CV"><i class="far fa-file-pdf"></i><span>Academic CV</span></a></li>
-            </ul>
+          <ul>
+            <li>Email: <a href="mailto:kkeshav@iu.edu">kkeshav@iu.edu</a></li>
+            <li>Address: Department of Mathematical Sciences, Indiana University-Indianapolis, 402 N Blackford St, Indianapolis, IN 46202</li>
+            <li><a class="btn-beautify blue" href="/CV/Keshav_CV_Website.pdf" title="Academic CV"><i class="far fa-file-pdf"></i><span>Academic CV</span></a></li>
+          </ul>
 
           <!-- Education -->
           <h3 id="Education"><a href="#Education" class="headerlink" title="Education"></a><a href="#Education" title="Education"></a>Education</h3>
           <ul>
-            <li>Jan 2021 - May 2026, Ph.D. in Mathematics, Indiana University, Indianapolis </li>
-            <li> Jul 2018 - May 2020, M.S. in Mathematics, Indian Institute of Technology, Delhi</li>
-            <li> Jul 2013 - May 2015, M.Tech. in Information and Communication Technology, Indian Institute of Technology, Delhi</li>
-            <li> Jul 2010 - May 2015, B.Tech in Electrical Engineering, Indian Institute of Technology, Delhi</li>  
+            <li>Jan 2021 – May 2026, Ph.D. in Mathematics, Indiana University, Indianapolis</li>
+            <li>Jul 2018 – May 2020, M.S. in Mathematics, Indian Institute of Technology, Delhi</li>
+            <li>Jul 2013 – May 2015, M.Tech. in Information and Communication Technology, Indian Institute of Technology, Delhi</li>
+            <li>Jul 2010 – May 2015, B.Tech in Electrical Engineering, Indian Institute of Technology, Delhi</li>
           </ul>
 
           <!-- Research Interests -->
           <h3 id="Research-Interests"><a href="#Research-Interests" class="headerlink" title="Research Interests"></a><a href="#Research-Interests" title="Research Interests"></a>Research Interests</h3>
           <p>I am interested in blah blah blah write here</p>
-
         </article>
 
         <div class="tag_share"></div>
       </div>
 
-      <!-- Left aside-->
+      <!-- Left aside (avatar + social only) -->
       <div class="aside-content" id="aside-content">
         <div class="card-widget card-info text-center">
           <div class="avatar-img">
             <img src="/Images/profile.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/>
           </div>
 
-
-          <!-- Social icons: GitHub, LinkedIn, Google Scholar, arXiv, Email -->
           <div class="card-info-social-icons">
-            <a class="social-icon" href="https://github.com/keshavdahiya" target="_blank" title="GitHub">
-              <i class="fab fa-github-square"></i>
-            </a>
-            <a class="social-icon" href="https://www.linkedin.com/in/keshav-dahiya/" target="_blank" title="LinkedIn">
-              <i class="fab fa-linkedin"></i>
-            </a>
-            <a class="social-icon" href="https://scholar.google.com/citations?user=fFtahP8AAAAJ&hl=en" target="_blank" title="Google Scholar">
-              <i class="ai ai-google-scholar-square" style="color:#4E71FF;"></i>
-            </a>
-            <a class="social-icon" href="https://arxiv.org/search/math?searchtype=author&query=Dahiya,+K" target="_blank" title="arXiv">
-              <i class="ai ai-arxiv-square" style="color:#E55050;"></i>
-            </a>
-            <a class="social-icon" href="mailto:kkeshav@iu.edu" title="Email">
-              <i class="fas fa-envelope-square"></i>
-            </a>
+            <a class="social-icon" href="https://github.com/keshavdahiya" target="_blank" title="GitHub"><i class="fab fa-github-square"></i></a>
+            <a class="social-icon" href="https://www.linkedin.com/in/keshav-dahiya/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a class="social-icon" href="https://scholar.google.com/citations?user=fFtahP8AAAAJ&hl=en" target="_blank" title="Google Scholar"><i class="ai ai-google-scholar-square" style="color:#4E71FF;"></i></a>
+            <a class="social-icon" href="https://arxiv.org/search/math?searchtype=author&query=Dahiya,+K" target="_blank" title="arXiv"><i class="ai ai-arxiv-square" style="color:#E55050;"></i></a>
+            <a class="social-icon" href="mailto:kkeshav@iu.edu" title="Email"><i class="fas fa-envelope-square"></i></a>
           </div>
         </div>
 
-        <div class="sticky_layout">
-        </div>
+        <div class="sticky_layout"><!-- TOC intentionally removed --></div>
       </div>
     </main>
 
     <footer id="footer">
       <div id="footer-wrap">
-        <div class="copyright">&copy;Keshav Dahiya</div>
+        <div class="copyright">&copy; Keshav Dahiya</div>
       </div>
     </footer>
   </div>
@@ -322,51 +193,52 @@
     </div>
   </div>
 
-  <div>
-    <script src="/js/utils.js"></script>
-    <script src="/js/main.js"></script>
+  <!-- Theme JS (kept) -->
+  <script src="/js/utils.js"></script>
+  <script src="/js/main.js"></script>
 
-    <div class="js-pjax">
-      <script>(() => {
-        const loadMathjax = () => {
-          if (!window.MathJax) {
-            window.MathJax = {
-              tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], tags: 'ams' },
-              chtml: { scale: 1.1 },
-              options: {
-                enableMenu: true,
-                renderActions: {
-                  findScript: [10, doc => {
-                    for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
-                      const display = !!node.type.match(/; *mode=display/)
-                      const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
-                      const text = document.createTextNode('')
-                      node.parentNode.replaceChild(text, node)
-                      math.start = {node: text, delim: '', n: 0}
-                      math.end = {node: text, delim: '', n: 0}
-                      doc.math.push(math)
-                    }
-                  }, '']
-                }
-              }
-            }
-            const script = document.createElement('script')
-            script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
-            script.id = 'MathJax-script'
-            script.async = true
-            document.head.appendChild(script)
-          } else {
-            MathJax.startup.document.state(0)
-            MathJax.texReset()
-            MathJax.typesetPromise()
-          }
+  <!-- MathJax loader (optional, safe to keep) -->
+  <script>
+    (() => {
+      const loadMathjax = () => {
+        if (!window.MathJax) {
+          window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], tags: 'ams' }, chtml: { scale: 1.1 } }
+          const s = document.createElement('script')
+          s.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+          s.id = 'MathJax-script'
+          s.async = true
+          document.head.appendChild(s)
+        } else {
+          MathJax.startup.document.state(0); MathJax.texReset(); MathJax.typesetPromise()
         }
-        btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
-        window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
-      })()</script>
-    </div>
+      }
+      window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+    })()
+  </script>
 
-    <script async data-id="101484392" src="//static.getclicky.com/js"></script>
-  </div>
+  <!-- Auto "Updated" date (runs on load and after PJAX) -->
+  <script>
+    (function () {
+      function setUpdated() {
+        var t = document.getElementById('auto-update-time');
+        if (!t) return;
+        var d = new Date(document.lastModified);
+        if (isNaN(d)) d = new Date(); // fallback
+        var yyyy = d.getFullYear();
+        var mm = String(d.getMonth() + 1).padStart(2, '0');
+        var dd = String(d.getDate()).padStart(2, '0');
+        var formatted = yyyy + '-' + mm + '-' + dd;
+        t.textContent = formatted;
+        t.setAttribute('datetime', d.toISOString());
+        t.setAttribute('title', 'Updated ' + d.toLocaleString());
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setUpdated);
+      } else {
+        setUpdated();
+      }
+      document.addEventListener('pjax:complete', setUpdated);
+    })();
+  </script>
 </body>
 </html>

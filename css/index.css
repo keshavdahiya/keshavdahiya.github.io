@@ -6275,3 +6275,24 @@ blockquote.pullquote.right {
   display: none;
   background: rgba(0,0,0,0.6);
 }
+
+/* === Left profile image overrides === */
+#aside-content .card-info .avatar-img { padding: 0 !important; }
+
+#aside-content .card-info .avatar-img img {
+  width: 260px;           /* adjust size as you like (e.g., 300px) */
+  max-width: 100%;
+  height: auto;
+  border-radius: 0 !important;   /* no circle crop */
+  border: 0 !important;
+  box-shadow: none !important;
+  clip-path: none !important;
+  object-fit: contain;           /* show full image */
+  transition: none !important;   /* kill hover animation */
+  transform: none !important;
+}
+
+/* kill any theme hover/zoom */
+#aside-content .card-info .avatar-img:hover img {
+  transform: none !important;
+}
