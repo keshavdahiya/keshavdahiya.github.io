@@ -3,6 +3,8 @@
    - Modernized (no legacy prefixes)
    - Focus styles, reduced motion, smaller keyframes set
    - Keeps your existing IDs/classes so markup needn't change
+   - Nasheed tweaks (10/13): wider left panel, narrower right panel,
+     big rectangular avatar, always-visible top navigation
    ========================================================================== */
 
 /* --------------------------------------
@@ -146,9 +148,13 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
 @media (max-width:900px){.layout{flex-direction:column}}
 @media (max-width:768px){.layout{padding:20px 5px}}
 @media (min-width:2000px){.layout{max-width:70%}}
-.layout>div:first-child{width:74%;transition:.3s}
+
+/* Main (right) column width — NARROWER now */
+.layout>div:first-child{width:62%;transition:.3s}
 @media (max-width:900px){.layout>div:first-child{width:100%!important}}
-@media (min-width:900px){.layout>div:first-child{order:2}}
+@media (min-width:900px){.layout>div:first-child{order:2}} /* keep content on the right */
+
+/* When aside is hidden, let content expand */
 .layout.hide-aside{max-width:1000px}
 @media (min-width:2000px){.layout.hide-aside{max-width:1300px}}
 .layout.hide-aside>div{width:100%!important}
@@ -173,14 +179,14 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
   position:absolute;top:0;z-index:90;
   display:flex;align-items:center;gap:14px;
   height:60px;width:100%;padding:0 36px;font-size:1.1em;
-  opacity:0;transition:.5s;
+  opacity:1; /* <— always visible now */
+  visibility:visible;
 }
-#nav.show{opacity:1}
 #nav .site-name{font-weight:700;text-shadow:2px 2px 4px rgba(0,0,0,.15)}
 #nav a,#nav span.site-page{color:var(--white)}
-#nav a:hover,#nav span.site-page:hover{color:var(--white)}
-#nav .menus_items{display:inline}
-#nav .menus_items .menus_item{position:relative;display:inline-block;padding-left:14px}
+#nav a:hover,#nav span.site-page:hover{color:var(--white);text-decoration:underline}
+#nav .menus_items{display:inline-flex;gap:14px}
+#nav .menus_items .menus_item{position:relative;display:inline-block;padding-left:0}
 #nav .menus_item > span > i:last-child{padding:4px;transition:transform .3s}
 #nav .menus_item:hover > span > i:last-child{transform:rotate(180deg)}
 #nav .menus_item .menus_item_child{
@@ -201,12 +207,12 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
 #page-header.not-top-img #nav a,#page-header.not-top-img #nav .site-name{color:var(--font-color);text-shadow:none}
 
 #page-header.nav-fixed #nav{
-  position:fixed;top:-60px;z-index:91;background:rgba(255,255,255,.7);
+  position:fixed;top:0;z-index:91;background:rgba(255,255,255,.7);
   box-shadow:0 5px 6px -5px rgba(133,133,133,.6);backdrop-filter:blur(7px);
   transition:transform .2s ease,opacity .2s ease;
 }
-#page-header.nav-fixed.fixed #nav{top:0;transition:.5s}
-#page-header.nav-visible:not(.fixed) #nav{transform:translate3d(0,100%,0)}
+
+#page-header.nav-visible:not(.fixed) #nav{transform:none}
 
 /* Dark tweaks for nav */
 [data-theme="dark"] #page-header.nav-fixed>#nav,[data-theme="dark"] #page-header.not-top-img>#nav{
@@ -259,7 +265,7 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
 /* --------------------------------------
    6) Aside (sidebar)
 --------------------------------------- */
-#aside-content{width:26%}
+#aside-content{width:38%} /* <— WIDER left panel */
 @media (min-width:900px){#aside-content{padding-right:15px}}
 @media (max-width:900px){#aside-content{margin-top:20px;width:100%}}
 #aside-content .card-widget{
@@ -293,11 +299,20 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
 #aside-content .card-archives a:hover,
 #aside-content .card-categories a:hover{background:rgba(73,177,245,.15);color:var(--white)}
 
-/* Left profile image overrides (kept) */
+/* Left profile image overrides — BIG, TALL, NOT CIRCLE */
 #aside-content .card-info .avatar-img{padding:0 !important}
 #aside-content .card-info .avatar-img img{
-  width:260px;max-width:100%;height:auto;border-radius:0 !important;border:0 !important;
-  box-shadow:none !important;object-fit:contain;transition:none !important;transform:none !important;
+  width:100%;
+  height:560px;              /* <— “way larger… more in height” */
+  object-fit:cover;          /* fills area nicely */
+  border-radius:0 !important;/* ensure not circle-cropped */
+  border:0 !important;
+  box-shadow:none !important;
+  transition:none !important;
+  transform:none !important;
+}
+@media (max-width:900px){
+  #aside-content .card-info .avatar-img img{height:320px}
 }
 #aside-content .card-info .avatar-img:hover img{transform:none !important}
 

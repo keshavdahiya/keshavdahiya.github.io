@@ -1,85 +1,88 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Home | Keshav Dahiya</title>
 
-  <!-- Basic meta (kept lightweight) -->
-  <meta name="author" content="Keshav Dahiya">
-  <meta name="description" content="Personal website of Keshav Dahiya">
-  <meta name="theme-color" content="#ffffff">
+  <!-- Basic meta -->
+  <meta name="author" content="Keshav Dahiya" />
+  <meta name="description" content="Personal website of Keshav Dahiya" />
+  <meta name="theme-color" content="#ffffff" />
 
-  <!-- (Optional) Social preview — safe to remove if you don't want them -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Keshav Dahiya">
-  <meta property="og:url" content="https://keshavdahiya.github.io/index.html">
-  <meta property="og:site_name" content="Keshav Dahiya">
-  <meta property="og:description" content="Personal website of Keshav Dahiya">
-  <meta property="og:image" content="https://keshavdahiya.github.io/Images/profile.jpg">
-  <meta property="og:locale" content="en_US">
+  <!-- Social preview (optional) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Keshav Dahiya" />
+  <meta property="og:url" content="https://keshavdahiya.github.io/" />
+  <meta property="og:site_name" content="Keshav Dahiya" />
+  <meta property="og:description" content="Personal website of Keshav Dahiya" />
+  <meta property="og:image" content="https://keshavdahiya.github.io/Images/profile.jpg" />
+  <meta property="og:locale" content="en_US" />
 
-  <link rel="canonical" href="https://keshavdahiya.github.io/index.html">
-  <link rel="preconnect" href="//cdn.jsdelivr.net"/>
+  <link rel="canonical" href="https://keshavdahiya.github.io/" />
+  <link rel="preconnect" href="//cdn.jsdelivr.net" />
 
   <!-- Styles -->
-  <link rel="stylesheet" href="/css/index.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Mate:ital@0;1&display=swap" rel="stylesheet">
+  <!-- If your site is at the domain root (keshavdahiya.github.io), leading slash is fine. 
+       If it's a project page (username.github.io/repo), change href to "css/index.css?v=2". -->
+  <link rel="stylesheet" href="/css/index.css?v=2" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Mate:ital@0;1&display=swap" rel="stylesheet" />
 
-  <!-- Theme config (kept, but TOC disabled) -->
+  <!-- Minimal theme helpers -->
   <script>
     (() => {
       const saveToLocal = {
-        set: (k,v,t)=>{ if(!t) return; const e=Date.now()+t*86400000; localStorage.setItem(k, JSON.stringify({value:v, expiry:e})) },
-        get: (k)=>{ const s=localStorage.getItem(k); if(!s) return; const {value,expiry}=JSON.parse(s); if(Date.now()>expiry){ localStorage.removeItem(k); return } return value }
-      }
-      window.btf = {
-        saveToLocal,
-        getScript:(url,attr={})=>new Promise((res,rej)=>{const s=document.createElement('script'); s.src=url; s.async=true; Object.entries(attr).forEach(([k,v])=>s.setAttribute(k,v)); s.onload=s.onreadystatechange=()=>{ if(!s.readyState||/loaded|complete/.test(s.readyState)) res() }; s.onerror=rej; document.head.appendChild(s)}),
-        getCSS:(url,id)=>new Promise((res,rej)=>{const l=document.createElement('link'); l.rel='stylesheet'; l.href=url; if(id) l.id=id; l.onload=l.onreadystatechange=()=>{ if(!l.readyState||/loaded|complete/.test(l.readyState)) res() }; l.onerror=rej; document.head.appendChild(l)}),
-        addGlobalFn:(key,fn,name=false,parent=window)=>{ if(!false && key.startsWith('pjax')) return; const g=parent.globalFn||{}; g[key]=g[key]||{}; g[key][name||Object.keys(g[key]).length]=fn; parent.globalFn=g; }
-      }
+        set: (k, v, t) => {
+          if (!t) return;
+          const e = Date.now() + t * 86400000;
+          localStorage.setItem(k, JSON.stringify({ value: v, expiry: e }));
+        },
+        get: (k) => {
+          const s = localStorage.getItem(k);
+          if (!s) return;
+          const { value, expiry } = JSON.parse(s);
+          if (Date.now() > expiry) {
+            localStorage.removeItem(k);
+            return;
+          }
+          return value;
+        }
+      };
+
       const setTheme = (mode) => {
-        document.documentElement.setAttribute('data-theme', mode)
-        const m = document.querySelector('meta[name="theme-color"]')
-        if (m) m.setAttribute('content', mode === 'dark' ? '#0d0d0d' : '#ffffff')
-      }
-      const theme = saveToLocal.get('theme')
-      if (theme) setTheme(theme)
+        document.documentElement.setAttribute('data-theme', mode);
+        const m = document.querySelector('meta[name="theme-color"]');
+        if (m) m.setAttribute('content', mode === 'dark' ? '#0d0d0d' : '#ffffff');
+      };
+
+      const theme = saveToLocal.get('theme');
+      if (theme) setTheme(theme);
 
       if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
-        document.documentElement.classList.add('apple')
+        document.documentElement.classList.add('apple');
       }
 
-      // Disable TOC
-      window.GLOBAL_CONFIG = {
-        percent: { toc: false, rightside: true }
-      }
-      window.GLOBAL_CONFIG_SITE = {
-        title: 'Homepage',
-        isToc: false,
-        pageType: 'post'
-      }
-    })()
+      // Global flags (TOC disabled)
+      window.GLOBAL_CONFIG = { percent: { toc: false, rightside: true } };
+      window.GLOBAL_CONFIG_SITE = { title: 'Homepage', isToc: false, pageType: 'post' };
+    })();
   </script>
 </head>
 
 <body>
-  <!-- Sidebar (left) -->
+  <!-- Off-canvas sidebar (mobile menu, optional) -->
   <div id="sidebar">
     <div id="menu-mask"></div>
     <div id="sidebar-menus">
       <div class="avatar-img text-center">
-        <img src="/Images/profile.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/>
+        <img src="/Images/profile.jpg" alt="avatar" onerror="this.onerror=null;this.src='/img/friend_404.gif'" />
       </div>
-
-      <!-- Left menu -->
       <div class="menus_items">
-        <div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-brands fa-studiovinari"></i><span> Home</span></a></div>
-        <div class="menus_item"><a class="site-page" href="/CV/Keshav_CV_Website.pdf"><i class="fa-fw fa-regular fa-id-card"></i><span> CV</span></a></div>
+        <div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-house"></i><span> Home</span></a></div>
+        <div class="menus_item"><a class="site-page" href="/CV/"><i class="fa-fw fa-regular fa-id-card"></i><span> CV</span></a></div>
         <div class="menus_item"><a class="site-page" href="/Research/"><i class="fa-fw fa-solid fa-pen-to-square"></i><span> Research</span></a></div>
         <div class="menus_item"><a class="site-page" href="/Projects/"><i class="fa-fw fa-regular fa-folder-open"></i><span> Projects</span></a></div>
         <div class="menus_item"><a class="site-page" href="/Teaching/"><i class="fa-fw fa-solid fa-chalkboard"></i><span> Teaching</span></a></div>
@@ -87,28 +90,29 @@
     </div>
   </div>
 
-  <div class="post type-Home" id="body-wrap">
-    <!-- Top navbar -->
-    <header class="not-top-img fixed" id="page-header">
+  <div id="body-wrap" class="post type-Home">
+    <!-- Top header/nav — matches the CSS selectors you’re using -->
+    <header id="page-header" class="not-top-img fixed">
       <nav id="nav">
         <span id="blog-info">
           <a class="nav-site-title" href="/"><span class="site-name">Keshav Dahiya</span></a>
-          <a class="nav-page-title" href="/"><span class="site-name">Homepage</span></a>
         </span>
         <div id="menus">
           <div class="menus_items">
-            <div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-brands fa-studiovinari"></i><span> Home</span></a></div>
-            <div class="menus_item"><a class="site-page" href="/CV/Keshav_CV_Website.pdf"><i class="fa-fw fa-regular fa-id-card"></i><span> CV</span></a></div>
-            <div class="menus_item"><a class="site-page" href="/Research/"><i class="fa-fw fa-solid fa-pen-to-square"></i><span> Research</span></a></div>
-            <div class="menus_item"><a class="site-page" href="/Projects/"><i class="fa-fw fa-regular fa-folder-open"></i><span> Projects</span></a></div>
-            <div class="menus_item"><a class="site-page" href="/Teaching/"><i class="fa-fw fa-solid fa-chalkboard"></i><span> Teaching</span></a></div>
+            <div class="menus_item"><a class="site-page" href="/"><span>Home</span></a></div>
+            <div class="menus_item"><a class="site-page" href="/CV/"><span>CV</span></a></div>
+            <div class="menus_item"><a class="site-page" href="/Research/"><span>Research</span></a></div>
+            <div class="menus_item"><a class="site-page" href="/Projects/"><span>Projects</span></a></div>
+            <div class="menus_item"><a class="site-page" href="/Teaching/"><span>Teaching</span></a></div>
           </div>
-          <div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div>
+          <!-- Simple burger icon (non-functional without extra JS; safe to keep) -->
+          <div id="toggle-menu" aria-label="Menu" title="Menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div>
         </div>
       </nav>
     </header>
 
-    <main class="layout" id="content-inner">
+    <main id="content-inner" class="layout">
+      <!-- Main content (right column on desktop) -->
       <div id="post">
         <div id="post-info">
           <h1 class="post-title">Keshav Dahiya</h1>
@@ -120,67 +124,67 @@
                 <time id="auto-update-time"></time>
               </span>
             </div>
-            <div class="meta-secondline"></div>
           </div>
         </div>
 
-        <article class="container post-content" id="article-container">
+        <article id="article-container" class="container post-content">
           <!-- Personal Information -->
-          <h3 id="Personal-Information"><a href="#Personal-Information" class="headerlink" title="Personal Information"></a><a href="#Personal-Information" title="Personal Information"></a>Personal Information</h3>
-          <p>I am a Ph.D. candidate in Mathematics at Indiana University Indianapolis, advised by Prof. Evgeny Mukhin.
-            My research interests include quantum algebras, representation theory, and mathematical physics.
-            I am also interested in data-driven applications of mathematical ideas in science and engineering.</p>
-
+          <h3 id="Personal-Information">Personal Information</h3>
+          <p>
+            I am a Ph.D. candidate in Mathematics at Indiana University Indianapolis, advised by Prof. Evgeny Mukhin.
+            My research interests include quantum algebras, representation theory, and mathematical physics. I’m also
+            interested in data-driven applications of mathematical ideas in science and engineering.
+          </p>
           <ul>
             <li>Email: <a href="mailto:kkeshav@iu.edu">kkeshav@iu.edu</a></li>
-            <li>Address: Department of Mathematical Sciences, Indiana University-Indianapolis, 402 N Blackford St, Indianapolis, IN 46202</li>
-            <li><a class="btn-beautify blue" href="/CV/Keshav_CV_Website.pdf" title="Academic CV"><i class="far fa-file-pdf"></i><span>Academic CV</span></a></li>
+            <li>Address: Department of Mathematical Sciences, Indiana University–Indianapolis, 402 N Blackford St, Indianapolis, IN 46202</li>
+            <li><a class="btn-beautify" href="/CV/" title="CV"><i class="far fa-file-alt"></i> <span>View CV</span></a></li>
           </ul>
 
           <!-- Education -->
-          <h3 id="Education"><a href="#Education" class="headerlink" title="Education"></a><a href="#Education" title="Education"></a>Education</h3>
+          <h3 id="Education">Education</h3>
           <ul>
             <li>Jan 2021 – May 2026, Ph.D. in Mathematics, Indiana University, Indianapolis</li>
             <li>Jul 2018 – May 2020, M.S. in Mathematics, Indian Institute of Technology, Delhi</li>
             <li>Jul 2013 – May 2015, M.Tech. in Information and Communication Technology, Indian Institute of Technology, Delhi</li>
-            <li>Jul 2010 – May 2015, B.Tech in Electrical Engineering, Indian Institute of Technology, Delhi</li>
+            <li>Jul 2010 – May 2015, B.Tech. in Electrical Engineering, Indian Institute of Technology, Delhi</li>
           </ul>
 
           <!-- Research Interests -->
-          <h3 id="Research-Interests"><a href="#Research-Interests" class="headerlink" title="Research Interests"></a><a href="#Research-Interests" title="Research Interests"></a>Research Interests</h3>
-          <p>I am interested in blah blah blah write here</p>
+          <h3 id="Research-Interests">Research Interests</h3>
+          <p>Write a short blurb here about your current topics and directions.</p>
         </article>
 
         <div class="tag_share"></div>
       </div>
 
-      <!-- Left aside (avatar + social only) -->
-      <div class="aside-content" id="aside-content">
+      <!-- Left sidebar (wider; big rectangular avatar) -->
+      <div id="aside-content" class="aside-content">
         <div class="card-widget card-info text-center">
           <div class="avatar-img">
-            <img src="/Images/profile.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/>
+            <img src="/Images/profile.jpg" alt="avatar" onerror="this.onerror=null;this.src='/img/friend_404.gif'" />
           </div>
-
-          <div class="card-info-social-icons">
+          <div class="card-info-social-icons" style="margin-top:10px;">
             <a class="social-icon" href="https://github.com/keshavdahiya" target="_blank" title="GitHub"><i class="fab fa-github-square"></i></a>
             <a class="social-icon" href="https://www.linkedin.com/in/keshav-dahiya/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            <a class="social-icon" href="https://scholar.google.com/citations?user=fFtahP8AAAAJ&hl=en" target="_blank" title="Google Scholar"><i class="ai ai-google-scholar-square" style="color:#4E71FF;"></i></a>
-            <a class="social-icon" href="https://arxiv.org/search/math?searchtype=author&query=Dahiya,+K" target="_blank" title="arXiv"><i class="ai ai-arxiv-square" style="color:#E55050;"></i></a>
+            <a class="social-icon" href="https://scholar.google.com/citations?user=fFtahP8AAAAJ&hl=en" target="_blank" title="Google Scholar"><i class="ai ai-google-scholar-square"></i></a>
+            <a class="social-icon" href="https://arxiv.org/search/math?searchtype=author&query=Dahiya,+K" target="_blank" title="arXiv"><i class="ai ai-arxiv-square"></i></a>
             <a class="social-icon" href="mailto:kkeshav@iu.edu" title="Email"><i class="fas fa-envelope-square"></i></a>
           </div>
         </div>
 
-        <div class="sticky_layout"><!-- TOC intentionally removed --></div>
+        <div class="sticky_layout"><!-- TOC intentionally left empty --></div>
       </div>
     </main>
 
     <footer id="footer">
       <div id="footer-wrap">
-        <div class="copyright">&copy; Keshav Dahiya</div>
+        <div class="copyright">&copy; <span id="year-span"></span> Keshav Dahiya</div>
       </div>
     </footer>
   </div>
 
+  <!-- Right floating buttons (optional; work with your CSS) -->
   <div id="rightside">
     <div id="rightside-config-hide">
       <button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button>
@@ -193,37 +197,37 @@
     </div>
   </div>
 
-  <!-- Theme JS (kept) -->
+  <!-- (Optional) your theme scripts if you have them -->
   <script src="/js/utils.js"></script>
   <script src="/js/main.js"></script>
 
-  <!-- MathJax loader (optional, safe to keep) -->
+  <!-- MathJax loader (optional) -->
   <script>
     (() => {
       const loadMathjax = () => {
         if (!window.MathJax) {
-          window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], tags: 'ams' }, chtml: { scale: 1.1 } }
-          const s = document.createElement('script')
-          s.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
-          s.id = 'MathJax-script'
-          s.async = true
-          document.head.appendChild(s)
+          window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], tags: 'ams' }, chtml: { scale: 1.1 } };
+          const s = document.createElement('script');
+          s.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js';
+          s.id = 'MathJax-script';
+          s.async = true;
+          document.head.appendChild(s);
         } else {
-          MathJax.startup.document.state(0); MathJax.texReset(); MathJax.typesetPromise()
+          MathJax.startup.document.state(0); MathJax.texReset(); MathJax.typesetPromise();
         }
-      }
-      window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
-    })()
+      };
+      window.addEventListener('load', loadMathjax);
+    })();
   </script>
 
-  <!-- Auto "Updated" date (runs on load and after PJAX) -->
+  <!-- Auto dates -->
   <script>
     (function () {
       function setUpdated() {
         var t = document.getElementById('auto-update-time');
         if (!t) return;
         var d = new Date(document.lastModified);
-        if (isNaN(d)) d = new Date(); // fallback
+        if (isNaN(d)) d = new Date();
         var yyyy = d.getFullYear();
         var mm = String(d.getMonth() + 1).padStart(2, '0');
         var dd = String(d.getDate()).padStart(2, '0');
@@ -232,12 +236,17 @@
         t.setAttribute('datetime', d.toISOString());
         t.setAttribute('title', 'Updated ' + d.toLocaleString());
       }
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', setUpdated);
-      } else {
-        setUpdated();
+      function setYear() {
+        var y = document.getElementById('year-span');
+        if (y) y.textContent = new Date().getFullYear();
       }
-      document.addEventListener('pjax:complete', setUpdated);
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function () {
+          setUpdated(); setYear();
+        });
+      } else {
+        setUpdated(); setYear();
+      }
     })();
   </script>
 </body>
