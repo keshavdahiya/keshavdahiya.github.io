@@ -408,7 +408,7 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
   content:"";
   position:absolute;
   inset:0;
-  background:rgba(255,255,255,.70);
+  background:rgba(255,255,255,.95);
   z-index:1;
 }
 
@@ -443,8 +443,10 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
   border-radius:0;             /* square edges */
   box-shadow:none;             /* no shadow */
   /* pull into the layout’s top and right padding only */
-  margin-top:calc(-1 * var(--layout-pad-y));
-  margin-right:calc(-1 * var(--layout-pad-x));
+    margin-top:0;
+    margin-right:0;
+/*  margin-top:calc(-1 * var(--layout-pad-y));*/
+/*  margin-right:calc(-1 * var(--layout-pad-x));*/
   /* keep left edge aligned with the content column (next to the sidebar) */
   margin-left:0;
 }
