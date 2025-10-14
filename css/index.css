@@ -421,7 +421,7 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
   /*justify-content:flex-start; /*  /* left */
   align-items:flex-end;      /* vertical bottom */
   justify-content:center;  /* horizontal center */
-  padding:clamp(4px, 0.9vw, 10px);  /* tiny, responsive inset */
+  padding:calc(clamp(4px, 0.9vw, 10px) + 0.5rem);  /* tiny, responsive inset */
   z-index:2;                   /* above the fade */
 }
 
