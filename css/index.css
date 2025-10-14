@@ -419,7 +419,7 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
   display:flex;
   /*align-items:flex-end; */        /* push to bottom */
   /*justify-content:flex-start; /*  /* left */
-  align-items:center;      /* vertical center */
+  align-items:flex-end;      /* vertical bottom */
   justify-content:center;  /* horizontal center */
   padding:clamp(4px, 0.9vw, 10px);  /* tiny, responsive inset */
   z-index:2;                   /* above the fade */
