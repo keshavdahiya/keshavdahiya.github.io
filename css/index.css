@@ -304,14 +304,12 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
 }
 
 /* brand colors forced with !important */
-.social-github i   { color: #24292f !important; }  /* GitHub black */
-.social-linkedin i { color: #0A66C2 !important; }  /* LinkedIn blue */
-.social-arxiv i    { color: #B31B1B !important; }  /* arXiv red */
-.social-scholar i  { color: #4285F4 !important; }  /* Scholar blue */
-.social-email i    { color: #EA4335 !important; }  /* Gmail red */
+.social-github i   { color: #24292f ; }  /* GitHub black */
+.social-linkedin i { color: #0A66C2 ; }  /* LinkedIn blue */
+.social-arxiv i    { color: #B31B1B ; }  /* arXiv red */
+.social-scholar i  { color: #4285F4 ; }  /* Scholar blue */
+.social-email i    { color: #EA4335 ; }  /* Gmail red */
 
-/* dark mode tweak: only adjust GitHub if needed */
-[data-theme="dark"] .social-github i { color: #f0f6fc !important; }
 
 /* hover animation */
 #aside-content .card-info .card-info-social-icons a:hover i {
