@@ -10,7 +10,8 @@
 /* --------------------------------------
    0) Variables & base
 --------------------------------------- */
-:root{
+:root{ 
+    
   --global-font-size:14px;
   --global-bg:#fff;
   --font-color:#4c4948;
@@ -47,7 +48,18 @@
   --pseudo-hover:#ff7242;
 
   --link:#2b3a67; /* light navy links */
+  --layout-pad-x: 15px;  /* matches .layout horizontal padding */
+  --layout-pad-y: 40px;  /* matches .layout top padding */
 }
+
+
+@media (max-width:768px){
+  :root{
+    --layout-pad-x: 5px;   /* .layout has 5px at this breakpoint */
+    --layout-pad-y: 20px;  /* .layout has 20px top padding here */
+  }
+}
+
 
 /* Dark theme */
 [data-theme="dark"]{
@@ -423,6 +435,18 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
   border:0 !important;         /* ensure no underline/border from older rule */
   text-shadow:none;
   text-align: center;
+}
+
+
+/* Only the banner bleeds to the page edges (top + right) */
+.hero-banner.full-bleed{
+  border-radius:0;             /* square edges */
+  box-shadow:none;             /* no shadow */
+  /* pull into the layout’s top and right padding only */
+  margin-top:calc(-1 * var(--layout-pad-y));
+  margin-right:calc(-1 * var(--layout-pad-x));
+  /* keep left edge aligned with the content column (next to the sidebar) */
+  margin-left:0;
 }
 
 /* Tag pills & share (use your theme colors instead of bright blue) */
