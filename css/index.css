@@ -277,55 +277,48 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
 #aside-content .card-info .card-info-social-icons i{transition:.3s}
 #aside-content .card-info .card-info-social-icons i:hover{transform:rotate(360deg)}
 
-/* Social icons — spacing + brand colors + hover polish */
-#aside-content .card-info .card-info-social-icons{
-  display:flex;
-  justify-content:center;
-  gap:14px;
+/* === Social icons: brand colors, equal spacing, fixed override === */
+#aside-content .card-info .card-info-social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;               
+  margin-top: 10px;
 }
 
-#aside-content .card-info .card-info-social-icons a{
-  text-decoration:none;
-  transition:transform 0.2s ease, opacity 0.2s ease;
+/* fixed-size anchors for equal spacing */
+#aside-content .card-info .card-info-social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  text-decoration: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-#aside-content .card-info .card-info-social-icons i{
-  font-size:2rem;        
-  line-height:1;
+/* icon sizing only — DO NOT inherit color */
+#aside-content .card-info .card-info-social-icons i {
+  font-size: 2rem;
+  line-height: 1;
 }
 
-/* === Social icons: brand colors, equal spacing === */
-#aside-content .card-info .card-info-social-icons{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:18px;              /* equal spacing */
-  margin-top:10px;
+/* brand colors forced with !important */
+.social-github i   { color: #24292f !important; }  /* GitHub black */
+.social-linkedin i { color: #0A66C2 !important; }  /* LinkedIn blue */
+.social-arxiv i    { color: #B31B1B !important; }  /* arXiv red */
+.social-scholar i  { color: #4285F4 !important; }  /* Scholar blue */
+.social-email i    { color: #EA4335 !important; }  /* Gmail red */
+
+/* dark mode tweak: only adjust GitHub if needed */
+[data-theme="dark"] .social-github i { color: #f0f6fc !important; }
+
+/* hover animation */
+#aside-content .card-info .card-info-social-icons a:hover i {
+  transform: scale(1.15);
+  opacity: 0.85;
 }
 
-/* fixed-size hit areas so spacing stays even */
-#aside-content .card-info .card-info-social-icons a{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  width:38px;
-  height:38px;
-  text-decoration:none;
-  transition:transform .2s ease, opacity .2s ease;
-}
-
-/* Brand colors (valid hex) */
-.social-github   i{ color:#24292f !important; }  /* GitHub */
-.social-linkedin i{ color:#0A66C2 !important; }  /* LinkedIn */
-.social-arxiv    i{ color:#B31B1B !important; }  /* arXiv */
-.social-scholar  i{ color:#4285F4 !important; }  /* Google Scholar */
-.social-email    i{ color:#EA4335 !important; }  /* Email */
-
-/* Hover polish */
-#aside-content .card-info .card-info-social-icons a:hover i{
-  transform:scale(1.15);
-  opacity:.85;
-}
 
 
 #aside-content .item-headline{padding-bottom:6px;font-size:1.1em}
@@ -408,18 +401,21 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
   inset:0;
   background:rgba(255,255,255,.62);  /* light wash so dark text pops */
 }
-/* Title centered over the banner; remove default border/margins */
+/* Title aligned at bottom left of banner; remove default border/margins */
 .hero-banner .post-title{
   position:absolute;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
+  left:40px;              /* distance from left edge */
+  bottom:30px;            /* distance from bottom edge */
   margin:0;
   padding:0;
-  border:0 !important;          /* override the default bottom border */
-  text-align:center;
-  text-shadow:0 1px 1px rgba(0,0,0,.05);
+  border:0 !important;
+  color:#000;             /* black text */
+  font-size:2.6em;        /* make it bigger (try 2.8–3em if you want larger) */
+  font-weight:700;
+  text-shadow:none;       /* remove glow for crisp look */
+  text-align:left;
 }
+
 /* Dark mode: darken the overlay so light text stays readable */
 [data-theme="dark"] .hero-banner::after{
   background:rgba(0,0,0,.45);
