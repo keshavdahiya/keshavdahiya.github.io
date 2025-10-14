@@ -378,10 +378,10 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
 /* ===== Banner-style heading with real image (no dark mode) ===== */
 .hero-banner{
   position:relative;
-  border-radius:10px;
+  border-radius:0; /* border-radius:10px; */
   overflow:hidden;
   margin:0 0 12px;
-  box-shadow:var(--card-shadow);
+  box-shadow:none;  /* box-shadow:var(--card-shadow); */
 }
 
 /* Image fills the right column width; height auto keeps aspect ratio */
