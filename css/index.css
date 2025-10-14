@@ -407,7 +407,7 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
   display:flex;
   align-items:flex-end;        /* push to bottom */
   justify-content:flex-start;  /* left */
-  padding:clamp(6px, 1.2vw, 14px);  /* tiny, responsive inset */
+  padding:clamp(4px, 0.9vw, 10px);  /* tiny, responsive inset */
   z-index:2;                   /* above the fade */
 }
 
@@ -415,9 +415,9 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
 .hero-banner .post-title{
   margin:0;
   color:#000;                  /* solid black */
-  font-size:clamp(3.2rem, 6vw, 4.6rem); /* bigger & responsive */
+  font-size:clamp(4.2rem, 10vw, 8rem);
+  line-height:.92; /* bigger & responsive */
   font-weight:700;
-  line-height:1.05;
   border:0 !important;         /* ensure no underline/border from older rule */
   text-shadow:none;
 }
