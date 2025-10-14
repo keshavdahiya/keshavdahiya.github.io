@@ -377,49 +377,47 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
 #post>#post-info #post-meta,
 #post>#post-info #post-meta a{color:#78818a}
 
-/* ===== Banner-style heading over a faded image ===== */
+/* ===== Banner-style heading with real image (no dark mode) ===== */
 .hero-banner{
   position:relative;
-  height:240px;                 /* tweak 200–320px as you like */
   border-radius:10px;
   overflow:hidden;
   margin:0 0 12px;
   box-shadow:var(--card-shadow);
 }
-/* Background image */
-.hero-banner::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:url("/Images/UqE8_light.png") center/cover no-repeat;
-  transform:scale(1.02);        /* tiny zoom for edge bleed */
+
+/* Image fills the right column width; height auto keeps aspect ratio */
+.hero-banner .hero-img{
+  display:block;
+  width:100%;
+  height:auto;
 }
-/* Fade overlay for readability */
+
+/* Subtle fade ABOVE the image but BELOW the text */
 .hero-banner::after{
   content:"";
   position:absolute;
   inset:0;
-  background:rgba(255,255,255,.62);  /* light wash so dark text pops */
+  background:rgba(255,255,255,.42); /* light fade so black text pops */
+  z-index:1;
 }
-/* Title aligned at bottom left of banner; remove default border/margins */
+
+/* Title: bottom-left, SOLID BLACK, bigger */
 .hero-banner .post-title{
   position:absolute;
-  left:40px;              /* distance from left edge */
-  bottom:30px;            /* distance from bottom edge */
+  left:40px;          /* adjust to taste */
+  bottom:30px;
   margin:0;
   padding:0;
   border:0 !important;
-  color:#000;             /* black text */
-  font-size:2.6em;        /* make it bigger (try 2.8–3em if you want larger) */
+  color:#000;         /* solid black */
+  font-size:clamp(2.4rem, 4vw, 3.2rem); /* bigger & responsive */
   font-weight:700;
-  text-shadow:none;       /* remove glow for crisp look */
+  text-shadow:none;
   text-align:left;
+  z-index:2;          /* above fade overlay */
 }
 
-/* Dark mode: darken the overlay so light text stays readable */
-[data-theme="dark"] .hero-banner::after{
-  background:rgba(0,0,0,.45);
-}
 
 /* Tag pills & share (use your theme colors instead of bright blue) */
 #post .tag_share .post-meta__tags{
