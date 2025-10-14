@@ -231,6 +231,35 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
   background:rgba(18,18,18,.8);box-shadow:none;
 }
 
+
+/* Brand left, menu right; vertical centering */
+#nav{
+  display:flex;
+  align-items:center;          /* vertical center */
+}
+
+#nav #menus{
+  margin-left:auto;            /* pushes menu to the right */
+  display:flex;
+  align-items:center;          /* center menu content vertically */
+}
+
+#nav .menus_items{
+  display:flex;
+  align-items:center;          /* center each item vertically */
+  gap:16px;
+  height:100%;
+}
+
+#nav .menus_items .menus_item > a{
+  display:inline-flex;
+  align-items:center;          /* center icon + text */
+  gap:8px;
+  height:100%;
+  line-height:1;
+}
+
+
 /* --------------------------------------
    4) Main content cards / recent posts
 --------------------------------------- */
