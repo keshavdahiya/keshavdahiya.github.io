@@ -294,23 +294,44 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
   line-height:1;
 }
 
-/* Brand colors */
-.social-github   i{ color:#24292f; }      /* GitHub black */
-.social-linkedin i{ color:#0A66C2; }      /* LinkedIn blue */
-.social-arxiv    i{ color:#B31B1B; }      /* arXiv red */
-.social-scholar  i{ color:#4285F4; }      /* Google Scholar blue */
-.social-email    i{ color:#EA4335; }      /* Gmail red */
-
-/* Optional: dark theme adjustment */
-[data-theme="dark"] .social-github i{ color:#f0f6fc; }
-
-/* Hover effects (slightly brighten) */
-#aside-content .card-info .card-info-social-icons a:hover i{
-  opacity:0.8;
-  transform:scale(1.15);
+/* === Social icons: brand colors, equal spacing, fixed override === */
+#aside-content .card-info .card-info-social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;               /* equal spacing */
+  margin-top: 10px;
 }
 
+#aside-content .card-info .card-info-social-icons a {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;             /* fixed width for equal spacing */
+  height: 38px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
 
+/* --- Explicitly reset color inheritance --- */
+#aside-content .card-info .card-info-social-icons a i {
+  font-size: 2rem;
+  line-height: 1;
+  color: inherit !important;
+}
+
+/* --- Brand-specific colors (force override) --- */
+.social-github   i { color: #24292f !important; }   /* GitHub black */
+.social-linkedin i { color: #navy !important; }   /* LinkedIn blue */
+.social-arxiv    i { color: #maroon !important; }   /* arXiv red */
+.social-scholar  i { color: #4285F4 !important; }   /* Scholar blue */
+.social-email    i { color: #333 !important; }      /* Gmail grey */
+
+/* --- Hover: subtle scale & lighten --- */
+#aside-content .card-info .card-info-social-icons a:hover i {
+  transform: scale(1.15);
+  opacity: 0.85;
+}
 
 
 #aside-content .item-headline{padding-bottom:6px;font-size:1.1em}
