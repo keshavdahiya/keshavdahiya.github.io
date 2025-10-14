@@ -99,7 +99,8 @@ body{
   min-height:100%;
   background:var(--global-bg);
   color:var(--font-color);
-  font:400 var(--global-font-size)/1.9 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Noto Sans",sans-serif;
+/*  font:400 var(--global-font-size)/1.9 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Noto Sans",sans-serif;*/
+  font:400 var(--global-font-size)/1.9 "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Noto Sans", sans-serif;    
 }
 ::selection{background:#00c4b6;color:#f7f7f7}
 
