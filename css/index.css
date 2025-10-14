@@ -365,12 +365,12 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
 
 /* Container & default title (kept for non-banner pages) */
 #post>#post-info{margin-bottom:26px}
-#post>#post-info .post-title{
+#post>#post-info > .post-title{
   margin:0 0 6px;
   padding-bottom:4px;
   border-bottom:1px solid var(--light-grey);
   color:var(--text-highlight-color);
-  font-size:2em;
+  font-size:4em;
 }
 #post>#post-info #post-meta,
 #post>#post-info #post-meta a{color:#78818a}
