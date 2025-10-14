@@ -290,47 +290,41 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
 }
 
 #aside-content .card-info .card-info-social-icons i{
-  font-size:2rem;        /* adjust size as you like */
+  font-size:2rem;        
   line-height:1;
 }
 
-/* === Social icons: brand colors, equal spacing, fixed override === */
-#aside-content .card-info .card-info-social-icons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 18px;               /* equal spacing */
-  margin-top: 10px;
+/* === Social icons: brand colors, equal spacing === */
+#aside-content .card-info .card-info-social-icons{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:18px;              /* equal spacing */
+  margin-top:10px;
 }
 
-#aside-content .card-info .card-info-social-icons a {
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;             /* fixed width for equal spacing */
-  height: 38px;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+/* fixed-size hit areas so spacing stays even */
+#aside-content .card-info .card-info-social-icons a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:38px;
+  height:38px;
+  text-decoration:none;
+  transition:transform .2s ease, opacity .2s ease;
 }
 
-/* --- Explicitly reset color inheritance --- */
-#aside-content .card-info .card-info-social-icons a i {
-  font-size: 2rem;
-  line-height: 1;
-  color: inherit !important;
-}
+/* Brand colors (valid hex) */
+.social-github   i{ color:#24292f !important; }  /* GitHub */
+.social-linkedin i{ color:#0A66C2 !important; }  /* LinkedIn */
+.social-arxiv    i{ color:#B31B1B !important; }  /* arXiv */
+.social-scholar  i{ color:#4285F4 !important; }  /* Google Scholar */
+.social-email    i{ color:#EA4335 !important; }  /* Email */
 
-/* --- Brand-specific colors (force override) --- */
-.social-github   i { color: #24292f !important; }   /* GitHub black */
-.social-linkedin i { color: #navy !important; }   /* LinkedIn blue */
-.social-arxiv    i { color: #maroon !important; }   /* arXiv red */
-.social-scholar  i { color: #4285F4 !important; }   /* Scholar blue */
-.social-email    i { color: #333 !important; }      /* Gmail grey */
-
-/* --- Hover: subtle scale & lighten --- */
-#aside-content .card-info .card-info-social-icons a:hover i {
-  transform: scale(1.15);
-  opacity: 0.85;
+/* Hover polish */
+#aside-content .card-info .card-info-social-icons a:hover i{
+  transform:scale(1.15);
+  opacity:.85;
 }
 
 
