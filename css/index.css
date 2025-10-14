@@ -391,31 +391,36 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
   height:auto;
 }
 
-/* Subtle fade ABOVE the image but BELOW the text */
+/* Subtle fade ABOVE the image but BELOW the text (keep as you have) */
 .hero-banner::after{
   content:"";
   position:absolute;
   inset:0;
-  background:rgba(255,255,255,.42); /* light fade so black text pops */
+  background:rgba(255,255,255,.42);
   z-index:1;
 }
 
-/* Title: bottom-left, SOLID BLACK, bigger */
-.hero-banner .post-title{
+/* NEW: overlay container that positions content bottom-left responsively */
+.hero-banner .hero-caption{
   position:absolute;
-  left:40px;          /* adjust to taste */
-  bottom:30px;
-  margin:0;
-  padding:0;
-  border:0 !important;
-  color:#000;         /* solid black */
-  font-size:clamp(2.4rem, 4vw, 3.2rem); /* bigger & responsive */
-  font-weight:700;
-  text-shadow:none;
-  text-align:left;
-  z-index:2;          /* above fade overlay */
+  inset:0;                     /* stretch over the banner */
+  display:flex;
+  align-items:flex-end;        /* push to bottom */
+  justify-content:flex-start;  /* left */
+  padding:clamp(6px, 1.2vw, 14px);  /* tiny, responsive inset */
+  z-index:2;                   /* above the fade */
 }
 
+/* Title style (no absolute positioning on the text itself) */
+.hero-banner .post-title{
+  margin:0;
+  color:#000;                  /* solid black */
+  font-size:clamp(2.6rem, 4.6vw, 3.6rem); /* bigger & responsive */
+  font-weight:700;
+  line-height:1.05;
+  border:0 !important;         /* ensure no underline/border from older rule */
+  text-shadow:none;
+}
 
 /* Tag pills & share (use your theme colors instead of bright blue) */
 #post .tag_share .post-meta__tags{
