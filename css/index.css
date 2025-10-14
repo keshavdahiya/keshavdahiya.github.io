@@ -530,6 +530,40 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
 .post-reward:hover .reward-button{background:var(--btn-hover-color)}
 
 
+/* Make the right column the positioning context */
+#post{
+  position:relative;
+}
+
+/* Art layer: spans the right column, sits behind content */
+.page-art{
+  position:absolute;
+  inset:0;             /* same footprint as #post */
+  z-index:0;           /* behind everything in #post */
+  pointer-events:none; /* clicks pass through */
+}
+
+/* Ensure all normal content stays above the art */
+#post > *:not(.page-art){
+  position:relative;
+  z-index:1;
+}
+
+/* Base floating image style (your inline top/right/width handles placement) */
+.floater{
+  position:absolute;
+  opacity:.18;         /* subtleness; tweak as you like */
+  filter:grayscale(20%); /* optional tone-down */
+  user-select:none;
+}
+
+/* Optional: phone tweaks */
+@media (max-width: 768px){
+  .floater{ opacity:.12; }     /* softer on small screens */
+}
+
+
+
 /* --------------------------------------
    8) Rightside small buttons
 --------------------------------------- */
