@@ -371,35 +371,99 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
 /* --------------------------------------
    7) Post page bits
 --------------------------------------- */
+
+/* Container & default title (kept for non-banner pages) */
 #post>#post-info{margin-bottom:26px}
 #post>#post-info .post-title{
-  margin:0 0 6px;padding-bottom:4px;border-bottom:1px solid var(--light-grey);
-  color:var(--text-highlight-color);font-size:2em;
+  margin:0 0 6px;
+  padding-bottom:4px;
+  border-bottom:1px solid var(--light-grey);
+  color:var(--text-highlight-color);
+  font-size:2em;
 }
-#post>#post-info #post-meta,#post>#post-info #post-meta a{color:#78818a}
+#post>#post-info #post-meta,
+#post>#post-info #post-meta a{color:#78818a}
 
-/* Tag pills & share */
-#post .tag_share .post-meta__tags{
-  display:inline-block;margin:8px 8px 8px 0;padding:0 12px;border:1px solid #49b1f5;border-radius:12px;
-  color:#49b1f5;font-size:.85em;transition:.2s;
+/* ===== Banner-style heading over a faded image ===== */
+.hero-banner{
+  position:relative;
+  height:240px;                 /* tweak 200–320px as you like */
+  border-radius:10px;
+  overflow:hidden;
+  margin:0 0 12px;
+  box-shadow:var(--card-shadow);
 }
-#post .tag_share .post-meta__tags:hover{background:#49b1f5;color:var(--white)}
+/* Background image */
+.hero-banner::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:url("/Images/UqE8_light.png") center/cover no-repeat;
+  transform:scale(1.02);        /* tiny zoom for edge bleed */
+}
+/* Fade overlay for readability */
+.hero-banner::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(255,255,255,.62);  /* light wash so dark text pops */
+}
+/* Title centered over the banner; remove default border/margins */
+.hero-banner .post-title{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  margin:0;
+  padding:0;
+  border:0 !important;          /* override the default bottom border */
+  text-align:center;
+  text-shadow:0 1px 1px rgba(0,0,0,.05);
+}
+/* Dark mode: darken the overlay so light text stays readable */
+[data-theme="dark"] .hero-banner::after{
+  background:rgba(0,0,0,.45);
+}
+
+/* Tag pills & share (use your theme colors instead of bright blue) */
+#post .tag_share .post-meta__tags{
+  display:inline-block;
+  margin:8px 8px 8px 0;
+  padding:0 12px;
+  border:1px solid var(--btn-hover-color);   /* soft navy */
+  border-radius:12px;
+  color:var(--btn-hover-color);
+  font-size:.85em;
+  transition:.2s;
+}
+#post .tag_share .post-meta__tags:hover{
+  background:var(--btn-hover-color);
+  color:var(--white);
+}
 
 /* Copyright box */
 #post .post-copyright{
-  margin:36px 0 10px;padding:10px 16px;border:1px solid var(--light-grey);border-radius:6px;transition:box-shadow .2s;position:relative;
+  margin:36px 0 10px;
+  padding:10px 16px;
+  border:1px solid var(--light-grey);
+  border-radius:6px;
+  transition:box-shadow .2s;
+  position:relative;
 }
-#post .post-copyright:hover{box-shadow:0 0 8px 0 rgba(232,237,250,.6),0 2px 4px 0 rgba(232,237,250,.5)}
-#post .post-copyright .post-copyright-meta{color:#49b1f5;font-weight:700}
+#post .post-copyright:hover{
+  box-shadow:0 0 8px 0 rgba(232,237,250,.6),0 2px 4px 0 rgba(232,237,250,.5)
+}
+#post .post-copyright .post-copyright-meta{
+  color:var(--btn-hover-color);  /* match theme accent */
+  font-weight:700
+}
 
 /* Related posts grid */
 .relatedPosts{margin-top:36px}
 .relatedPosts>.headline{margin-bottom:6px;font-weight:700;font-size:1.3em}
-.relatedPosts>.relatedPosts-list{
-  display:flex;flex-wrap:wrap;gap:6px;
-}
+.relatedPosts>.relatedPosts-list{display:flex;flex-wrap:wrap;gap:6px}
 .relatedPosts>.relatedPosts-list>a{
-  display:block;position:relative;width:calc(33.333% - 6px);height:200px;border-radius:6px;overflow:hidden;background:#000;
+  display:block;position:relative;width:calc(33.333% - 6px);height:200px;border-radius:6px;overflow:hidden;background:#000
 }
 @media (max-width:768px){.relatedPosts>.relatedPosts-list>a{width:calc(50% - 6px);height:150px}}
 @media (max-width:600px){.relatedPosts>.relatedPosts-list>a{width:100%}}
@@ -407,8 +471,11 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
 /* Reward hover pop */
 .post-reward{position:relative;margin-top:60px;text-align:center;pointer-events:none}
 .post-reward>*{pointer-events:auto}
-.post-reward .reward-button{display:inline-block;padding:4px 18px;background:var(--btn-bg);color:var(--btn-color);border-radius:6px}
+.post-reward .reward-button{
+  display:inline-block;padding:4px 18px;background:var(--btn-bg);color:var(--btn-color);border-radius:6px
+}
 .post-reward:hover .reward-button{background:var(--btn-hover-color)}
+
 
 /* --------------------------------------
    8) Rightside small buttons
