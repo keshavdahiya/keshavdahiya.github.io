@@ -6,24 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Teaching | Keshav Dahiya</title>
 
-  <!-- Meta -->
   <meta name="author" content="Keshav Dahiya" />
   <meta name="description" content="Teaching — Keshav Dahiya" />
   <meta name="theme-color" content="#ffffff" />
 
-  <!-- Social -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Teaching | Keshav Dahiya" />
-  <meta property="og:url" content="https://keshavdahiya.github.io/Teaching/" />
-  <meta property="og:site_name" content="Keshav Dahiya" />
-  <meta property="og:description" content="Teaching — Keshav Dahiya" />
-  <meta property="og:image" content="https://keshavdahiya.github.io/Images/profile.jpg" />
-  <meta property="og:locale" content="en_US" />
-
   <link rel="canonical" href="https://keshavdahiya.github.io/Teaching/" />
   <link rel="preconnect" href="//cdn.jsdelivr.net" />
-
-  <!-- Styles (root-relative, same as homepage) -->
   <link rel="stylesheet" href="/css/index.css?v=16">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" />
@@ -31,7 +19,52 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Theme helpers (same as homepage) -->
+  <!-- Page-scoped styles -->
+  <style>
+    /* Two columns: fixed 20vw image column | flexible content */
+    .teach-wrap {
+      display: grid;
+      grid-template-columns: 20vw 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    /* Stack four images vertically with equal heights */
+    .teach-images {
+      display: grid;
+      grid-template-rows: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .teach-images img {
+      width: 100%;
+      height: 14vw;           /* equal visual height per image (approx 14/20 of viewport width) */
+      object-fit: cover;      /* tidy crop to keep equal heights */
+      display: block;
+      border-radius: 6px;     /* optional: subtle rounding */
+    }
+
+    /* CV-style two-column list on the right */
+    .cv-section { margin: 0; }
+    .cv-block { margin: 0 0 18px; }
+    .cv-heading { font-weight: 700; margin: 12px 0 6px; }
+    .cv-subinst { margin: 0 0 8px; }
+    .cv-list {
+      display: grid;
+      grid-template-columns: 110px 1fr; /* term | details */
+      gap: 6px 14px;
+      margin: 0;
+    }
+    .cv-term { white-space: nowrap; }
+    .cv-detail { margin: 0; }
+
+    /* Mobile: stack images above content */
+    @media (max-width: 800px) {
+      .teach-wrap { grid-template-columns: 1fr; }
+      .teach-images img { height: 40vw; }  /* taller when stacked */
+      .cv-list { grid-template-columns: 100px 1fr; }
+    }
+  </style>
+
+  <!-- Theme helpers -->
   <script>
     (() => {
       const saveToLocal = {
@@ -45,10 +78,7 @@
       };
       const theme = saveToLocal.get('theme');
       if (theme) setTheme(theme);
-
-      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
-        document.documentElement.classList.add('apple');
-      }
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) document.documentElement.classList.add('apple');
       window.GLOBAL_CONFIG = { percent: { toc: false, rightside: true } };
       window.GLOBAL_CONFIG_SITE = { title: 'Teaching', isToc: false, pageType: 'post' };
     })();
@@ -56,25 +86,7 @@
 </head>
 
 <body>
-  <!-- Off-canvas sidebar (mobile) -->
-  <div id="sidebar">
-    <div id="menu-mask"></div>
-    <div id="sidebar-menus">
-      <div class="avatar-img text-center">
-        <img src="/Images/profile.jpg" alt="avatar" onerror="this.onerror=null;this.src='/img/friend_404.gif'" />
-      </div>
-      <div class="menus_items">
-        <div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-house"></i><span> Home</span></a></div>
-        <div class="menus_item"><a class="site-page" href="/CV/Keshav_CV_Website.pdf"><i class="fa-fw fa-regular fa-id-card"></i><span> CV</span></a></div>
-        <div class="menus_item"><a class="site-page" href="/Research/"><i class="fa-fw fa-solid fa-pen-to-square"></i><span> Research</span></a></div>
-        <div class="menus_item"><a class="site-page" href="/Projects/"><i class="fa-fw fa-regular fa-folder-open"></i><span> Projects</span></a></div>
-        <div class="menus_item"><a class="site-page" href="/Teaching/"><i class="fa-fw fa-solid fa-chalkboard"></i><span> Teaching</span></a></div>
-      </div>
-    </div>
-  </div>
-
   <div id="body-wrap" class="post type-Teaching">
-    <!-- Header/Nav -->
     <header id="page-header" class="not-top-img fixed">
       <nav id="nav">
         <div id="blog-info">
@@ -82,36 +94,22 @@
             <span class="site-name">Keshav Dahiya</span>
           </a>
         </div>
-
         <div id="menus" role="navigation" aria-label="Primary">
           <div class="menus_items">
-            <div class="menus_item">
-              <a class="site-page" href="/"><i class="fa-solid fa-house" aria-hidden="true"></i><span>Home</span></a>
-            </div>
-            <div class="menus_item">
-              <a class="site-page" href="/Research/"><i class="fa-regular fa-pen-to-square" aria-hidden="true"></i><span>Research</span></a>
-            </div>
-            <div class="menus_item">
-              <a class="site-page" href="/Teaching/" aria-current="page"><i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i><span>Teaching</span></a>
-            </div>
-            <div class="menus_item">
-              <a class="site-page" href="/Projects/"><i class="fa-regular fa-folder-open" aria-hidden="true"></i><span>Projects</span></a>
-            </div>
-            <div class="menus_item">
-              <a class="site-page" href="/CV/Keshav_CV_Website.pdf" target="_blank" rel="noopener"><i class="fa-regular fa-id-card" aria-hidden="true"></i><span>CV</span></a>
-            </div>
+            <div class="menus_item"><a class="site-page" href="/"><i class="fa-solid fa-house" aria-hidden="true"></i><span>Home</span></a></div>
+            <div class="menus_item"><a class="site-page" href="/Research/"><i class="fa-regular fa-pen-to-square" aria-hidden="true"></i><span>Research</span></a></div>
+            <div class="menus_item"><a class="site-page" href="/Teaching/" aria-current="page"><i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i><span>Teaching</span></a></div>
+            <div class="menus_item"><a class="site-page" href="/Projects/"><i class="fa-regular fa-folder-open" aria-hidden="true"></i><span>Projects</span></a></div>
+            <div class="menus_item"><a class="site-page" href="/CV/Keshav_CV_Website.pdf" target="_blank" rel="noopener"><i class="fa-regular fa-id-card" aria-hidden="true"></i><span>CV</span></a></div>
           </div>
         </div>
       </nav>
     </header>
 
     <main id="content-inner" class="layout">
-      <!-- Main content (right column on desktop) -->
       <div id="post">
         <div id="post-info">
-          <h1 class="post-title" style="margin:0 0 8px; padding:0; border:0; font-size:2.3rem; font-weight:700;">
-            Teaching
-          </h1>
+          <h1 class="post-title" style="margin:0 0 8px; padding:0; border:0; font-size:2.3rem; font-weight:700;">Teaching</h1>
           <div id="post-meta">
             <div class="meta-firstline">
               <span class="post-meta-date">
@@ -123,102 +121,65 @@
           </div>
         </div>
 
-        <!-- Decorative floating image (optional, same vibe as homepage) -->
-        <div class="page-art" aria-hidden="true">
-          <img src="/Images/UqE8_only.png" alt="" class="floater"
-               style="top:-25px; right:-16px; width:360px; opacity:.55">
-        </div>
-
         <article id="article-container" class="container post-content">
-          <!-- Teaching Philosophy / Intro -->
-          <h3 id="Overview">Overview</h3>
-          <p>
-            Brief statement about your teaching philosophy—active learning, clarity, and inclusive pedagogy.
-            Emphasize experience with Calculus, Fundamentals of Algebra, and data-driven problem solving.
-          </p>
+          <div class="teach-wrap">
+            <!-- Left: 4 stacked images -->
+            <div class="teach-images" aria-hidden="true">
+              <img src="/Teaching/Images/teaching1.png" alt="">
+              <img src="/Teaching/Images/teaching2.png" alt="">
+              <img src="/Teaching/Images/teaching3.png" alt="">
+              <img src="/Teaching/Images/teaching4.png" alt="">
+            </div>
 
-          <!-- Current Courses -->
-          <h3 id="Current-Courses">Current Courses</h3>
-          <div class="card" style="border:1px solid #eee; border-radius:12px; padding:16px; margin-bottom:16px;">
-            <h4 style="margin:0 0 6px;">MATH-I 110 — Fundamentals of Algebra</h4>
-            <p style="margin:0 0 8px;">
-              <strong>Term:</strong> Fall 2025 &nbsp;•&nbsp; <strong>Institution:</strong> IU Indianapolis
-            </p>
-            <ul style="margin:0 0 0 18px;">
-              <li><a href="/Files/MATH-I-110_Syllabus.pdf">Syllabus (PDF)</a></li>
-              <li><a href="/Files/OfficeHours.pdf">Office Hours</a></li>
-              <li><a href="#" target="_blank" rel="noopener">Course LMS</a></li>
-            </ul>
-          </div>
+            <!-- Right: CV-style list -->
+            <section class="cv-section" aria-labelledby="teaching-experience">
+              <h3 id="teaching-experience" style="margin-top:0;">Teaching Experience</h3>
 
-          <!-- Past Courses -->
-          <h3 id="Past-Courses">Past Courses</h3>
-          <ul>
-            <li>MATH 166 — Calculus II (Spring 2024, Fall 2023)</li>
-            <li>MATH 171 — Multidimensional Mathematics (Spring 2023)</li>
-            <li>MATH 165 — Calculus I (Fall 2022)</li>
-            <li>MA 16010 — Applied Calculus I (Fall 2024)</li>
-            <li>MATH 110 — Fundamentals of Algebra (Summer 2023)</li>
-          </ul>
+              <div class="cv-block">
+                <div class="cv-heading">Instructor of Record</div>
 
-          <!-- Teaching Materials (thumbnails list) -->
-          <h3 id="Materials">Materials</h3>
-          <div style="display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap:16px;">
-            <a href="/Files/PolynomialBingo.pdf" class="thumb-row" style="display:flex; gap:12px; text-decoration:none; align-items:flex-start;">
-              <img src="/Images/bingo-thumb.png" alt="" style="width:120px; height:90px; object-fit:cover; border-radius:8px;">
-              <div>
-                <h4 style="margin:0 0 4px;">Polynomial Bingo (Active Learning)</h4>
-                <p style="margin:0; color:var(--text-muted, #555);">Activity sheet + instructions.</p>
+                <p class="cv-subinst"><em>Indiana University, Indianapolis, IN</em></p>
+                <div class="cv-list">
+                  <div class="cv-term">Fall 2025</div><div class="cv-detail">MATH-I-110: Fundamentals of Algebra</div>
+                  <div class="cv-term">Summer 2025</div><div class="cv-detail">MATH-I-165: Analytic Geometry and Calculus II</div>
+                  <div class="cv-term">Spring 2025</div><div class="cv-detail">MATH-I-165: Analytic Geometry and Calculus I</div>
+                </div>
+
+                <p class="cv-subinst" style="margin-top:10px;"><em>Purdue University, Indianapolis, IN</em></p>
+                <div class="cv-list">
+                  <div class="cv-term">Fall 2024</div><div class="cv-detail">MA 16010: Applied Calculus I</div>
+                </div>
+
+                <p class="cv-subinst" style="margin-top:10px;"><em>Indiana University – Purdue University (IUPUI), Indianapolis, IN</em></p>
+                <div class="cv-list">
+                  <div class="cv-term">Spring 2024</div><div class="cv-detail">MATH 166-00: Analytic Geometry and Calculus II</div>
+                  <div class="cv-term">Fall 2023</div><div class="cv-detail">MATH 166-00: Analytic Geometry and Calculus II</div>
+                  <div class="cv-term">Summer 2023</div><div class="cv-detail">MATH 110-00: Fundamentals of Algebra</div>
+                  <div class="cv-term">Spring 2023</div><div class="cv-detail">MATH 171-00: Multidimensional Mathematics</div>
+                  <div class="cv-term">Fall 2022</div><div class="cv-detail">MATH 165-00: Analytic Geometry and Calculus I</div>
+                </div>
               </div>
-            </a>
 
-            <a href="/Files/Integrals-Team-Game.pdf" class="thumb-row" style="display:flex; gap:12px; text-decoration:none; align-items:flex-start;">
-              <img src="/Images/integrals-thumb.png" alt="" style="width:120px; height:90px; object-fit:cover; border-radius:8px;">
-              <div>
-                <h4 style="margin:0 0 4px;">Strategy-Based Integrals Team Game</h4>
-                <p style="margin:0; color:var(--text-muted, #555);">Rules, worksheet, and scoring.</p>
+              <div class="cv-block">
+                <div class="cv-heading">Recitation Leader</div>
+                <p class="cv-subinst"><em>IUPUI, Indianapolis, IN</em></p>
+                <div class="cv-list">
+                  <div class="cv-term">Spring 2022</div><div class="cv-detail">MATH 166-00: Analytic Geometry and Calculus II</div>
+                </div>
               </div>
-            </a>
-          </div>
 
-          <!-- Student Resources -->
-          <h3 id="Resources">Resources</h3>
-          <ul>
-            <li><a href="/Files/OfficeHours.pdf">Office Hours & Contact</a></li>
-            <li><a href="/Files/StudyGuide.pdf">General Study Guide (PDF)</a></li>
-            <li><a href="/Files/Policies.pdf">Course Policies</a></li>
-          </ul>
+              <div class="cv-block">
+                <div class="cv-heading">Teaching Assistant</div>
+                <p class="cv-subinst"><em>Indian Institute of Technology, Delhi</em></p>
+                <div class="cv-list">
+                  <div class="cv-term">Fall 2014</div><div class="cv-detail">EEL 205: Signals and Systems</div>
+                </div>
+              </div>
+            </section>
+          </div>
         </article>
 
         <div class="tag_share"></div>
-      </div>
-
-      <!-- Left sidebar (same as homepage) -->
-      <div id="aside-content" class="aside-content">
-        <div class="card-widget card-info text-center">
-          <div class="avatar-img">
-            <img src="/Images/profile.jpg" alt="avatar" onerror="this.onerror=null;this.src='/img/friend_404.gif'" />
-          </div>
-          <div class="card-info-social-icons">
-            <a class="social-icon social-github"   style="color:#24292f" href="https://github.com/keshavdahiya" target="_blank" title="GitHub">
-              <i class="fab fa-github-square" aria-hidden="true"></i>
-            </a>
-            <a class="social-icon social-linkedin" style="color:#0A66C2" href="https://www.linkedin.com/in/keshav-dahiya/" target="_blank" title="LinkedIn">
-              <i class="fab fa-linkedin" aria-hidden="true"></i>
-            </a>
-            <a class="social-icon social-arxiv"    style="color:#B31B1B" href="https://arxiv.org/search/math?searchtype=author&query=Dahiya,+K" target="_blank" title="arXiv">
-              <i class="ai ai-arxiv-square" aria-hidden="true"></i>
-            </a>
-            <a class="social-icon social-scholar"  style="color:#4285F4" href="https://scholar.google.com/citations?user=fFtahP8AAAAJ&hl=en" target="_blank" title="Google Scholar">
-              <i class="ai ai-google-scholar-square" aria-hidden="true"></i>
-            </a>
-            <a class="social-icon social-email"    style="color:#EA4335" href="mailto:kkeshav@iu.edu" title="Email">
-              <i class="fas fa-envelope-square" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-
-        <div class="sticky_layout"><!-- TOC intentionally empty --></div>
       </div>
     </main>
 
@@ -229,61 +190,21 @@
     </footer>
   </div>
 
-  <!-- Right floating buttons -->
-  <div id="rightside">
-    <div id="rightside-config-hide">
-      <button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button>
-      <button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button>
-      <button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button>
-    </div>
-    <div id="rightside-config-show">
-      <button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button>
-      <button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button>
-    </div>
-  </div>
-
-  <!-- Scripts (same as homepage) -->
+  <!-- Scripts -->
   <script src="/js/utils.js"></script>
   <script src="/js/main.js"></script>
-
-  <!-- MathJax (optional) -->
-  <script>
-    (() => {
-      const loadMathjax = () => {
-        if (!window.MathJax) {
-          window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], tags: 'ams' }, chtml: { scale: 1.1 } };
-          const s = document.createElement('script'); s.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'; s.id = 'MathJax-script'; s.async = true; document.head.appendChild(s);
-        } else { MathJax.startup.document.state(0); MathJax.texReset(); MathJax.typesetPromise(); }
-      };
-      window.addEventListener('load', loadMathjax);
-    })();
-  </script>
-
-  <!-- Auto dates -->
   <script>
     (function () {
       function setUpdated() {
-        var t = document.getElementById('auto-update-time');
-        if (!t) return;
-        var d = new Date(document.lastModified);
-        if (isNaN(d)) d = new Date();
-        var yyyy = d.getFullYear();
-        var mm = String(d.getMonth() + 1).padStart(2, '0');
-        var dd = String(d.getDate()).padStart(2, '0');
-        var formatted = yyyy + '-' + mm + '-' + dd;
-        t.textContent = formatted;
-        t.setAttribute('datetime', d.toISOString());
-        t.setAttribute('title', 'Updated ' + d.toLocaleString());
+        var t = document.getElementById('auto-update-time'); if (!t) return;
+        var d = new Date(document.lastModified); if (isNaN(d)) d = new Date();
+        var yyyy = d.getFullYear(), mm = String(d.getMonth() + 1).padStart(2, '0'), dd = String(d.getDate()).padStart(2, '0');
+        var formatted = yyyy + '-' + mm + '-' + dd; t.textContent = formatted;
+        t.setAttribute('datetime', d.toISOString()); t.setAttribute('title', 'Updated ' + d.toLocaleString());
       }
-      function setYear() {
-        var y = document.getElementById('year-span');
-        if (y) y.textContent = new Date().getFullYear();
-      }
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function () { setUpdated(); setYear(); });
-      } else {
-        setUpdated(); setYear();
-      }
+      function setYear() { var y = document.getElementById('year-span'); if (y) y.textContent = new Date().getFullYear(); }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { setUpdated(); setYear(); });
+      else { setUpdated(); setYear(); }
     })();
   </script>
 </body>
