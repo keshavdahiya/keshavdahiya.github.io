@@ -19,65 +19,47 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Page-scoped styles -->
+  <!-- Page-scoped styles only -->
   <style>
-    /* Two columns: fixed 20vw image column | flexible content */
-    .teach-wrap {
-      display: grid;
-      grid-template-columns: 20vw 1fr;
-      gap: 24px;
-      align-items: start;
-    }
-    /* Stack four images vertically with equal heights */
-    .teach-images {
-      display: grid;
-      grid-template-rows: repeat(4, 1fr);
-      gap: 12px;
-    }
+    /* Left column replacement: 4 stacked images in the SAME sidebar area */
+    .teach-images { display: grid; grid-template-rows: repeat(4, 1fr); gap: 12px; }
     .teach-images img {
       width: 100%;
-      height: 14vw;           /* equal visual height per image (approx 14/20 of viewport width) */
-      object-fit: cover;      /* tidy crop to keep equal heights */
+      aspect-ratio: 5 / 3;           /* equal visual height regardless of source size */
+      object-fit: cover;
       display: block;
-      border-radius: 6px;     /* optional: subtle rounding */
+      border-radius: 8px;
+      opacity: 0.65;
     }
 
-    /* CV-style two-column list on the right */
-    .cv-section { margin: 0; }
-    .cv-block { margin: 0 0 18px; }
-    .cv-heading { font-weight: 700; margin: 12px 0 6px; }
-    .cv-subinst { margin: 0 0 8px; }
+    /* CV-style two-column list on the right (keeps your text in same region) */
     .cv-list {
       display: grid;
-      grid-template-columns: 110px 1fr; /* term | details */
+      grid-template-columns: 110px 1fr;   /* term | details */
       gap: 6px 14px;
       margin: 0;
     }
-    .cv-term { white-space: nowrap; }
+    .cv-term   { white-space: nowrap; }
     .cv-detail { margin: 0; }
+    .cv-heading { font-weight: 700; margin: 12px 0 6px; }
 
-    /* Mobile: stack images above content */
     @media (max-width: 800px) {
-      .teach-wrap { grid-template-columns: 1fr; }
-      .teach-images img { height: 40vw; }  /* taller when stacked */
       .cv-list { grid-template-columns: 100px 1fr; }
     }
   </style>
 
-  <!-- Theme helpers -->
   <script>
     (() => {
       const saveToLocal = {
-        set: (k, v, t) => { if (!t) return; const e = Date.now() + t * 86400000; localStorage.setItem(k, JSON.stringify({ value: v, expiry: e })); },
-        get: (k) => { const s = localStorage.getItem(k); if (!s) return; const { value, expiry } = JSON.parse(s); if (Date.now() > expiry) { localStorage.removeItem(k); return; } return value; }
+        set:(k,v,t)=>{ if(!t)return; const e=Date.now()+t*86400000; localStorage.setItem(k,JSON.stringify({value:v,expiry:e})); },
+        get:(k)=>{ const s=localStorage.getItem(k); if(!s)return; const {value,expiry}=JSON.parse(s); if(Date.now()>expiry){localStorage.removeItem(k);return;} return value; }
       };
       const setTheme = (mode) => {
         document.documentElement.setAttribute('data-theme', mode);
-        const m = document.querySelector('meta[name="theme-color"]');
-        if (m) m.setAttribute('content', mode === 'dark' ? '#0d0d0d' : '#ffffff');
+        const m=document.querySelector('meta[name="theme-color"]');
+        if(m) m.setAttribute('content', mode==='dark' ? '#0d0d0d' : '#ffffff');
       };
-      const theme = saveToLocal.get('theme');
-      if (theme) setTheme(theme);
+      const theme = saveToLocal.get('theme'); if (theme) setTheme(theme);
       if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) document.documentElement.classList.add('apple');
       window.GLOBAL_CONFIG = { percent: { toc: false, rightside: true } };
       window.GLOBAL_CONFIG_SITE = { title: 'Teaching', isToc: false, pageType: 'post' };
@@ -87,6 +69,7 @@
 
 <body>
   <div id="body-wrap" class="post type-Teaching">
+    <!-- Header/Nav (same as homepage) -->
     <header id="page-header" class="not-top-img fixed">
       <nav id="nav">
         <div id="blog-info">
@@ -107,6 +90,7 @@
     </header>
 
     <main id="content-inner" class="layout">
+      <!-- Right content (same region as homepage) -->
       <div id="post">
         <div id="post-info">
           <h1 class="post-title" style="margin:0 0 8px; padding:0; border:0; font-size:2.3rem; font-weight:700;">Teaching</h1>
@@ -122,64 +106,45 @@
         </div>
 
         <article id="article-container" class="container post-content">
-          <div class="teach-wrap">
-            <!-- Left: 4 stacked images -->
-            <div class="teach-images" aria-hidden="true">
-              <img src="/Teaching/Images/teaching1.png" alt="">
-              <img src="/Teaching/Images/teaching2.png" alt="">
-              <img src="/Teaching/Images/teaching3.png" alt="">
-              <img src="/Teaching/Images/teaching4.png" alt="">
-            </div>
+          <!-- h3 level sections, matching homepage -->
+          <h3 id="Instructor-of-Record" class="cv-heading" style="margin-top:0;">Instructor of Record</h3>
+          <div class="cv-list">
+            <div class="cv-term">Fall 2025</div>   <div class="cv-detail">MATH-I-110: Fundamentals of Algebra — <em>Indiana University, Indianapolis, IN</em></div>
+            <div class="cv-term">Summer 2025</div> <div class="cv-detail">MATH-I-165: Analytic Geometry and Calculus II — <em>Indiana University, Indianapolis, IN</em></div>
+            <div class="cv-term">Spring 2025</div> <div class="cv-detail">MATH-I-165: Analytic Geometry and Calculus I — <em>Indiana University, Indianapolis, IN</em></div>
 
-            <!-- Right: CV-style list -->
-            <section class="cv-section" aria-labelledby="teaching-experience">
-              <h3 id="teaching-experience" style="margin-top:0;">Teaching Experience</h3>
+            <div class="cv-term">Fall 2024</div>   <div class="cv-detail">MA 16010: Applied Calculus I — <em>Purdue University, Indianapolis, IN</em></div>
 
-              <div class="cv-block">
-                <div class="cv-heading">Instructor of Record</div>
+            <div class="cv-term">Spring 2024</div> <div class="cv-detail">MATH 166-00: Analytic Geometry and Calculus II — <em>Indiana University – Purdue University (IUPUI), Indianapolis, IN</em></div>
+            <div class="cv-term">Fall 2023</div>   <div class="cv-detail">MATH 166-00: Analytic Geometry and Calculus II — <em>IUPUI, Indianapolis, IN</em></div>
+            <div class="cv-term">Summer 2023</div> <div class="cv-detail">MATH 110-00: Fundamentals of Algebra — <em>IUPUI, Indianapolis, IN</em></div>
+            <div class="cv-term">Spring 2023</div> <div class="cv-detail">MATH 171-00: Multidimensional Mathematics — <em>IUPUI, Indianapolis, IN</em></div>
+            <div class="cv-term">Fall 2022</div>   <div class="cv-detail">MATH 165-00: Analytic Geometry and Calculus I — <em>IUPUI, Indianapolis, IN</em></div>
+          </div>
 
-                <p class="cv-subinst"><em>Indiana University, Indianapolis, IN</em></p>
-                <div class="cv-list">
-                  <div class="cv-term">Fall 2025</div><div class="cv-detail">MATH-I-110: Fundamentals of Algebra</div>
-                  <div class="cv-term">Summer 2025</div><div class="cv-detail">MATH-I-165: Analytic Geometry and Calculus II</div>
-                  <div class="cv-term">Spring 2025</div><div class="cv-detail">MATH-I-165: Analytic Geometry and Calculus I</div>
-                </div>
+          <h3 id="Recitation-Leader" class="cv-heading">Recitation Leader</h3>
+          <div class="cv-list">
+            <div class="cv-term">Spring 2022</div> <div class="cv-detail">MATH 166-00: Analytic Geometry and Calculus II — <em>IUPUI, Indianapolis, IN</em></div>
+          </div>
 
-                <p class="cv-subinst" style="margin-top:10px;"><em>Purdue University, Indianapolis, IN</em></p>
-                <div class="cv-list">
-                  <div class="cv-term">Fall 2024</div><div class="cv-detail">MA 16010: Applied Calculus I</div>
-                </div>
-
-                <p class="cv-subinst" style="margin-top:10px;"><em>Indiana University – Purdue University (IUPUI), Indianapolis, IN</em></p>
-                <div class="cv-list">
-                  <div class="cv-term">Spring 2024</div><div class="cv-detail">MATH 166-00: Analytic Geometry and Calculus II</div>
-                  <div class="cv-term">Fall 2023</div><div class="cv-detail">MATH 166-00: Analytic Geometry and Calculus II</div>
-                  <div class="cv-term">Summer 2023</div><div class="cv-detail">MATH 110-00: Fundamentals of Algebra</div>
-                  <div class="cv-term">Spring 2023</div><div class="cv-detail">MATH 171-00: Multidimensional Mathematics</div>
-                  <div class="cv-term">Fall 2022</div><div class="cv-detail">MATH 165-00: Analytic Geometry and Calculus I</div>
-                </div>
-              </div>
-
-              <div class="cv-block">
-                <div class="cv-heading">Recitation Leader</div>
-                <p class="cv-subinst"><em>IUPUI, Indianapolis, IN</em></p>
-                <div class="cv-list">
-                  <div class="cv-term">Spring 2022</div><div class="cv-detail">MATH 166-00: Analytic Geometry and Calculus II</div>
-                </div>
-              </div>
-
-              <div class="cv-block">
-                <div class="cv-heading">Teaching Assistant</div>
-                <p class="cv-subinst"><em>Indian Institute of Technology, Delhi</em></p>
-                <div class="cv-list">
-                  <div class="cv-term">Fall 2014</div><div class="cv-detail">EEL 205: Signals and Systems</div>
-                </div>
-              </div>
-            </section>
+          <h3 id="Teaching-Assistant" class="cv-heading">Teaching Assistant</h3>
+          <div class="cv-list">
+            <div class="cv-term">Fall 2014</div>   <div class="cv-detail">EEL 205: Signals and Systems — <em>Indian Institute of Technology, Delhi</em></div>
           </div>
         </article>
 
         <div class="tag_share"></div>
+      </div>
+
+      <!-- Left sidebar: same container, but ONLY your 4 images now -->
+      <div id="aside-content" class="aside-content">
+        <div class="teach-images" aria-hidden="true">
+          <img src="/Teaching/Images/teaching1.png" alt="">
+          <img src="/Teaching/Images/teaching2.png" alt="">
+          <img src="/Teaching/Images/teaching3.png" alt="">
+          <img src="/Teaching/Images/teaching4.png" alt="">
+        </div>
+        <div class="sticky_layout"><!-- keep structure; no socials here --></div>
       </div>
     </main>
 
@@ -190,7 +155,7 @@
     </footer>
   </div>
 
-  <!-- Scripts -->
+  <!-- Scripts (same as homepage) -->
   <script src="/js/utils.js"></script>
   <script src="/js/main.js"></script>
   <script>
@@ -198,12 +163,12 @@
       function setUpdated() {
         var t = document.getElementById('auto-update-time'); if (!t) return;
         var d = new Date(document.lastModified); if (isNaN(d)) d = new Date();
-        var yyyy = d.getFullYear(), mm = String(d.getMonth() + 1).padStart(2, '0'), dd = String(d.getDate()).padStart(2, '0');
+        var yyyy = d.getFullYear(), mm = String(d.getMonth()+1).padStart(2,'0'), dd = String(d.getDate()).padStart(2,'0');
         var formatted = yyyy + '-' + mm + '-' + dd; t.textContent = formatted;
-        t.setAttribute('datetime', d.toISOString()); t.setAttribute('title', 'Updated ' + d.toLocaleString());
+        t.setAttribute('datetime', d.toISOString()); t.setAttribute('title','Updated ' + d.toLocaleString());
       }
-      function setYear() { var y = document.getElementById('year-span'); if (y) y.textContent = new Date().getFullYear(); }
-      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { setUpdated(); setYear(); });
+      function setYear(){ var y=document.getElementById('year-span'); if(y) y.textContent=new Date().getFullYear(); }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function(){ setUpdated(); setYear(); });
       else { setUpdated(); setYear(); }
     })();
   </script>
