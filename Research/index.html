@@ -21,17 +21,16 @@
 
   <!-- Page-scoped styles (no global CSS changes) -->
   <style>
-    /* RIGHT: content helpers */
+    /* Comfortable section spacing on the right */
     .section { margin: 0 0 22px; }
     .section h3 { margin: 12px 0 12px; }
 
-    /* Bulleted lists with comfy spacing */
+    /* Bulleted lists (3-line items for pubs/talks) */
     .clean-ul { margin: 0; padding-left: 20px; }
     .clean-ul > li { margin: 0 0 14px; }
-
     .journal, .talk-venue { display:block; margin:4px 0; }
 
-    /* Buttons (very light gray) */
+    /* Very light gray buttons */
     .btn {
       display:inline-block; padding:6px 10px; border:1px solid #d1d5db; border-radius:6px;
       text-decoration:none; font-size:0.95rem; line-height:1; margin-right:8px;
@@ -39,27 +38,27 @@
     }
     .btn:hover { background:#e5e7eb; color:#222; }
 
-    /* Seminar group headings (bold + italic + gray, with extra gaps between groups) */
+    /* Seminar group headings (bold + italic + gray) with extra gaps */
     .inst-gray { font-weight:700; font-style:italic; color:#444; margin:26px 0 8px; }
 
-    /* LEFT PANEL: thumbnails synced to right items */
-    #aside-content { position: relative; }           /* positioning context */
-    #thumbSync {
-      position: absolute; left: 0; right: 0;         /* we'll set top & height via JS */
-      opacity: .88;
-      pointer-events: none;                           /* don't block hovers/clicks */
+    /* LEFT PANEL: fully manual image placement */
+    #aside-content { position: relative; }
+    .manual-thumbs {
+      position: relative;
+      min-height: 1500px; /* ensure the container is tall enough; adjust as needed */
     }
-    #thumbSync img {
+    .manual-thumbs img {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      display: block;
+      opacity: 0.7;
       border-radius: 8px;
-      /* JS will decide height/width each time to preserve aspect ratio */
+      display: block;
+      /* We’ll set top/size per-image inline below */
     }
 
     @media (max-width: 800px) {
-      #thumbSync img { max-width: 85%; }
+      .manual-thumbs img { max-width: 85%; }
     }
   </style>
 
@@ -100,7 +99,7 @@
 
 <body>
   <div id="body-wrap" class="post type-Research">
-    <!-- Header/Nav -->
+    <!-- Header/Nav (same as other pages) -->
     <header id="page-header" class="not-top-img fixed">
       <nav id="nav">
         <div id="blog-info">
@@ -121,7 +120,7 @@
     </header>
 
     <main id="content-inner" class="layout">
-      <!-- RIGHT: main content -->
+      <!-- RIGHT: main content (same region/width as homepage text) -->
       <div id="post">
         <div id="post-info">
           <h1 class="post-title" style="margin:0 0 8px; padding:0; border:0; font-size:2.3rem; font-weight:700;">Research</h1>
@@ -175,16 +174,19 @@
             <h3>Invited Talks</h3>
             <ul class="clean-ul">
               <li>
-                  <div class="talk-venue"><strong><em>Mathematical Physics Seminar, Purdue University, West Lafayette, 2025</em></strong> </div>
-                <div>Talk title: <em>xxx</em>&nbsp;&nbsp;&nbsp;<a class="btn" href="#" target="_blank" rel="noopener">Slides</a></div>
+                <div class="talk-venue">Mathematical Physics Seminar</div>
+                <div><strong><em>Purdue University, West Lafayette, 2025</em></strong></div>
+                <div>Talk title: <em>xxx</em>&ensp;<a class="btn" href="#" target="_blank" rel="noopener">Slides</a></div>
               </li>
               <li>
-                  <div class="talk-venue"><strong><em>Quantum Groups and Representation Theory Conference, North Carolina State University, Raleigh, 2024</em></strong></div>
-                <div>Talk title: <em>xxx</em>&nbsp;&nbsp;&nbsp;<a class="btn" href="#" target="_blank" rel="noopener">Slides</a></div>
+                <div class="talk-venue">Quantum Groups and Representation Theory Conference</div>
+                <div><strong><em>North Carolina State University, Raleigh, 2024</em></strong></div>
+                <div>Talk title: <em>xxx</em>&ensp;<a class="btn" href="#" target="_blank" rel="noopener">Slides</a></div>
               </li>
               <li>
-                  <div class="talk-venue"><strong><em>14th Southeastern Lie Theory Conference, University of Virginia, Charlottesville, 2024</em></strong></div>
-                <div>Talk title: <em>xxx</em>&nbsp;&nbsp;&nbsp;<a class="btn" href="#" target="_blank" rel="noopener">Slides</a></div>
+                <div class="talk-venue">14th Southeastern Lie Theory Conference</div>
+                <div><strong><em>University of Virginia, Charlottesville, 2024</em></strong></div>
+                <div>Talk title: <em>xxx</em>&ensp;<a class="btn" href="#" target="_blank" rel="noopener">Slides</a></div>
               </li>
             </ul>
           </section>
@@ -195,13 +197,13 @@
 
             <p class="inst-gray" style="margin-top:10px;">Representation Theory Seminar, Indiana University, Indianapolis</p>
             <ul class="clean-ul">
-              <li>The quantum determinant for Yangian of $\\mathfrak{gl}_n$ (2025)</li>
-              <li>Transfer matrices for Yangian of $\\mathfrak{gl}_n$ (2025)</li>
+              <li>The quantum determinant for Yangian of $\mathfrak{gl}_n$ (2025)</li>
+              <li>Transfer matrices for Yangian of $\mathfrak{gl}_n$ (2025)</li>
               <li>Fusion of R matrices (2025)</li>
               <li>MacDonald polynomials (2024)</li>
               <li>Howe duality and quantum Weyl group (2024)</li>
-              <li>Crystal bases for $U_q\\,\\mathfrak{sl}_n$ and Young tableaux (2023)</li>
-              <li>The $\\mathfrak{gl}_m \\times \\mathfrak{gl}_n$ duality (2023)</li>
+              <li>Crystal bases for $U_q\mathfrak{sl}_n$ and Young tableaux (2023)</li>
+              <li>The $\mathfrak{gl}_m \times \mathfrak{gl}_n$ duality (2023)</li>
               <li>The Gelfand–Tsetlin algebras and representations of symmetric groups (2022)</li>
               <li>The Pfaffian using Grassmann variables (2022)</li>
               <li>Characters of representations of finite groups (2021)</li>
@@ -235,12 +237,23 @@
         <div class="tag_share"></div>
       </div>
 
-      <!-- LEFT: sidebar area; images synced to specific right items -->
+      <!-- LEFT: sidebar (manual thumbnails; adjust top/size inline as needed) -->
       <div id="aside-content" class="aside-content">
-        <div id="thumbSync" aria-hidden="true">
-          <img id="thumb-preprint"  src="/Research/Images/hex_one_long.png" alt="Preprint thumbnail" data-offset="8">
-          <img id="thumb-twisted"   src="/Research/Images/twisted.png"      alt="Twisted paper thumbnail" data-offset="8">
-          <img id="thumb-untwisted" src="/Research/Images/untwisted.png"    alt="Untwisted paper thumbnail" data-offset="8">
+        <div class="manual-thumbs" aria-hidden="true">
+          <!-- Preprint thumbnail -->
+          <img src="/Research/Images/hex_one_long.png"
+               alt="Preprint thumbnail"
+               style="top: 140px; height: 110px; width: auto; max-width: 90%;">
+
+          <!-- Publication #1 (twisted) thumbnail -->
+          <img src="/Research/Images/twisted.png"
+               alt="Twisted paper thumbnail"
+               style="top: 380px; height: 140px; width: auto; max-width: 90%;">
+
+          <!-- Publication #2 (untwisted) thumbnail -->
+          <img src="/Research/Images/untwisted.png"
+               alt="Untwisted paper thumbnail"
+               style="top: 630px; height: 140px; width: auto; max-width: 90%;">
         </div>
         <div class="sticky_layout"></div>
       </div>
@@ -253,7 +266,7 @@
     </footer>
   </div>
 
-  <!-- Utils -->
+  <!-- Scripts (same as other pages) -->
   <script src="/js/utils.js"></script>
   <script src="/js/main.js"></script>
 
@@ -270,93 +283,6 @@
       function setYear(){ var y=document.getElementById('year-span'); if(y) y.textContent=new Date().getFullYear(); }
       if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function(){ setUpdated(); setYear(); });
       else { setUpdated(); setYear(); }
-    })();
-  </script>
-
-  <!-- Sync thumbnails to the right-side blocks (first-target anchored, aspect-ratio smart) -->
-  <script>
-    (function () {
-      function absTop(el){ var t=0; while(el){ t+=el.offsetTop; el=el.offsetParent; } return t; }
-
-      const pairs = [
-        { imgId:'thumb-preprint',  targetId:'paper-preprint'  },
-        { imgId:'thumb-twisted',   targetId:'pub-twisted'     },
-        { imgId:'thumb-untwisted', targetId:'pub-untwisted'   }
-      ];
-
-      const NUDGE = 0; // try 8 or -8 if you need a tiny vertical nudge
-
-      function onceImagesLoaded(imgs) {
-        return Promise.all(imgs.map(img => (img.decode ? img.decode() : Promise.resolve())));
-      }
-
-      function syncThumbs() {
-        const tray     = document.getElementById('thumbSync');
-        const article  = document.getElementById('article-container');
-        if (!tray || !article) return;
-
-        // Establish baseline at the FIRST target's top
-        const firstTgt = document.getElementById(pairs[0].targetId);
-        const lastTgt  = document.getElementById(pairs[pairs.length-1].targetId);
-        if (!firstTgt || !lastTgt) return;
-
-        const articleTop = absTop(article);
-        const firstTopAbs = absTop(firstTgt);
-        const lastBottomAbs = absTop(lastTgt) + lastTgt.offsetHeight;
-
-        // Position the tray so its top aligns with first list item
-        tray.style.top = (firstTopAbs - articleTop) + 'px';
-        tray.style.height = (lastBottomAbs - firstTopAbs) + 'px';
-
-        const trayInnerWidth = tray.clientWidth || tray.getBoundingClientRect().width;
-
-        pairs.forEach(({imgId, targetId})=>{
-          const img = document.getElementById(imgId);
-          const tgt = document.getElementById(targetId);
-          if (!img || !tgt) return;
-
-          const tgtTopAbs = absTop(tgt);
-          const tgtHeight = tgt.offsetHeight;
-
-          // Vertical alignment relative to first target
-          const manual = parseInt(img.getAttribute('data-offset') || '0', 10);
-          const topInTray = (absTop(tgt) - firstTopAbs) + manual;
-          img.style.top = topInTray + 'px';
-
-          // Height-first sizing with aspect-ratio preserved,
-          // but cap width to the tray to avoid overflow.
-          const naturalW = img.naturalWidth || 1;
-          const naturalH = img.naturalHeight || 1;
-          const expectedW = tgtHeight * (naturalW / naturalH);
-
-          // Use a small inner padding (e.g., 90% of tray width) to look nice
-          const maxW = trayInnerWidth * 0.9;
-
-          if (expectedW <= maxW) {
-            // Safe to set fixed height, width auto (no cropping)
-            img.style.height = tgtHeight + 'px';
-            img.style.width  = 'auto';
-            img.style.maxWidth = 'none';
-          } else {
-            // Too wide—limit width and let height auto-adjust
-            img.style.width  = '90%';
-            img.style.height = 'auto';
-            img.style.maxWidth = '90%';
-          }
-        });
-      }
-
-      window.addEventListener('load', function () {
-        const imgs = Array.from(document.querySelectorAll('#thumbSync img'));
-        const afterMath = () => onceImagesLoaded(imgs).then(syncThumbs);
-        if (window.MathJax && MathJax.typesetPromise) {
-          MathJax.typesetPromise().then(afterMath);
-        } else {
-          afterMath();
-        }
-      });
-
-      window.addEventListener('resize', syncThumbs);
     })();
   </script>
 </body>
