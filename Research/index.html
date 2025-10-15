@@ -175,19 +175,16 @@
             <h3>Invited Talks</h3>
             <ul class="clean-ul">
               <li>
-                  <div class="talk-venue">Mathematical Physics Seminar</div>
-                  <div> <strong><em>Purdue University, West Lafayette, 2025</em></strong> </div>
-                <div>Talk title: <em>xxx</em>     <a class="btn" href="#" target="_blank" rel="noopener">Slides</a></div>
+                  <div class="talk-venue"><strong><em>Mathematical Physics Seminar, Purdue University, West Lafayette, 2025</em></strong> </div>
+                <div>Talk title: <em>xxx</em>&nbsp;&nbsp;&nbsp;<a class="btn" href="#" target="_blank" rel="noopener">Slides</a></div>
               </li>
               <li>
-                  <div class="talk-venue">Quantum Groups and Representation Theory Conference </div>
-                  <div><strong><em>North Carolina State University, Raleigh, 2024</em></strong></div>
-                <div>Talk title: <em>xxx</em>    <a class="btn" href="#" target="_blank" rel="noopener">Slides</a></div>
+                  <div class="talk-venue"><strong><em>Quantum Groups and Representation Theory Conference, North Carolina State University, Raleigh, 2024</em></strong></div>
+                <div>Talk title: <em>xxx</em>&nbsp;&nbsp;&nbsp;<a class="btn" href="#" target="_blank" rel="noopener">Slides</a></div>
               </li>
               <li>
-                  <div class="talk-venue">14th Southeastern Lie Theory Conference </div>
-                <div><strong><em>University of Virginia, Charlottesville, 2024</em></strong></div>
-                <div>Talk title: <em>xxx</em>    <a class="btn" href="#" target="_blank" rel="noopener">Slides</a></div>
+                  <div class="talk-venue"><strong><em>14th Southeastern Lie Theory Conference, University of Virginia, Charlottesville, 2024</em></strong></div>
+                <div>Talk title: <em>xxx</em>&nbsp;&nbsp;&nbsp;<a class="btn" href="#" target="_blank" rel="noopener">Slides</a></div>
               </li>
             </ul>
           </section>
@@ -241,7 +238,7 @@
       <!-- LEFT: sidebar area; images synced to specific right items -->
       <div id="aside-content" class="aside-content">
         <div id="thumbSync" aria-hidden="true">
-          <img id="thumb-preprint"  src="/Research/Images/hex_one_long.png" alt="Preprint thumbnail">
+          <img id="thumb-preprint"  src="/Research/Images/hex_one_long.png" alt="Preprint thumbnail" data-offset="8">
           <img id="thumb-twisted"   src="/Research/Images/twisted.png"      alt="Twisted paper thumbnail">
           <img id="thumb-untwisted" src="/Research/Images/untwisted.png"    alt="Untwisted paper thumbnail">
         </div>
@@ -322,7 +319,8 @@
           const tgtHeight = tgt.offsetHeight;
 
           // Vertical alignment relative to first target
-          const topInTray = (tgtTopAbs - firstTopAbs) + NUDGE;
+          const manual = parseInt(img.getAttribute('data-offset') || '0', 10);
+          const topInTray = (absTop(tgt) - firstTopAbs) + manual;
           img.style.top = topInTray + 'px';
 
           // Height-first sizing with aspect-ratio preserved,
