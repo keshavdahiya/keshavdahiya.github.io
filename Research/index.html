@@ -1,1 +1,300 @@
-hiiii
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Research | Keshav Dahiya</title>
+
+  <meta name="author" content="Keshav Dahiya" />
+  <meta name="description" content="Research — Keshav Dahiya" />
+  <meta name="theme-color" content="#ffffff" />
+
+  <link rel="canonical" href="https://keshavdahiya.github.io/Research/" />
+  <link rel="preconnect" href="//cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="/css/index.css?v=16">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Page-scoped styles (no global CSS changes) -->
+  <style>
+    /* LEFT: same sidebar container as homepage; stack research images */
+    .res-images {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+    .res-images img {
+      width: 100%;          /* 70% of the left panel width, same feel as Teaching */
+      height: auto;        /* keep full image height; no cropping */
+      object-fit: contain;
+      display: block;
+      opacity: 0.7;        /* tweak if you prefer */
+      border-radius: 8px;
+    }
+
+    /* RIGHT: content helpers */
+    .section { margin: 0 0 20px; }
+    .section h3 { margin: 12px 0 10px; }
+    .paper { margin: 0 0 12px; }
+    .journal { display: inline-block; margin: 4px 0; }
+    .inst-gray {
+      font-weight: 700;
+      font-style: italic;
+      color: #444;
+      margin: 10px 0 6px;
+    }
+    .talk { margin: 0 0 12px; }
+
+    /* Buttons (DOI, arXiv, Slides) */
+    .btn {
+      display: inline-block;
+      padding: 6px 10px;
+      border: 1px solid currentColor;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      line-height: 1;
+      margin-right: 8px;
+      color: var(--link-hover, var(--heo-theme, #0a3c8c));
+    }
+    .btn:hover { background: currentColor; color: #fff; }
+
+    /* Lists */
+    .clean-ul { margin: 0; padding-left: 18px; }
+
+    @media (max-width: 800px) {
+      .res-images img { width: 85%; }
+    }
+  </style>
+
+  <script>
+    (() => {
+      const saveToLocal = {
+        set:(k,v,t)=>{ if(!t)return; const e=Date.now()+t*86400000; localStorage.setItem(k,JSON.stringify({value:v,expiry:e})); },
+        get:(k)=>{ const s=localStorage.getItem(k); if(!s)return; const {value,expiry}=JSON.parse(s); if(Date.now()>expiry){localStorage.removeItem(k);return;} return value; }
+      };
+      const setTheme = (mode) => {
+        document.documentElement.setAttribute('data-theme', mode);
+        const m=document.querySelector('meta[name="theme-color"]');
+        if(m) m.setAttribute('content', mode==='dark' ? '#0d0d0d' : '#ffffff');
+      };
+      const theme = saveToLocal.get('theme'); if (theme) setTheme(theme);
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) document.documentElement.classList.add('apple');
+      window.GLOBAL_CONFIG = { percent: { toc: false, rightside: true } };
+      window.GLOBAL_CONFIG_SITE = { title: 'Research', isToc: false, pageType: 'post' };
+    })();
+  </script>
+</head>
+
+<body>
+  <div id="body-wrap" class="post type-Research">
+    <!-- Header/Nav (same as homepage) -->
+    <header id="page-header" class="not-top-img fixed">
+      <nav id="nav">
+        <div id="blog-info">
+          <a class="nav-site-title" href="/" aria-label="Keshav Dahiya — Home">
+            <span class="site-name">Keshav Dahiya</span>
+          </a>
+        </div>
+        <div id="menus" role="navigation" aria-label="Primary">
+          <div class="menus_items">
+            <div class="menus_item"><a class="site-page" href="/"><i class="fa-solid fa-house" aria-hidden="true"></i><span>Home</span></a></div>
+            <div class="menus_item"><a class="site-page" href="/Research/" aria-current="page"><i class="fa-regular fa-pen-to-square" aria-hidden="true"></i><span>Research</span></a></div>
+            <div class="menus_item"><a class="site-page" href="/Teaching/"><i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i><span>Teaching</span></a></div>
+            <div class="menus_item"><a class="site-page" href="/Projects/"><i class="fa-regular fa-folder-open" aria-hidden="true"></i><span>Projects</span></a></div>
+            <div class="menus_item"><a class="site-page" href="/CV/Keshav_CV_Website.pdf" target="_blank" rel="noopener"><i class="fa-regular fa-id-card" aria-hidden="true"></i><span>CV</span></a></div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main id="content-inner" class="layout">
+      <!-- RIGHT: main content (same region/width as homepage text) -->
+      <div id="post">
+        <div id="post-info">
+          <h1 class="post-title" style="margin:0 0 8px; padding:0; border:0; font-size:2.3rem; font-weight:700;">Research</h1>
+          <div id="post-meta">
+            <div class="meta-firstline">
+              <span class="post-meta-date">
+                <i class="fa-fw post-meta-icon fas fa-history"></i>
+                <span class="post-meta-label">Updated</span>
+                <time id="auto-update-time"></time>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <article id="article-container" class="container post-content">
+          <!-- Preprints -->
+          <section class="section" id="Preprints">
+            <h3>Preprints</h3>
+            <ul class="clean-ul">
+              <li class="paper">
+                K. Dahiya and E. Mukhin, <em>Intertwiners of representations of quantum affine superalgebras</em>, in preparation.
+              </li>
+            </ul>
+          </section>
+
+          <!-- Publications -->
+          <section class="section" id="Publications">
+            <h3>Publications</h3>
+
+            <div class="paper">
+              <div>
+                K. Dahiya and E. Mukhin,
+                <em>Intertwiners of representations of twisted quantum affine algebras</em><br>
+                <span class="journal"><strong><em>J. Math. Phys. 66 (5), 2025</em></strong> (Editor’s Pick)</span>
+              </div>
+              <div style="margin-top:6px;">
+                <a class="btn" href="#" target="_blank" rel="noopener">DOI</a>
+                <a class="btn" href="#" target="_blank" rel="noopener">arXiv</a>
+              </div>
+            </div>
+
+            <div class="paper">
+              <div>
+                K. Dahiya and E. Mukhin,
+                <em>Intertwiners of representations of untwisted quantum affine algebras and Yangians revisited</em><br>
+                <span class="journal"><strong><em>J. Math. Phys. 66 (5), 2025</em></strong> (Editor’s Pick)</span>
+              </div>
+              <div style="margin-top:6px;">
+                <a class="btn" href="#" target="_blank" rel="noopener">DOI</a>
+                <a class="btn" href="#" target="_blank" rel="noopener">arXiv</a>
+              </div>
+            </div>
+          </section>
+
+          <!-- Invited Talks -->
+          <section class="section" id="Invited-Talks">
+            <h3>Invited Talks</h3>
+
+            <div class="talk">
+              <div><strong>Mathematical Physics Seminar, Purdue University, West Lafayette</strong> (2025)</div>
+              <div>Talk title: <em>xxx</em></div>
+              <div style="margin-top:6px;">
+                <a class="btn" href="#" target="_blank" rel="noopener">Slides</a>
+              </div>
+            </div>
+
+            <div class="talk">
+              <div><strong>Quantum Groups and Representation Theory Conference, North Carolina State University, Raleigh</strong> (2024)</div>
+              <div>Talk title: <em>xxx</em></div>
+              <div style="margin-top:6px;">
+                <a class="btn" href="#" target="_blank" rel="noopener">Slides</a>
+              </div>
+            </div>
+
+            <div class="talk">
+              <div><strong>14th Southeastern Lie Theory Conference, University of Virginia, Charlottesville</strong> (2024)</div>
+              <div>Talk title: <em>xxx</em></div>
+              <div style="margin-top:6px;">
+                <a class="btn" href="#" target="_blank" rel="noopener">Slides</a>
+              </div>
+            </div>
+          </section>
+
+          <!-- Seminar Presentations -->
+          <section class="section" id="Seminar-Presentations">
+            <h3>Seminar Presentations</h3>
+
+            <p class="inst-gray">Representation Theory Seminar, Indiana University, Indianapolis</p>
+            <ul class="clean-ul">
+              <li>The quantum determinant for Yangian of $\\mathfrak{gl}_n$ (2025)</li>
+              <li>Transfer matrices for Yangian of $\\mathfrak{gl}_n$ (2025)</li>
+              <li>Fusion of R matrices (2025)</li>
+              <li>MacDonald polynomials (2024)</li>
+              <li>Howe duality and quantum Weyl group (2024)</li>
+              <li>Crystal bases for $U_q \\mathfrak{sl}_n$ and Young tableaux (2023)</li>
+              <li>The $\\mathfrak{gl}_m \\times \\mathfrak{gl}_n$ duality (2023)</li>
+              <li>The Pfaffian using Grassmann variables (2022)</li>
+              <li>The Gelfand–Tsetlin algebras and representations of symmetric groups (2022)</li>
+              <li>Characters of representations of finite groups (2021)</li>
+            </ul>
+
+            <p class="inst-gray">K-Theory Seminar, Indiana University, Indianapolis</p>
+            <ul class="clean-ul">
+              <li>Generalized cohomology of complex vector bundles (2024)</li>
+            </ul>
+
+            <p class="inst-gray">Graduate Student Seminar, Indiana University, Indianapolis</p>
+            <ul class="clean-ul">
+              <li>Quantum computing: Shor’s algorithm (2023)</li>
+              <li>Tilings by regular vertices (2022)</li>
+              <li>Geometric group theory: Quasi-isometry, the Švarc–Milnor lemma (2022)</li>
+              <li>Spectral bounds in graph theory (2021)</li>
+              <li>Discrete Fourier transform, the convolution theorem and FFT algorithm (2021)</li>
+            </ul>
+          </section>
+
+          <!-- Professional Service -->
+          <section class="section" id="Professional-Service">
+            <h3>Professional Service</h3>
+            <ul class="clean-ul">
+              <li>Journal Reviewer, <em>Transformation Groups</em>, Volume 29 (2024)</li>
+              <li>Journal Reviewer, <em>Journal of Mathematical Physics</em>, Volume 64 (2023)</li>
+            </ul>
+          </section>
+        </article>
+
+        <div class="tag_share"></div>
+      </div>
+
+      <!-- LEFT: sidebar area (same container as homepage), with research images -->
+      <div id="aside-content" class="aside-content">
+        <div class="res-images" aria-hidden="true">
+          <!-- Replace filenames with your actual images in /Research/Images/ -->
+          <img src="/Research/Images/hex_one_long.png" alt="Research image 1">
+          <img src="/Research/Images/untwisted.png" alt="Research image 2">
+          <img src="/Research/Images/twisted.png" alt="Research image 3">
+          <img src="/Research/Images/untwisted2.png" alt="Research image 4">
+        </div>
+        <div class="sticky_layout"><!-- preserve structure; no socials here --></div>
+      </div>
+    </main>
+
+    <footer id="footer">
+      <div id="footer-wrap">
+        <div class="copyright">&copy; <span id="year-span"></span> Keshav Dahiya</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Scripts (same pattern as other pages) -->
+  <script src="/js/utils.js"></script>
+  <script src="/js/main.js"></script>
+
+  <!-- MathJax for formulas in seminar list -->
+  <script>
+    (() => {
+      const loadMathjax = () => {
+        if (!window.MathJax) {
+          window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], tags: 'ams' }, chtml: { scale: 1.1 } };
+          const s = document.createElement('script'); s.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'; s.id = 'MathJax-script'; s.async = true; document.head.appendChild(s);
+        } else { MathJax.startup.document.state(0); MathJax.texReset(); MathJax.typesetPromise(); }
+      };
+      window.addEventListener('load', loadMathjax);
+    })();
+  </script>
+
+  <!-- Auto dates -->
+  <script>
+    (function () {
+      function setUpdated() {
+        var t = document.getElementById('auto-update-time'); if (!t) return;
+        var d = new Date(document.lastModified); if (isNaN(d)) d = new Date();
+        var yyyy = d.getFullYear(), mm = String(d.getMonth()+1).padStart(2,'0'), dd = String(d.getDate()).padStart(2,'0');
+        var formatted = yyyy + '-' + mm + '-' + dd; t.textContent = formatted;
+        t.setAttribute('datetime', d.toISOString()); t.setAttribute('title', 'Updated ' + d.toLocaleString());
+      }
+      function setYear(){ var y=document.getElementById('year-span'); if(y) y.textContent=new Date().getFullYear(); }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function(){ setUpdated(); setYear(); });
+      else { setUpdated(); setYear(); }
+    })();
+  </script>
+</body>
+</html>
