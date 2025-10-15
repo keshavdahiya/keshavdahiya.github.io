@@ -25,57 +25,35 @@
     .section { margin: 0 0 22px; }
     .section h3 { margin: 12px 0 12px; }
 
+    /* Bulleted lists with comfy spacing */
     .clean-ul { margin: 0; padding-left: 20px; }
     .clean-ul > li { margin: 0 0 14px; }
 
-    .journal { display: block; margin: 4px 0; }
-    .talk-venue { display: block; margin: 4px 0; }
+    .journal, .talk-venue { display:block; margin:4px 0; }
 
-    /* Very light buttons */
+    /* Buttons (very light gray) */
     .btn {
-      display: inline-block;
-      padding: 6px 10px;
-      border: 1px solid #d1d5db;
-      border-radius: 6px;
-      text-decoration: none;
-      font-size: 0.95rem;
-      line-height: 1;
-      margin-right: 8px;
-      color: #444;
-      background: #f3f4f6;
+      display:inline-block; padding:6px 10px; border:1px solid #d1d5db; border-radius:6px;
+      text-decoration:none; font-size:0.95rem; line-height:1; margin-right:8px;
+      color:#444; background:#f3f4f6;
     }
-    .btn:hover { background: #e5e7eb; color: #222; }
+    .btn:hover { background:#e5e7eb; color:#222; }
 
-    /* Seminar group headings (bold + italic + gray) */
-    .inst-gray {
-      font-weight: 700;
-      font-style: italic;
-      color: #444;
-      margin: 26px 0 8px;  /* extra gap between groups */
-    }
+    /* Seminar group headings (bold + italic + gray, with extra gaps between groups) */
+    .inst-gray { font-weight:700; font-style:italic; color:#444; margin:26px 0 8px; }
 
     /* LEFT PANEL: thumbnails synced to right items */
-    #aside-content { position: relative; } /* ensure a positioning context exists */
-    .thumb-sync {
-      position: relative;   /* absolute-position children inside */
-      opacity: 0.85;
-    }
+    #aside-content { position: relative; }       /* positioning context for tray */
+    .thumb-sync { position: relative; opacity: .7; }
     .thumb-sync img {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      height: 100px;   /* will be overwritten by JS with exact height */
-      width: auto;     /* keep aspect ratio */
-      display: block;
-      border-radius: 8px;
+      position: absolute; left: 50%; transform: translateX(-50%);
+      height: 100px; width: auto; display:block; border-radius:8px;
+      pointer-events: none; /* prevents intercepting hover/clicks */
+      max-width: 90%;
     }
-    /* optional: keep them within a comfortable width inside the sidebar */
-    .thumb-sync img.maxw { max-width: 90%; }
 
     @media (max-width: 800px) {
-      /* On small screens the site typically stacks; syncing is less crucial,
-         but we’ll still size them reasonably */
-      .thumb-sync img { max-width: 85%; }
+      .thumb-sync img { max-width: 100%; }
     }
   </style>
 
@@ -153,7 +131,6 @@
         </div>
 
         <article id="article-container" class="container post-content">
-
           <!-- Preprints -->
           <section class="section" id="Preprints">
             <h3>Preprints</h3>
@@ -176,7 +153,6 @@
                   <a class="btn" href="#" target="_blank" rel="noopener">arXiv</a>
                 </div>
               </li>
-
               <li id="pub-untwisted">
                 <div>K. Dahiya and E. Mukhin, <em>Intertwiners of representations of untwisted quantum affine algebras and Yangians revisited</em></div>
                 <div class="journal"><strong><em>J. Math. Phys. 66 (5), 2025</em></strong> (Editor’s Pick)</div>
@@ -223,8 +199,8 @@
               <li>Howe duality and quantum Weyl group (2024)</li>
               <li>Crystal bases for $U_q\mathfrak{sl}_n$ and Young tableaux (2023)</li>
               <li>The $\mathfrak{gl}_m \times \mathfrak{gl}_n$ duality (2023)</li>
-              <li>The Pfaffian using Grassmann variables (2022)</li>
               <li>The Gelfand–Tsetlin algebras and representations of symmetric groups (2022)</li>
+              <li>The Pfaffian using Grassmann variables (2022)</li>
               <li>Characters of representations of finite groups (2021)</li>
             </ul>
 
@@ -259,10 +235,9 @@
       <!-- LEFT: sidebar area; images synced to specific right items -->
       <div id="aside-content" class="aside-content">
         <div id="thumbSync" class="thumb-sync" aria-hidden="true">
-          <!-- IDs used by the script to sync position/height -->
-          <img id="thumb-preprint"  class="maxw" src="/Research/Images/hex_one_long.png" alt="Preprint thumbnail">
-          <img id="thumb-twisted"   class="maxw" src="/Research/Images/twisted.png"      alt="Twisted paper thumbnail">
-          <img id="thumb-untwisted" class="maxw" src="/Research/Images/untwisted_uncropped.png"    alt="Untwisted paper thumbnail">
+          <img id="thumb-preprint"  src="/Research/Images/hex_one_long.png" alt="Preprint thumbnail">
+          <img id="thumb-twisted"   src="/Research/Images/twisted.png"      alt="Twisted paper thumbnail">
+          <img id="thumb-untwisted" src="/Research/Images/untwisted.png"    alt="Untwisted paper thumbnail">
         </div>
         <div class="sticky_layout"></div>
       </div>
@@ -295,54 +270,60 @@
     })();
   </script>
 
-  <!-- Sync thumbnails to right-side blocks -->
+  <!-- Sync thumbnails to the right-side blocks -->
   <script>
     (function () {
-      const map = [
-        { imgId: 'thumb-preprint',  targetId: 'paper-preprint' },
-        { imgId: 'thumb-twisted',   targetId: 'pub-twisted' },
-        { imgId: 'thumb-untwisted', targetId: 'pub-untwisted' }
+      function absTop(el){ var t=0; while(el){ t+=el.offsetTop; el=el.offsetParent; } return t; }
+
+      const pairs = [
+        { imgId:'thumb-preprint',  targetId:'paper-preprint'  },
+        { imgId:'thumb-twisted',   targetId:'pub-twisted'     },
+        { imgId:'thumb-untwisted', targetId:'pub-untwisted'   }
       ];
 
+      const NUDGE = 0; // if needed, try 8 or -8
+
       function syncThumbs() {
-        const aside = document.getElementById('aside-content');
-        const tray  = document.getElementById('thumbSync');
-        if (!aside || !tray) return;
+        const tray    = document.getElementById('thumbSync');
+        const article = document.getElementById('article-container');
+        if (!tray || !article) return;
 
-        // measure relative to the top of #post (right column)
-        const post = document.getElementById('post');
-        if (!post) return;
+        const articleTop = absTop(article);
 
-        const postTop = post.getBoundingClientRect().top + window.scrollY;
-        const asideTop = aside.getBoundingClientRect().top + window.scrollY;
-
-        // Compute total region from first to last target to give the tray a height
-        const first = document.getElementById(map[0].targetId);
-        const last  = document.getElementById(map[map.length - 1].targetId);
+        // span tray from first to last target
+        const first = document.getElementById(pairs[0].targetId);
+        const last  = document.getElementById(pairs[pairs.length-1].targetId);
         if (first && last) {
-          const firstTop = first.getBoundingClientRect().top + window.scrollY;
-          const lastBox  = last.getBoundingClientRect();
-          const lastBottom = lastBox.bottom + window.scrollY;
-          // Set tray height so absolutely-positioned images have space
-          tray.style.height = (lastBottom - firstTop) + 'px';
+          const firstTopAbs  = absTop(first);
+          const lastBottomAbs = absTop(last) + last.offsetHeight;
+          tray.style.height = (lastBottomAbs - firstTopAbs) + 'px';
+          tray.style.position = 'relative';
         }
 
-        // Position/size each image to match its target block
-        map.forEach(({imgId, targetId}) => {
+        // place each image
+        pairs.forEach(({imgId,targetId})=>{
           const img = document.getElementById(imgId);
           const tgt = document.getElementById(targetId);
-          if (!img || !tgt) return;
-          const r = tgt.getBoundingClientRect();
-          const tgtTop = r.top + window.scrollY;
-          const topInTray = (tgtTop - (first.getBoundingClientRect().top + window.scrollY)); // offset from first target
-          img.style.top = topInTray + 'px';
-          img.style.height = r.height + 'px';   // match height of the right block
-          img.style.width = 'auto';             // maintain aspect ratio
+          if(!img || !tgt) return;
+
+          const tgtTopAbs = absTop(tgt);
+          const tgtHeight = tgt.offsetHeight;
+
+          const topInAside = (tgtTopAbs - articleTop) + NUDGE;
+          img.style.top    = topInAside + 'px';
+          img.style.height = tgtHeight + 'px';
+          img.style.width  = 'auto'; // maintain aspect ratio
         });
       }
 
-      // Run after layout & images load; also on resize to keep in sync
-      window.addEventListener('load', syncThumbs);
+      // run after layout and MathJax
+      window.addEventListener('load', function () {
+        if (window.MathJax && MathJax.typesetPromise) {
+          MathJax.typesetPromise().then(syncThumbs);
+        } else {
+          syncThumbs();
+        }
+      });
       window.addEventListener('resize', syncThumbs);
     })();
   </script>
