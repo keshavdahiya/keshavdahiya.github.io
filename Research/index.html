@@ -21,35 +21,17 @@
 
   <!-- Page-scoped styles (no global CSS changes) -->
   <style>
-    /* LEFT: same sidebar container as homepage; stack research images */
-    .res-images {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      align-items: center;
-    }
-    .res-images img {
-      width: 100%;          /* 70% of the left panel width */
-      height: auto;        /* keep full image height; no cropping */
-      object-fit: contain;
-      display: block;
-      opacity: 0.7;        /* requested fadedness */
-      border-radius: 8px;
-    }
-
     /* RIGHT: content helpers */
     .section { margin: 0 0 22px; }
     .section h3 { margin: 12px 0 12px; }
 
-    /* Bulleted lists with comfy spacing */
     .clean-ul { margin: 0; padding-left: 20px; }
     .clean-ul > li { margin: 0 0 14px; }
 
-    /* Journal / venue line */
     .journal { display: block; margin: 4px 0; }
     .talk-venue { display: block; margin: 4px 0; }
 
-    /* Buttons (very light gray) */
+    /* Very light buttons */
     .btn {
       display: inline-block;
       padding: 6px 10px;
@@ -60,7 +42,7 @@
       line-height: 1;
       margin-right: 8px;
       color: #444;
-      background: #f3f4f6;  /* very light gray */
+      background: #f3f4f6;
     }
     .btn:hover { background: #e5e7eb; color: #222; }
 
@@ -69,12 +51,31 @@
       font-weight: 700;
       font-style: italic;
       color: #444;
-      margin: 22px 0 8px;   /* extra top gap between groups */
+      margin: 26px 0 8px;  /* extra gap between groups */
     }
-    /* First group can be a bit tighter; override inline if desired */
+
+    /* LEFT PANEL: thumbnails synced to right items */
+    #aside-content { position: relative; } /* ensure a positioning context exists */
+    .thumb-sync {
+      position: relative;   /* absolute-position children inside */
+      opacity: 0.85;
+    }
+    .thumb-sync img {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 100px;   /* will be overwritten by JS with exact height */
+      width: auto;     /* keep aspect ratio */
+      display: block;
+      border-radius: 8px;
+    }
+    /* optional: keep them within a comfortable width inside the sidebar */
+    .thumb-sync img.maxw { max-width: 90%; }
 
     @media (max-width: 800px) {
-      .res-images img { width: 85%; }
+      /* On small screens the site typically stacks; syncing is less crucial,
+         but we’ll still size them reasonably */
+      .thumb-sync img { max-width: 85%; }
     }
   </style>
 
@@ -115,7 +116,7 @@
 
 <body>
   <div id="body-wrap" class="post type-Research">
-    <!-- Header/Nav (same as homepage) -->
+    <!-- Header/Nav -->
     <header id="page-header" class="not-top-img fixed">
       <nav id="nav">
         <div id="blog-info">
@@ -136,7 +137,7 @@
     </header>
 
     <main id="content-inner" class="layout">
-      <!-- RIGHT: main content (same region/width as homepage text) -->
+      <!-- RIGHT: main content -->
       <div id="post">
         <div id="post-info">
           <h1 class="post-title" style="margin:0 0 8px; padding:0; border:0; font-size:2.3rem; font-weight:700;">Research</h1>
@@ -152,11 +153,12 @@
         </div>
 
         <article id="article-container" class="container post-content">
+
           <!-- Preprints -->
           <section class="section" id="Preprints">
             <h3>Preprints</h3>
             <ul class="clean-ul">
-              <li>
+              <li id="paper-preprint">
                 <div>K. Dahiya and E. Mukhin, <em>Intertwiners of representations of quantum affine superalgebras</em>, in preparation</div>
               </li>
             </ul>
@@ -166,19 +168,16 @@
           <section class="section" id="Publications">
             <h3>Publications</h3>
             <ul class="clean-ul">
-              <li>
-                <!-- Line 1: title/authors -->
+              <li id="pub-twisted">
                 <div>K. Dahiya and E. Mukhin, <em>Intertwiners of representations of twisted quantum affine algebras</em></div>
-                <!-- Line 2: journal -->
                 <div class="journal"><strong><em>J. Math. Phys. 66 (5), 2025</em></strong> (Editor’s Pick)</div>
-                <!-- Line 3: buttons -->
                 <div>
                   <a class="btn" href="#" target="_blank" rel="noopener">DOI</a>
                   <a class="btn" href="#" target="_blank" rel="noopener">arXiv</a>
                 </div>
               </li>
 
-              <li>
+              <li id="pub-untwisted">
                 <div>K. Dahiya and E. Mukhin, <em>Intertwiners of representations of untwisted quantum affine algebras and Yangians revisited</em></div>
                 <div class="journal"><strong><em>J. Math. Phys. 66 (5), 2025</em></strong> (Editor’s Pick)</div>
                 <div>
@@ -196,25 +195,17 @@
               <li>
                 <div class="talk-venue"><strong>Mathematical Physics Seminar, Purdue University, West Lafayette</strong> (2025)</div>
                 <div>Talk title: <em>xxx</em></div>
-                <div>
-                  <a class="btn" href="#" target="_blank" rel="noopener">Slides</a>
-                </div>
+                <div><a class="btn" href="#" target="_blank" rel="noopener">Slides</a></div>
               </li>
-
               <li>
                 <div class="talk-venue"><strong>Quantum Groups and Representation Theory Conference, North Carolina State University, Raleigh</strong> (2024)</div>
                 <div>Talk title: <em>xxx</em></div>
-                <div>
-                  <a class="btn" href="#" target="_blank" rel="noopener">Slides</a>
-                </div>
+                <div><a class="btn" href="#" target="_blank" rel="noopener">Slides</a></div>
               </li>
-
               <li>
                 <div class="talk-venue"><strong>14th Southeastern Lie Theory Conference, University of Virginia, Charlottesville</strong> (2024)</div>
                 <div>Talk title: <em>xxx</em></div>
-                <div>
-                  <a class="btn" href="#" target="_blank" rel="noopener">Slides</a>
-                </div>
+                <div><a class="btn" href="#" target="_blank" rel="noopener">Slides</a></div>
               </li>
             </ul>
           </section>
@@ -223,9 +214,8 @@
           <section class="section" id="Seminar-Presentations">
             <h3>Seminar Presentations</h3>
 
-            <!-- Group 1 -->
             <p class="inst-gray" style="margin-top:10px;">Representation Theory Seminar, Indiana University, Indianapolis</p>
-            <ul class="clean-ul seminar-group">
+            <ul class="clean-ul">
               <li>The quantum determinant for Yangian of $\mathfrak{gl}_n$ (2025)</li>
               <li>Transfer matrices for Yangian of $\mathfrak{gl}_n$ (2025)</li>
               <li>Fusion of R matrices (2025)</li>
@@ -238,15 +228,13 @@
               <li>Characters of representations of finite groups (2021)</li>
             </ul>
 
-            <!-- Group 2 (extra gap above comes from .inst-gray default margin) -->
             <p class="inst-gray">K-Theory Seminar, Indiana University, Indianapolis</p>
-            <ul class="clean-ul seminar-group">
+            <ul class="clean-ul">
               <li>Generalized cohomology of complex vector bundles (2024)</li>
             </ul>
 
-            <!-- Group 3 -->
             <p class="inst-gray">Graduate Student Seminar, Indiana University, Indianapolis</p>
-            <ul class="clean-ul seminar-group">
+            <ul class="clean-ul">
               <li>Quantum computing: Shor’s algorithm (2023)</li>
               <li>Tilings by regular vertices (2022)</li>
               <li>Geometric group theory: Quasi-isometry, the Švarc–Milnor lemma (2022)</li>
@@ -268,15 +256,15 @@
         <div class="tag_share"></div>
       </div>
 
-      <!-- LEFT: sidebar area (same container as homepage), with research images -->
+      <!-- LEFT: sidebar area; images synced to specific right items -->
       <div id="aside-content" class="aside-content">
-        <div class="res-images" aria-hidden="true">
-          <!-- Replace filenames with your actual images in /Research/Images/ -->
-          <img src="/Research/Images/hex_one_long.png" alt="Research image 1">
-          <img src="/Research/Images/twisted.png" alt="Research image 2">
-          <img src="/Research/Images/untwisted.png" alt="Research image 3">
+        <div id="thumbSync" class="thumb-sync" aria-hidden="true">
+          <!-- IDs used by the script to sync position/height -->
+          <img id="thumb-preprint"  class="maxw" src="/Research/Images/hex_one_long.png" alt="Preprint thumbnail">
+          <img id="thumb-twisted"   class="maxw" src="/Research/Images/twisted.png"      alt="Twisted paper thumbnail">
+          <img id="thumb-untwisted" class="maxw" src="/Research/Images/untwisted_uncropped.png"    alt="Untwisted paper thumbnail">
         </div>
-        <div class="sticky_layout"><!-- preserve structure; no socials here --></div>
+        <div class="sticky_layout"></div>
       </div>
     </main>
 
@@ -287,7 +275,7 @@
     </footer>
   </div>
 
-  <!-- Scripts (same pattern as other pages) -->
+  <!-- Utils -->
   <script src="/js/utils.js"></script>
   <script src="/js/main.js"></script>
 
@@ -304,6 +292,58 @@
       function setYear(){ var y=document.getElementById('year-span'); if(y) y.textContent=new Date().getFullYear(); }
       if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function(){ setUpdated(); setYear(); });
       else { setUpdated(); setYear(); }
+    })();
+  </script>
+
+  <!-- Sync thumbnails to right-side blocks -->
+  <script>
+    (function () {
+      const map = [
+        { imgId: 'thumb-preprint',  targetId: 'paper-preprint' },
+        { imgId: 'thumb-twisted',   targetId: 'pub-twisted' },
+        { imgId: 'thumb-untwisted', targetId: 'pub-untwisted' }
+      ];
+
+      function syncThumbs() {
+        const aside = document.getElementById('aside-content');
+        const tray  = document.getElementById('thumbSync');
+        if (!aside || !tray) return;
+
+        // measure relative to the top of #post (right column)
+        const post = document.getElementById('post');
+        if (!post) return;
+
+        const postTop = post.getBoundingClientRect().top + window.scrollY;
+        const asideTop = aside.getBoundingClientRect().top + window.scrollY;
+
+        // Compute total region from first to last target to give the tray a height
+        const first = document.getElementById(map[0].targetId);
+        const last  = document.getElementById(map[map.length - 1].targetId);
+        if (first && last) {
+          const firstTop = first.getBoundingClientRect().top + window.scrollY;
+          const lastBox  = last.getBoundingClientRect();
+          const lastBottom = lastBox.bottom + window.scrollY;
+          // Set tray height so absolutely-positioned images have space
+          tray.style.height = (lastBottom - firstTop) + 'px';
+        }
+
+        // Position/size each image to match its target block
+        map.forEach(({imgId, targetId}) => {
+          const img = document.getElementById(imgId);
+          const tgt = document.getElementById(targetId);
+          if (!img || !tgt) return;
+          const r = tgt.getBoundingClientRect();
+          const tgtTop = r.top + window.scrollY;
+          const topInTray = (tgtTop - (first.getBoundingClientRect().top + window.scrollY)); // offset from first target
+          img.style.top = topInTray + 'px';
+          img.style.height = r.height + 'px';   // match height of the right block
+          img.style.width = 'auto';             // maintain aspect ratio
+        });
+      }
+
+      // Run after layout & images load; also on resize to keep in sync
+      window.addEventListener('load', syncThumbs);
+      window.addEventListener('resize', syncThumbs);
     })();
   </script>
 </body>
