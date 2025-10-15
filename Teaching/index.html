@@ -29,19 +29,20 @@
       align-items: center;  /* centers images in the sidebar */
     }
     .teach-images img {
-      width: 70%;           /* 70% of the left panel width */
-      height: auto;         /* keep full image height based on width (no cropping) */
-      object-fit: contain;  /* do not crop; respect original aspect ratio */
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
       display: block;
-      opacity: 0.75;         /* requested fadedness */
-      border-radius: 8px;   /* subtle polish */
+      border-radius: 8px;
+      opacity: 0.7; /* <-- add this */
     }
+
 
     /* CV-style lists on the right (same region as homepage content) */
     .cv-heading { font-weight: 700; margin: 12px 0 6px; }
     .inst {
       font-weight: 700;
-      color: var(--link-hover, var(--heo-theme, #0a3c8c)); /* bold navy-ish, matches your hover if var exists */
+      color: var(--link-hover, var(--heo-theme, #444)); /* bold grey */
       margin: 6px 0 8px;
     }
     .cv-list {
@@ -117,8 +118,6 @@
         </div>
 
         <article id="article-container" class="container post-content">
-          <!-- Section heading to mirror homepage h3 hierarchy -->
-          <h3 id="Teaching-Experience" class="cv-heading" style="margin-top:0;">Teaching Experience</h3>
 
           <!-- Instructor of Record -->
           <h3 id="Instructor-of-Record" class="cv-heading">Instructor of Record</h3>
