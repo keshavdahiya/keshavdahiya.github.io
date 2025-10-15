@@ -43,17 +43,23 @@
     .inst-gray { font-weight:700; font-style:italic; color:#444; margin:26px 0 8px; }
 
     /* LEFT PANEL: thumbnails synced to right items */
-    #aside-content { position: relative; }       /* positioning context for tray */
-    .thumb-sync { position: relative; opacity: .7; }
-    .thumb-sync img {
-      position: absolute; left: 50%; transform: translateX(-50%);
-      height: 100px; width: auto; display:block; border-radius:8px;
-      pointer-events: none; /* prevents intercepting hover/clicks */
-      max-width: 90%;
+    #aside-content { position: relative; }           /* positioning context */
+    #thumbSync {
+      position: absolute; left: 0; right: 0;         /* we'll set top & height via JS */
+      opacity: .88;
+      pointer-events: none;                           /* don't block hovers/clicks */
+    }
+    #thumbSync img {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: block;
+      border-radius: 8px;
+      /* JS will decide height/width each time to preserve aspect ratio */
     }
 
     @media (max-width: 800px) {
-      .thumb-sync img { max-width: 100%; }
+      #thumbSync img { max-width: 85%; }
     }
   </style>
 
@@ -169,19 +175,19 @@
             <h3>Invited Talks</h3>
             <ul class="clean-ul">
               <li>
-                <div class="talk-venue">Mathematical Physics Seminar, Purdue University, West Lafayette (2025)</div>
-                <div>Talk title: <em>xxx</em></div>
-                <div><a class="btn" href="#" target="_blank" rel="noopener">Slides</a></div>
+                  <div class="talk-venue">Mathematical Physics Seminar</div>
+                  <div> <strong><em>Purdue University, West Lafayette, 2025</em></strong> </div>
+                <div>Talk title: <em>xxx</em>     <a class="btn" href="#" target="_blank" rel="noopener">Slides</a></div>
               </li>
               <li>
-                <div class="talk-venue">Quantum Groups and Representation Theory Conference, North Carolina State University, Raleigh (2024)</div>
-                <div>Talk title: <em>xxx</em></div>
-                <div><a class="btn" href="#" target="_blank" rel="noopener">Slides</a></div>
+                  <div class="talk-venue">Quantum Groups and Representation Theory Conference </div>
+                  <div><strong><em>North Carolina State University, Raleigh, 2024</em></strong></div>
+                <div>Talk title: <em>xxx</em>    <a class="btn" href="#" target="_blank" rel="noopener">Slides</a></div>
               </li>
               <li>
-                <div class="talk-venue">14th Southeastern Lie Theory Conference, University of Virginia, Charlottesville (2024)</div>
-                <div>Talk title: <em>xxx</em></div>
-                <div><a class="btn" href="#" target="_blank" rel="noopener">Slides</a></div>
+                  <div class="talk-venue">14th Southeastern Lie Theory Conference </div>
+                <div><strong><em>University of Virginia, Charlottesville, 2024</em></strong></div>
+                <div>Talk title: <em>xxx</em>    <a class="btn" href="#" target="_blank" rel="noopener">Slides</a></div>
               </li>
             </ul>
           </section>
@@ -192,13 +198,13 @@
 
             <p class="inst-gray" style="margin-top:10px;">Representation Theory Seminar, Indiana University, Indianapolis</p>
             <ul class="clean-ul">
-              <li>The quantum determinant for Yangian of $\mathfrak{gl}_n$ (2025)</li>
-              <li>Transfer matrices for Yangian of $\mathfrak{gl}_n$ (2025)</li>
+              <li>The quantum determinant for Yangian of $\\mathfrak{gl}_n$ (2025)</li>
+              <li>Transfer matrices for Yangian of $\\mathfrak{gl}_n$ (2025)</li>
               <li>Fusion of R matrices (2025)</li>
               <li>MacDonald polynomials (2024)</li>
               <li>Howe duality and quantum Weyl group (2024)</li>
-              <li>Crystal bases for $U_q\mathfrak{sl}_n$ and Young tableaux (2023)</li>
-              <li>The $\mathfrak{gl}_m \times \mathfrak{gl}_n$ duality (2023)</li>
+              <li>Crystal bases for $U_q\\,\\mathfrak{sl}_n$ and Young tableaux (2023)</li>
+              <li>The $\\mathfrak{gl}_m \\times \\mathfrak{gl}_n$ duality (2023)</li>
               <li>The Gelfand–Tsetlin algebras and representations of symmetric groups (2022)</li>
               <li>The Pfaffian using Grassmann variables (2022)</li>
               <li>Characters of representations of finite groups (2021)</li>
@@ -234,7 +240,7 @@
 
       <!-- LEFT: sidebar area; images synced to specific right items -->
       <div id="aside-content" class="aside-content">
-        <div id="thumbSync" class="thumb-sync" aria-hidden="true">
+        <div id="thumbSync" aria-hidden="true">
           <img id="thumb-preprint"  src="/Research/Images/hex_one_long.png" alt="Preprint thumbnail">
           <img id="thumb-twisted"   src="/Research/Images/twisted.png"      alt="Twisted paper thumbnail">
           <img id="thumb-untwisted" src="/Research/Images/untwisted.png"    alt="Untwisted paper thumbnail">
@@ -270,7 +276,7 @@
     })();
   </script>
 
-  <!-- Sync thumbnails to the right-side blocks -->
+  <!-- Sync thumbnails to the right-side blocks (first-target anchored, aspect-ratio smart) -->
   <script>
     (function () {
       function absTop(el){ var t=0; while(el){ t+=el.offsetTop; el=el.offsetParent; } return t; }
@@ -281,49 +287,77 @@
         { imgId:'thumb-untwisted', targetId:'pub-untwisted'   }
       ];
 
-      const NUDGE = 0; // if needed, try 8 or -8
+      const NUDGE = 0; // try 8 or -8 if you need a tiny vertical nudge
+
+      function onceImagesLoaded(imgs) {
+        return Promise.all(imgs.map(img => (img.decode ? img.decode() : Promise.resolve())));
+      }
 
       function syncThumbs() {
-        const tray    = document.getElementById('thumbSync');
-        const article = document.getElementById('article-container');
+        const tray     = document.getElementById('thumbSync');
+        const article  = document.getElementById('article-container');
         if (!tray || !article) return;
 
+        // Establish baseline at the FIRST target's top
+        const firstTgt = document.getElementById(pairs[0].targetId);
+        const lastTgt  = document.getElementById(pairs[pairs.length-1].targetId);
+        if (!firstTgt || !lastTgt) return;
+
         const articleTop = absTop(article);
+        const firstTopAbs = absTop(firstTgt);
+        const lastBottomAbs = absTop(lastTgt) + lastTgt.offsetHeight;
 
-        // span tray from first to last target
-        const first = document.getElementById(pairs[0].targetId);
-        const last  = document.getElementById(pairs[pairs.length-1].targetId);
-        if (first && last) {
-          const firstTopAbs  = absTop(first);
-          const lastBottomAbs = absTop(last) + last.offsetHeight;
-          tray.style.height = (lastBottomAbs - firstTopAbs) + 'px';
-          tray.style.position = 'relative';
-        }
+        // Position the tray so its top aligns with first list item
+        tray.style.top = (firstTopAbs - articleTop) + 'px';
+        tray.style.height = (lastBottomAbs - firstTopAbs) + 'px';
 
-        // place each image
-        pairs.forEach(({imgId,targetId})=>{
+        const trayInnerWidth = tray.clientWidth || tray.getBoundingClientRect().width;
+
+        pairs.forEach(({imgId, targetId})=>{
           const img = document.getElementById(imgId);
           const tgt = document.getElementById(targetId);
-          if(!img || !tgt) return;
+          if (!img || !tgt) return;
 
           const tgtTopAbs = absTop(tgt);
           const tgtHeight = tgt.offsetHeight;
 
-          const topInAside = (tgtTopAbs - articleTop) + NUDGE;
-          img.style.top    = topInAside + 'px';
-          img.style.height = tgtHeight + 'px';
-          img.style.width  = 'auto'; // maintain aspect ratio
+          // Vertical alignment relative to first target
+          const topInTray = (tgtTopAbs - firstTopAbs) + NUDGE;
+          img.style.top = topInTray + 'px';
+
+          // Height-first sizing with aspect-ratio preserved,
+          // but cap width to the tray to avoid overflow.
+          const naturalW = img.naturalWidth || 1;
+          const naturalH = img.naturalHeight || 1;
+          const expectedW = tgtHeight * (naturalW / naturalH);
+
+          // Use a small inner padding (e.g., 90% of tray width) to look nice
+          const maxW = trayInnerWidth * 0.9;
+
+          if (expectedW <= maxW) {
+            // Safe to set fixed height, width auto (no cropping)
+            img.style.height = tgtHeight + 'px';
+            img.style.width  = 'auto';
+            img.style.maxWidth = 'none';
+          } else {
+            // Too wide—limit width and let height auto-adjust
+            img.style.width  = '90%';
+            img.style.height = 'auto';
+            img.style.maxWidth = '90%';
+          }
         });
       }
 
-      // run after layout and MathJax
       window.addEventListener('load', function () {
+        const imgs = Array.from(document.querySelectorAll('#thumbSync img'));
+        const afterMath = () => onceImagesLoaded(imgs).then(syncThumbs);
         if (window.MathJax && MathJax.typesetPromise) {
-          MathJax.typesetPromise().then(syncThumbs);
+          MathJax.typesetPromise().then(afterMath);
         } else {
-          syncThumbs();
+          afterMath();
         }
       });
+
       window.addEventListener('resize', syncThumbs);
     })();
   </script>
