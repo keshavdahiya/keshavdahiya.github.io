@@ -23,7 +23,14 @@
   <!-- Page-scoped helpers only (keeps your global theme intact) -->
   <style>
     .kicker { font-style: italic; opacity:.9; margin-top:-2px; }
-    .course-textbook { width: 80%; max-width: 320px; display:block; border-radius:8px; margin:0 auto 10px; }
+    /* Make textbook image full width, maintain aspect ratio, remove cropping */
+    .course-textbook img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;   /* ensures entire cover fits without being cropped */
+      border-radius: 10px;   /* still keeps a gentle rounding */
+      box-shadow: var(--heo-shadow, 0 4px 8px rgba(0,0,0,0.1)); /* optional */
+    }
     /* Very light gray buttons */
     .btn {
       display:inline-block; padding:6px 10px; border:1px solid #d1d5db; border-radius:6px;
