@@ -1,68 +1,249 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>MATH-I-110: Fundamentals of Algebra — Fall 2025</title>
-  <link rel="stylesheet" href="/css/index.css" />
+
+  <meta name="author" content="Keshav Dahiya" />
+  <meta name="description" content="MATH-I-110 (Fall 2025) — course information, syllabus, policies, lecture notes" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="canonical" href="https://keshavdahiya.github.io/Teaching/Courses/FA25Math110/" />
+
+  <!-- Same assets as Teaching page (NOTE: correct relative paths from /Teaching/Courses/FA25Math110/) -->
+  <link rel="preconnect" href="//cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="../../../css/index.css?v=16" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Page-scoped helpers only (keeps your global theme intact) -->
   <style>
-    .two-col {
-      display: grid;
-      grid-template-columns: 300px 1fr;
-      gap: 24px;
-      align-items: start;
+    .kicker { font-style: italic; opacity:.9; margin-top:-2px; }
+    .course-textbook { width: 80%; max-width: 320px; display:block; border-radius:8px; margin:0 auto 10px; }
+    .btn-link {
+      display:inline-block; padding:6px 10px; border:1px solid var(--heo-fontcolor,#ddd);
+      border-radius:8px; text-decoration:none; font-size:.95rem;
     }
-    .left-panel img {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-      display: block;
-    }
-    .muted { opacity: 0.85; }
-    .kicker { font-style: italic; margin-top: -6px; opacity: 0.9; }
-    @media (max-width: 900px) {
-      .two-col { grid-template-columns: 1fr; }
-    }
+    .notes-table { width:100%; border-collapse:collapse; }
+    .notes-table th, .notes-table td { padding:8px 10px; border-bottom:1px solid #e6e6e6; vertical-align:top; }
+    .notes-table th { text-align:left; }
+    @media (max-width: 800px) { .course-textbook { width: 85%; } }
   </style>
+
+  <script>
+    (() => {
+      const saveToLocal = {
+        set:(k,v,t)=>{ if(!t)return; const e=Date.now()+t*86400000; localStorage.setItem(k,JSON.stringify({value:v,expiry:e})); },
+        get:(k)=>{ const s=localStorage.getItem(k); if(!s)return; const {value,expiry}=JSON.parse(s); if(Date.now()>expiry){localStorage.removeItem(k);return;} return value; }
+      };
+      const setTheme = (mode) => {
+        document.documentElement.setAttribute('data-theme', mode);
+        const m=document.querySelector('meta[name="theme-color"]');
+        if(m) m.setAttribute('content', mode==='dark' ? '#0d0d0d' : '#ffffff');
+      };
+      const theme = saveToLocal.get('theme'); if (theme) setTheme(theme);
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) document.documentElement.classList.add('apple');
+      window.GLOBAL_CONFIG = { percent: { toc: false, rightside: true } };
+      window.GLOBAL_CONFIG_SITE = { title: 'MATH-I-110', isToc: false, pageType: 'post' };
+    })();
+  </script>
 </head>
+
 <body>
+  <div id="body-wrap" class="post type-course">
+    <!-- Header/Nav (same as other pages) -->
+    <header id="page-header" class="not-top-img fixed">
+      <nav id="nav">
+        <div id="blog-info">
+          <a class="nav-site-title" href="/" aria-label="Keshav Dahiya — Home">
+            <span class="site-name">Keshav Dahiya</span>
+          </a>
+        </div>
+        <div id="menus" role="navigation" aria-label="Primary">
+          <div class="menus_items">
+            <div class="menus_item"><a class="site-page" href="/"><i class="fa-solid fa-house"></i><span>Home</span></a></div>
+            <div class="menus_item"><a class="site-page" href="/Research/"><i class="fa-regular fa-pen-to-square"></i><span>Research</span></a></div>
+            <div class="menus_item"><a class="site-page" href="/Teaching/" aria-current="page"><i class="fa-solid fa-chalkboard-user"></i><span>Teaching</span></a></div>
+            <div class="menus_item"><a class="site-page" href="/Projects/"><i class="fa-regular fa-folder-open"></i><span>Projects</span></a></div>
+            <div class="menus_item"><a class="site-page" href="/CV/Keshav_CV_Website.pdf" target="_blank" rel="noopener"><i class="fa-regular fa-id-card"></i><span>CV</span></a></div>
+          </div>
+        </div>
+      </nav>
+    </header>
 
-  <!-- Header (shared with other pages) -->
-  <header class="site-header" style="margin-bottom: 16px;">
-    <nav class="top-nav">
-      <a href="/">Home</a>
-      <a href="/Projects/">Projects</a>
-      <a href="/Research/">Research</a>
-      <a href="/Teaching/">Teaching</a>
-    </nav>
-  </header>
+    <main id="content-inner" class="layout">
+      <!-- RIGHT: main content -->
+      <div id="post">
+        <div id="post-info">
+          <h1 class="post-title" style="margin:0 0 8px; font-weight:700;">MATH-I-110: Fundamentals of Algebra</h1>
+          <div class="kicker">Fall 2025</div>
+        </div>
 
-  <main class="two-col">
-    <!-- Left panel -->
-    <aside class="left-panel">
-      <img src="textbook.jpg" alt="Course textbook cover" />
-    </aside>
+        <article id="article-container" class="container post-content">
+          <!-- About -->
+          <h3>About this course</h3>
+          <ul>
+            <li>
+              Course Policy:
+              <a class="btn-link" href="Policy.pdf" target="_blank" rel="noopener">PDF</a>
+            </li>
+            <li>
+              Syllabus:
+              <a class="btn-link" href="Policy.pdf" target="_blank" rel="noopener">PDF</a>
+            </li>
+            <li>
+              Instructor: Keshav Dahiya &nbsp;•&nbsp; Email:
+              <a href="mailto:kkeshav@iu.edu">kkeshav@iu.edu</a>
+            </li>
+            <li>Office Hours: Mon/Wed 2–3 pm (ET) — Science Building 123</li>
+            <li>Class Meeting Time: Tue/Thu 1:00–2:50 pm (ET) — HINE HALL (IP) 208</li>
+            <li>
+              Class Schedule (by day):
+              <a class="btn-link" href="Schedule.pdf" target="_blank" rel="noopener">PDF</a>
+            </li>
+          </ul>
 
-    <!-- Right panel -->
-    <section class="right-panel">
-      <h1 class="post-title" style="margin:0 0 6px;">MATH-I-110: Fundamentals of Algebra</h1>
-      <div class="kicker">Fall 2025</div>
+          <!-- Lecture Notes -->
+          <h3 style="margin-top:22px;">Lecture Notes</h3>
+          <table class="notes-table">
+            <thead>
+              <tr>
+                <th style="width:120px;">Date</th>
+                <th>Lecture Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>08/26</td>
+                <td>
+                  <a class="btn-link" href="Lecture/L1.3.pdf" target="_blank" rel="noopener">Sec 1.3</a>
+                </td>
+              </tr>
+              <tr>
+                <td>08/28</td>
+                <td>
+                  <a class="btn-link" href="Lecture/L1.4.pdf" target="_blank" rel="noopener">Sec 1.4</a>
+                  <a class="btn-link" href="Lecture/L1.5.pdf" target="_blank" rel="noopener">Sec 1.5</a>
+                  <a class="btn-link" href="Lecture/L1.6.pdf" target="_blank" rel="noopener">Sec 1.6</a>
+                </td>
+              </tr>
+              <tr>
+                <td>09/02</td>
+                <td>
+                  <a class="btn-link" href="Lecture/L2.1.pdf" target="_blank" rel="noopener">Sec 2.1</a>
+                </td>
+              </tr>
+              <tr>
+                <td>09/04</td>
+                <td>
+                  <a class="btn-link" href="Lecture/L2.2.pdf" target="_blank" rel="noopener">Sec 2.2</a>
+                  <a class="btn-link" href="Lecture/L2.3.pdf" target="_blank" rel="noopener">Sec 2.3</a>
+                </td>
+              </tr>
+              <tr>
+                <td>09/09</td>
+                <td>
+                  <a class="btn-link" href="Lecture/L2.4.pdf" target="_blank" rel="noopener">Sec 2.4</a>
+                  <a class="btn-link" href="Lecture/L2.5.pdf" target="_blank" rel="noopener">Sec 2.5</a>
+                  <a class="btn-link" href="Lecture/L2.6.pdf" target="_blank" rel="noopener">Sec 2.6</a>
+                </td>
+              </tr>
+              <tr>
+                <td>09/16</td>
+                <td>
+                  <a class="btn-link" href="Lecture/L3.1.pdf" target="_blank" rel="noopener">Sec 3.1</a>
+                </td>
+              </tr>
+              <tr>
+                <td>09/18</td>
+                <td>
+                  <a class="btn-link" href="Lecture/L3.2.pdf" target="_blank" rel="noopener">Sec 3.2</a>
+                  <a class="btn-link" href="Lecture/L3.3.pdf" target="_blank" rel="noopener">Sec 3.3</a>
+                </td>
+              </tr>
+              <tr>
+                <td>09/23</td>
+                <td>
+                  <a class="btn-link" href="Lecture/L3.6.pdf" target="_blank" rel="noopener">Sec 3.6</a>
+                </td>
+              </tr>
+              <tr>
+                <td>09/25</td>
+                <td>
+                  <a class="btn-link" href="Lecture/L3.9.pdf" target="_blank" rel="noopener">Sec 3.9</a>
+                </td>
+              </tr>
+              <tr>
+                <td>09/30</td>
+                <td>
+                  <a class="btn-link" href="Lecture/L4.1.pdf" target="_blank" rel="noopener">Sec 4.1</a>
+                </td>
+              </tr>
+              <tr>
+                <td>10/02</td>
+                <td>
+                  <a class="btn-link" href="Lecture/L4.2.pdf" target="_blank" rel="noopener">Sec 4.2</a>
+                  <a class="btn-link" href="Lecture/L4.4.pdf" target="_blank" rel="noopener">Sec 4.4</a>
+                </td>
+              </tr>
+              <tr>
+                <td>10/07</td>
+                <td>
+                  <a class="btn-link" href="Lecture/L5.1.pdf" target="_blank" rel="noopener">Sec 5.1</a>
+                </td>
+              </tr>
+              <tr>
+                <td>10/09</td>
+                <td>
+                  <a class="btn-link" href="Lecture/L5.2.pdf" target="_blank" rel="noopener">Sec 5.2</a>
+                </td>
+              </tr>
+              <tr>
+                <td>10/14</td>
+                <td>
+                  <a class="btn-link" href="Lecture/L5.3.pdf" target="_blank" rel="noopener">Sec 5.3</a>
+                  <a class="btn-link" href="Lecture/L5.4.pdf" target="_blank" rel="noopener">Sec 5.4</a>
+                  <a class="btn-link" href="Lecture/L5.5.pdf" target="_blank" rel="noopener">Sec 5.5</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
 
-      <h3 style="margin-top:22px;">About this course</h3>
-      <p>
-        Instructor: Keshav Dahiya<br>
-        Email: kkeshav@iu.edu<br>
-        Office Hours: Mon/Wed 2–3 pm (ET) — Science Building 123<br>
-        Class Meeting Time: Tue/Thu 1:00–2:50 pm (ET) — HINE HALL (IP) 208
-      </p>
+        <div class="tag_share"></div>
+      </div>
 
-      <p class="muted">
-        This page provides basic course information and will later include the syllabus,
-        policy documents, and lecture notes.
-      </p>
-    </section>
-  </main>
+      <!-- LEFT: sidebar (textbook + external link) -->
+      <div id="aside-content" class="aside-content">
+        <img class="course-textbook" src="textbook.jpg" alt="Course textbook cover" />
+        <p style="text-align:center; margin:8px 0 0;">
+          <a class="btn-link" href="https://www.bkstr.com/indianastore/course-materials-results?courseDisplayName=110&courseRefId=&departmentDisplayName=MATH-I&divisionDisplayName=&merfnbr=2271&sectionDisplayName=24066&shopBy=discoverShop&termDir=4258"
+             target="_blank" rel="noopener">Get the textbook ↗</a>
+        </p>
+        <div class="sticky_layout"></div>
+      </div>
+    </main>
 
-  <footer style="margin-top:32px;"></footer>
+    <footer id="footer">
+      <div id="footer-wrap">
+        <div class="copyright">&copy; <span id="year-span"></span> Keshav Dahiya</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Same scripts as your Teaching page (NOTE: relative paths) -->
+  <script src="../../../js/utils.js"></script>
+  <script src="../../../js/main.js"></script>
+  <script>
+    (function () {
+      function setYear(){ var y=document.getElementById('year-span'); if(y) y.textContent=new Date().getFullYear(); }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setYear);
+      else setYear();
+    })();
+  </script>
 </body>
 </html>
