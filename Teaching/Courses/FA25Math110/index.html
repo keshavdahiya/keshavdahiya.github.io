@@ -24,7 +24,13 @@
   <style>
     .kicker { font-style: italic; opacity:.9; margin-top:-2px; }
     .course-textbook { width: 80%; max-width: 320px; display:block; border-radius:8px; margin:0 auto 10px; }
-    .btn {margin-right: 6px; margin-bottom: 6px;}
+    /* Very light gray buttons */
+    .btn {
+      display:inline-block; padding:6px 10px; border:1px solid #d1d5db; border-radius:6px;
+      text-decoration:none; font-size:0.95rem; line-height:1; margin-right:8px;
+      color:#444; background:#f3f4f6;
+    }
+    .btn:hover { background:#e5e7eb; color:#222; }
     .notes-table { width:100%; border-collapse:collapse; }
     .notes-table th, .notes-table td { padding:8px 10px; border-bottom:1px solid #e6e6e6; vertical-align:top; }
     .notes-table th { text-align:left; }
@@ -85,20 +91,22 @@
           <h3>About this course</h3>
           <ul>
             <li>
-              Course Policy and Syllabus:
-              <a class="btn" href="Policy.pdf" target="_blank" rel="noopener">PDF</a>
+              Syllabus and Course Policy:
+              <a class="btn" href="Policy.pdf" target="_blank" rel="noopener">Click Here</a>
             </li>
             <li>
-              Instructor: Keshav Dahiya &nbsp;•&nbsp; Email:
-              <a href="mailto:kkeshav@iu.edu">kkeshav@iu.edu</a>
+              Instructor: Keshav Dahiya (Email:
+              <a href="mailto:kkeshav@iu.edu">kkeshav@iu.edu</a>)
             </li>
             <li>Class Meeting Time: Tue/Thu 1:00–2:50 pm (ET), HINE HALL (IP) 208</li>
             <li>Office Hours: Mon/Wed 2–3 pm (ET), LD Building ?/ MAC?</li>
 
             <li>
               Class Schedule (by day):
-              <a class="btn" href="Schedule.pdf" target="_blank" rel="noopener">PDF</a>
+              <a class="btn" href="Schedule.pdf" target="_blank" rel="noopener">Click Here</a>
             </li>
+              <li>Textbook: <em>Intermediate Algebra: Concepts and Applications, 11th Edition, Pearson Publishing</em> by Bittinger, Ellenbogen, and Johnson, ISBN 9780134497242
+              </li>
           </ul>
 
           <!-- Lecture Notes -->
