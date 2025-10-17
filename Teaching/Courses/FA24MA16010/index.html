@@ -1,1 +1,203 @@
-hii
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>MA 16010: Applied Calculus I — Fall 2024</title>
+
+  <meta name="author" content="Keshav Dahiya" />
+  <meta name="description" content="MA 16010 (Fall 2024) — course information, syllabus, policies, lecture notes" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="canonical" href="https://keshavdahiya.github.io/Teaching/Courses/FA24MA16010" />
+
+  <!-- Correct paths to shared CSS and fonts -->
+  <link rel="preconnect" href="//cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="../../../css/index.css?v=16" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Page-specific overrides -->
+  <style>
+    .kicker { font-style: italic; opacity: .9; margin-top: -2px; }
+
+    /* Fix textbook cropping by overriding avatar-img */
+    .card-widget.card-info .avatar-img.textbook-img {
+      height: auto !important;
+      padding: 0 !important;
+      overflow: visible !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card-widget.card-info .avatar-img.textbook-img img {
+      width: 100% !important;
+      height: auto !important;
+      object-fit: contain !important;
+      aspect-ratio: auto !important;
+      border-radius: 10px;
+      box-shadow: var(--heo-shadow, 0 4px 8px rgba(0,0,0,0.1));
+      display: block;
+    }
+
+    /* Buttons like DOI style */
+    .btn {
+      display: inline-block;
+      padding: 6px 10px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      line-height: 1;
+      margin-right: 8px;
+      color: #444;
+      background: #f3f4f6;
+      transition: background 0.2s ease;
+    }
+    .btn:hover { background: #e5e7eb; color: #222; }
+
+    .notes-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    .notes-table th, .notes-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid #e6e6e6;
+      vertical-align: top;
+    }
+    .notes-table th { text-align: left; }
+
+    @media (max-width: 800px) {
+      .card-widget.card-info .avatar-img.textbook-img img { width: 90% !important; }
+    }
+  </style>
+
+  <script>
+    (() => {
+      const saveToLocal = {
+        set:(k,v,t)=>{ if(!t)return; const e=Date.now()+t*86400000; localStorage.setItem(k,JSON.stringify({value:v,expiry:e})); },
+        get:(k)=>{ const s=localStorage.getItem(k); if(!s)return; const {value,expiry}=JSON.parse(s); if(Date.now()>expiry){localStorage.removeItem(k);return;} return value; }
+      };
+      const setTheme = (mode) => {
+        document.documentElement.setAttribute('data-theme', mode);
+        const m=document.querySelector('meta[name="theme-color"]');
+        if(m) m.setAttribute('content', mode==='dark' ? '#0d0d0d' : '#ffffff');
+      };
+      const theme = saveToLocal.get('theme'); if (theme) setTheme(theme);
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) document.documentElement.classList.add('apple');
+      window.GLOBAL_CONFIG = { percent: { toc: false, rightside: true } };
+      window.GLOBAL_CONFIG_SITE = { title: 'MATH-I-110', isToc: false, pageType: 'post' };
+    })();
+  </script>
+</head>
+
+<body>
+  <div id="body-wrap" class="post type-course">
+    <!-- Header/Nav -->
+    <header id="page-header" class="not-top-img fixed">
+      <nav id="nav">
+        <div id="blog-info">
+          <a class="nav-site-title" href="/" aria-label="Keshav Dahiya — Home">
+            <span class="site-name">Keshav Dahiya</span>
+          </a>
+        </div>
+        <div id="menus" role="navigation" aria-label="Primary">
+          <div class="menus_items">
+            <div class="menus_item"><a class="site-page" href="/"><i class="fa-solid fa-house"></i><span>Home</span></a></div>
+            <div class="menus_item"><a class="site-page" href="/Research/"><i class="fa-regular fa-pen-to-square"></i><span>Research</span></a></div>
+            <div class="menus_item"><a class="site-page" href="/Teaching/" aria-current="page"><i class="fa-solid fa-chalkboard-user"></i><span>Teaching</span></a></div>
+            <div class="menus_item"><a class="site-page" href="/Projects/"><i class="fa-regular fa-folder-open"></i><span>Projects</span></a></div>
+            <div class="menus_item"><a class="site-page" href="/CV/Keshav_CV_Website.pdf" target="_blank" rel="noopener"><i class="fa-regular fa-id-card"></i><span>CV</span></a></div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main id="content-inner" class="layout">
+      <!-- RIGHT: main content -->
+      <div id="post">
+        <div id="post-info">
+          <h1 class="post-title" style="margin:0 0 8px; font-weight:700;">MA 16010: Applied Calculus I</h1>
+          <div class="kicker">Fall 2024</div>
+        </div>
+
+        <article id="article-container" class="container post-content">
+          <h3>About this course</h3>
+          <ul>
+            <li>Instructor: Keshav Dahiya (Email: <a href="mailto:kkeshav@iu.edu">kkeshav@iu.edu</a>)</li>
+            <li>Office Hours: Fri 1:30–3:30 pm (ET), LD 225</li>
+            <li>Textbook: <em>Technical Calculus with Analytic Geometry, 5th Edition, Cengage Learning</em> by Peter Kuhfittig</li>
+              For course policy, syllabus, class schedule and room number, see <a href="https://iu.instructure.com">Canvas</a>.
+          </ul>
+
+          <h3 style="margin-top:22px;">Lecture Notes</h3>
+          <table class="notes-table">
+            <thead>
+              <tr><th style="width:120px;">Date</th><th>Lecture Notes</th><th>Homework</th><th>Quiz</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>08/26</td><td><a class="btn" href="Lecture/L2.1.pdf" target="_blank">Sec 2.1</a></td><td> </td><td> </td></tr>
+              <tr><td>08/28</td><td><a class="btn" href="Lecture/L2.2.pdf">Sec 2.2</a></td><td> <a class="btn" href="HW/HW1.pdf" target="_blank">Homework 1</a></td> <td><a class="btn" href="Quiz/Q1.pdf" target="_blank">Quiz 1</a> </td></tr>
+              <tr><td>09/02</td><td><a class="btn" href="Lecture/L2.3-2.4-2.5.pdf">Sec 2.3, 2.4, 2.5</a></td><td><a class="btn" href="HW/HW2.pdf" target="_blank">Homework 2</a> </td><td> </td></tr>
+              <tr><td>09/04</td><td><a class="btn" href="Lecture/L2.6.pdf">Sec 2.6</a></td><td><a class="btn" href="HW/HW3.pdf" target="_blank">Homework 3</a> </td><td> <a class="btn" href="Quiz/Q2.pdf" target="_blank">Quiz 2</a> </td></tr>
+              <tr><td>09/09</td><td><a class="btn" href="Lecture/L2.7.pdf">Sec 2.7</a></td><td> </td><td> </td></tr>
+              <tr><td>09/11</td><td><a class="btn" href="Lecture/L2.8.pdf">Sec 2.8</a></td><td><a class="btn" href="HW/HW4.pdf" target="_blank">Homework 4</a> </td><td> <a class="btn" href="Quiz/Q3.pdf" target="_blank">Quiz 3</a></td></tr>
+              <tr><td>09/23</td><td><a class="btn" href="Lecture/L2.9.pdf">Sec 2.9</a></td><td> </td><td> </td></tr>
+              <tr><td>09/25</td><td><a class="btn" href="Lecture/L3.1.pdf">Sec 3.1</a></td><td> </td><td> <a class="btn" href="Quiz/Q4.pdf" target="_blank">Quiz 4</a></td></tr>
+              <tr><td>09/30</td><td><a class="btn" href="Lecture/L3.2.pdf">Sec 3.2</a></td><td> <a class="btn" href="HW/HW5.pdf" target="_blank">Homework 5</a></td><td> </td></tr>
+              <tr><td>10/02</td><td><a class="btn" href="Lecture/L3.4.pdf">Sec 3.4</a></td><td> <a class="btn" href="HW/HW6.pdf" target="_blank">Homework 6</a></td><td> <a class="btn" href="Quiz/Q5.pdf" target="_blank">Quiz 5</a></td></tr>
+              <tr><td>10/07</td><td><a class="btn" href="Lecture/L3.6.pdf">Sec 3.6</a></td><td> </td><td> </td></tr>
+              <tr><td>10/09</td><td><a class="btn" href="Lecture/L6.1.pdf">Sec 6.1</a></td><td> </td><td><a class="btn" href="Quiz/Q6.pdf" target="_blank">Quiz 6</a> </td></tr> 
+              <tr><td>10/14</td><td><a class="btn" href="Lecture/L6.2.pdf">Sec 6.2</a><a class="btn" href="Lecture/L6.3.pdf">Sec 6.3</a><a class="btn" href="Lecture/L6.4.pdf">Sec 6.4</a></td><td> <a class="btn" href="HW/HW7.pdf" target="_blank">Homework 7</a></td><td> </td></tr> 
+              <tr><td>10/16</td><td><a class="btn" href="Lecture/L6.5.pdf">Sec 6.5</a></td><td> </td><td> <a class="btn" href="Quiz/Q7.pdf" target="_blank">Quiz 7</a></td></tr>  
+              <tr><td>10/21</td><td><a class="btn" href="Lecture/L6.6.pdf">Sec 6.6</a></td><td> </td><td> </td></tr>     
+              <tr><td>10/23</td><td><a class="btn" href="Lecture/L6.7.pdf">Sec 6.7</a><a class="btn" href="Lecture/L6.8.pdf">Sec 6.8</a></td><td> <a class="btn" href="HW/HW8.pdf" target="_blank">Homework 8</a></td><td> </td></tr>    
+              <tr><td>10/28</td><td><a class="btn" href="Lecture/L4.1.pdf">Sec 4.1</a></td><td> </td><td> </td></tr>
+              <tr><td>10/30</td><td><a class="btn" href="Lecture/L4.2.pdf">Sec 4.2</a></td><td> <a class="btn" href="HW/HW9.pdf" target="_blank">Homework 9</a></td><td><a class="btn" href="Quiz/Q8.pdf" target="_blank">Quiz 8</a> </td></tr>
+              <tr><td>11/04</td><td><a class="btn" href="Lecture/L4.3.pdf">Sec 4.3</a></td><td> </td><td> </td></tr>
+              <tr><td>11/06</td><td><a class="btn" href="Lecture/L4.4-4.5.pdf">Sec 4.4, 4.5</a></td><td> </td><td> <a class="btn" href="Quiz/Q9.pdf" target="_blank">Quiz 9</a></td></tr>
+              <tr><td>11/11</td><td><a class="btn" href="Lecture/L4.6.pdf">Sec 4.6</a></td><td> <a class="btn" href="HW/HW10.pdf" target="_blank">Homework 10</a></td><td> </td></tr>
+              <tr><td>11/13</td><td><a class="btn" href="Lecture/L4.7.pdf">Sec 4.7</a></td><td> <a class="btn" href="HW/HW11.pdf" target="_blank">Homework 11</a></td><td> <a class="btn" href="Quiz/Q10.pdf" target="_blank">Quiz 10</a></td></tr>
+              <tr><td>11/25</td><td><a class="btn" href="Lecture/L4.9.pdf">Sec 4.9</a></td><td> </td><td> </td></tr>
+              <tr><td>12/02</td><td><a class="btn" href="Lecture/L5.2-5.3.pdf">Sec 5.2, 5.3</a></td><td> <a class="btn" href="HW/HW11.pdf" target="_blank">Homework 11</a></td><td> </td></tr>
+            </tbody>
+          </table>
+        </article>
+      </div>
+
+      <!-- LEFT: textbook sidebar -->
+      <div id="aside-content" class="aside-content">
+        <div class="card-widget card-info text-center">
+          <div class="avatar-img textbook-img">
+            <img src="textbook.png" alt="Course textbook cover"
+                 onerror="this.onerror=null;this.src='/img/friend_404.gif'" />
+          </div>
+          <div style="margin-top:12px;">
+            <a class="btn"
+               href="https://www.bkstr.com/indianastore/home"
+               target="_blank" rel="noopener">Get the textbook ↗</a>
+          </div>
+        </div>
+        <div class="sticky_layout"></div>
+      </div>
+    </main>
+
+    <footer id="footer">
+      <div id="footer-wrap">
+        <div class="copyright">&copy; <span id="year-span"></span> Keshav Dahiya</div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="../../../js/utils.js"></script>
+  <script src="../../../js/main.js"></script>
+  <script>
+    (function () {
+      function setYear(){ var y=document.getElementById('year-span'); if(y) y.textContent=new Date().getFullYear(); }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setYear);
+      else setYear();
+    })();
+  </script>
+</body>
+</html>
