@@ -47,7 +47,8 @@
   --timeline-bg:#e4f3fd;
   --pseudo-hover:#ff7242;
 
-  --link:#2b3a67; /* light navy links */
+  --link: #0000EE;        /* classic blue */
+  --link-hover: #1a0dab;  /* hover blue */
   --layout-pad-x: 15px;  /* matches .layout horizontal padding */
   --layout-pad-y: 40px;  /* matches .layout top padding */
 }
@@ -729,25 +730,4 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
 /* Force banner wash to the value we want */
 #post #post-info .hero-banner::after{
   background: rgba(255,255,255,.60) !important; /* adjust .75 as you like */
-}
-
-/* -----------------------------------------
-21) Global link color
--------------------------------------------- */
-/* ---------- Force global standard blue link color ---------- */
-body a,
-#post a,
-#content-inner a,
-.container a {
-  color: #0000EE !important;       /* classic blue */
-  text-decoration: underline;
-}
-
-body a:hover,
-#post a:hover,
-#content-inner a:hover,
-.container a:hover,
-body a:focus {
-  color: #1a0dab !important;       /* hover blue */
-  text-decoration: underline;
 }
