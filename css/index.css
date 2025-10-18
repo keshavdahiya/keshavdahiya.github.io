@@ -47,8 +47,7 @@
   --timeline-bg:#e4f3fd;
   --pseudo-hover:#ff7242;
 
-  --link: #1d4ed8;        /* slightly darker blue (blue-600) */
-  --link-hover: #1e3a8a;  /* deeper on hover (blue-800) */
+  --link:#2b3a67; /* light navy links */
   --layout-pad-x: 15px;  /* matches .layout horizontal padding */
   --layout-pad-y: 40px;  /* matches .layout top padding */
 }
@@ -737,8 +736,4 @@ a {
   color: var(--link);
   text-decoration: underline;
   transition: color .2s ease;
-}
-a:hover, a:focus {
-  color: var(--link-hover);
-  text-decoration: underline;
 }
