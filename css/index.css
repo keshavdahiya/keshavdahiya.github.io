@@ -47,7 +47,7 @@
   --timeline-bg:#e4f3fd;
   --pseudo-hover:#ff7242;
 
-  --link:#2b3a67; /* light navy links */
+  --link:#000080;        /*  navy links */
   --layout-pad-x: 15px;  /* matches .layout horizontal padding */
   --layout-pad-y: 40px;  /* matches .layout top padding */
 }
@@ -729,23 +729,4 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
 /* Force banner wash to the value we want */
 #post #post-info .hero-banner::after{
   background: rgba(255,255,255,.60) !important; /* adjust .75 as you like */
-}
-
-/* -----------------------------------------
-   21) Global link style (light navy + underline)
--------------------------------------------- */
-a {
-  color: var(--link);
-  text-decoration: underline;   /* ensure all links are underlined */
-  transition: color .2s ease;
-}
-
-a:hover,
-a:focus {
-  color: var(--btn-hover-color); /* this is #2b3a67's hover complement */
-  text-decoration: underline;
-}
-
-a:visited {
-  color: var(--link); /* keep same tone for visited links */
 }
