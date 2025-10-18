@@ -1,1 +1,202 @@
-hii
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>MATH 171-00: Multidimensional Mathematics — Spring 2023</title>
+
+  <meta name="author" content="Keshav Dahiya" />
+  <meta name="description" content="MATH 171-00 (Spring 2023) — course information, syllabus, policies, lecture notes" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="canonical" href="https://keshavdahiya.github.io/Teaching/Courses/SP23Math17100" />
+
+  <!-- Correct paths to shared CSS and fonts -->
+  <link rel="preconnect" href="//cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="../../../css/index.css?v=22" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Page-specific overrides -->
+  <style>
+    .kicker { font-style: italic; opacity: .9; margin-top: -2px; }
+
+    /* Fix textbook cropping by overriding avatar-img */
+    .card-widget.card-info .avatar-img.textbook-img {
+      height: auto !important;
+      padding: 0 !important;
+      overflow: visible !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card-widget.card-info .avatar-img.textbook-img img {
+      width: 100% !important;
+      height: auto !important;
+      object-fit: contain !important;
+      aspect-ratio: auto !important;
+      border-radius: 10px;
+      box-shadow: var(--heo-shadow, 0 4px 8px rgba(0,0,0,0.1));
+      display: block;
+    }
+
+    /* Buttons like DOI style */
+    .btn {
+      display: inline-block;
+      padding: 6px 10px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      line-height: 1;
+      margin-right: 8px;
+      color: #444;
+      background: #f3f4f6;
+      transition: background 0.2s ease;
+    }
+    .btn:hover { background: #e5e7eb; color: #222; }
+
+    .notes-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    .notes-table th, .notes-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid #e6e6e6;
+      vertical-align: top;
+    }
+    .notes-table th { text-align: left; }
+
+    @media (max-width: 800px) {
+      .card-widget.card-info .avatar-img.textbook-img img { width: 90% !important; }
+    }
+  </style>
+
+  <script>
+    (() => {
+      const saveToLocal = {
+        set:(k,v,t)=>{ if(!t)return; const e=Date.now()+t*86400000; localStorage.setItem(k,JSON.stringify({value:v,expiry:e})); },
+        get:(k)=>{ const s=localStorage.getItem(k); if(!s)return; const {value,expiry}=JSON.parse(s); if(Date.now()>expiry){localStorage.removeItem(k);return;} return value; }
+      };
+      const setTheme = (mode) => {
+        document.documentElement.setAttribute('data-theme', mode);
+        const m=document.querySelector('meta[name="theme-color"]');
+        if(m) m.setAttribute('content', mode==='dark' ? '#0d0d0d' : '#ffffff');
+      };
+      const theme = saveToLocal.get('theme'); if (theme) setTheme(theme);
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) document.documentElement.classList.add('apple');
+      window.GLOBAL_CONFIG = { percent: { toc: false, rightside: true } };
+      window.GLOBAL_CONFIG_SITE = { title: 'MATH-I-110', isToc: false, pageType: 'post' };
+    })();
+  </script>
+</head>
+
+<body>
+  <div id="body-wrap" class="post type-course">
+    <!-- Header/Nav -->
+    <header id="page-header" class="not-top-img fixed">
+      <nav id="nav">
+        <div id="blog-info">
+          <a class="nav-site-title" href="/" aria-label="Keshav Dahiya — Home">
+            <span class="site-name">Keshav Dahiya</span>
+          </a>
+        </div>
+        <div id="menus" role="navigation" aria-label="Primary">
+          <div class="menus_items">
+            <div class="menus_item"><a class="site-page" href="/"><i class="fa-solid fa-house"></i><span>Home</span></a></div>
+            <div class="menus_item"><a class="site-page" href="/Research/"><i class="fa-regular fa-pen-to-square"></i><span>Research</span></a></div>
+            <div class="menus_item"><a class="site-page" href="/Teaching/" aria-current="page"><i class="fa-solid fa-chalkboard-user"></i><span>Teaching</span></a></div>
+            <div class="menus_item"><a class="site-page" href="/Projects/"><i class="fa-regular fa-folder-open"></i><span>Projects</span></a></div>
+            <div class="menus_item"><a class="site-page" href="/CV/Keshav_CV_Website.pdf" target="_blank" rel="noopener"><i class="fa-regular fa-id-card"></i><span>CV</span></a></div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main id="content-inner" class="layout">
+      <!-- RIGHT: main content -->
+      <div id="post">
+        <div id="post-info">
+          <h1 class="post-title" style="margin:0 0 8px; font-weight:700;">MATH 171-00: Multidimensional Mathematics</h1>
+          <div class="kicker">Spring 2023</div>
+        </div>
+
+        <article id="article-container" class="container post-content">
+          <h3>About this course</h3>
+            <ul>
+              <li>Instructor: Keshav Dahiya (Email: <a href="mailto:kkeshav@iu.edu">kkeshav@iu.edu</a>)</li>
+              <li>Office Hours: Mon, Wed 5:30–7:00 pm (ET), LD 225</li>
+              <li>
+                Textbooks:
+                <ul>
+                  <li><em>Calculus, 8th Edition, Thompson Publishing Co.</em> by James Stewart</li>
+                  <li><em>Math 171 Basic Linear Algebra</em> by Bruce Kitchens and Diagrams by Roland Roeder (pdf available on 'Syllabus and Policies' on Canvas)</li>
+                </ul>
+              </li>
+              <li>For course policy, syllabus, class schedule, and room number, see <a href="https://iu.instructure.com">Canvas</a>.</li>
+            </ul>
+            
+            <h3 style="margin-top:22px;">Textbook Solutions</h3>
+            <ul>
+                <li>Math 171 Basic Linear Algebra by Bruce Kitchens and Diagrams by Roland Roeder <a class="btn" href="BKSol.pdf" target="_blank">All Solutions</a></li>
+                <li>Curves and Surfaces (from Calculus, 8th Edition by James Stewart) <a class="btn" href="CSSol.pdf" target="_blank">Chapter 10, 12 Solutions</a></li>
+            
+            </ul>
+            
+
+          <h3 style="margin-top:22px;">Homework Solutions</h3>
+          <table class="notes-table">
+            <thead>
+              <tr><th style="width:120px;">Homework</th><th>Homework Solutions</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><a class="btn" href="HW/HW1.pdf" target="_blank">Homework 1</a></td><td><a class="btn" href="HWSol/HW1Sol.pdf" target="_blank">Solution</a></td></tr>
+                <tr><td><a class="btn" href="HW/HW2.pdf" target="_blank">Homework 2</a></td><td><a class="btn" href="HWSol/HW2Sol.pdf" target="_blank">Solution</a></td></tr>
+                <tr><td><a class="btn" href="HW/HW3.pdf" target="_blank">Homework 3</a></td><td><a class="btn" href="HWSol/HW3Sol.pdf" target="_blank">Solution</a></td></tr>
+                <tr><td><a class="btn" href="HW/HW4.pdf" target="_blank">Homework 4</a></td><td><a class="btn" href="HWSol/HW4Sol.pdf" target="_blank">Solution</a></td></tr>
+                <tr><td><a class="btn" href="HW/HW5.pdf" target="_blank">Homework 5</a></td><td><a class="btn" href="HWSol/HW5Sol.pdf" target="_blank">Solution</a></td></tr>
+                <tr><td><a class="btn" href="HW/HW6.pdf" target="_blank">Homework 6</a></td><td><a class="btn" href="HWSol/HW6Sol.pdf" target="_blank">Solution</a></td></tr>
+                <tr><td><a class="btn" href="HW/HW7.pdf" target="_blank">Homework 7</a></td><td><a class="btn" href="HWSol/HW7Sol.pdf" target="_blank">Solution</a></td></tr>
+                <tr><td><a class="btn" href="HW/HW8.pdf" target="_blank">Homework 8</a></td><td><a class="btn" href="HWSol/HW8Sol.pdf" target="_blank">Solution</a></td></tr>
+                <tr><td><a class="btn" href="HW/HW9.pdf" target="_blank">Homework 9</a></td><td><a class="btn" href="HWSol/HW9Sol.pdf" target="_blank">Solution</a></td></tr>
+            </tbody>
+          </table>
+        </article>
+      </div>
+
+      <!-- LEFT: textbook sidebar -->
+      <div id="aside-content" class="aside-content">
+        <div class="card-widget card-info text-center">
+          <div class="avatar-img textbook-img">
+            <img src="textbook.png" alt="Course textbook cover"
+                 onerror="this.onerror=null;this.src='/img/friend_404.gif'" />
+          </div>
+          <div style="margin-top:12px;">
+            <a class="btn"
+               href="https://www.bkstr.com/indianastore/home"
+               target="_blank" rel="noopener">Get the textbook ↗</a>
+          </div>
+        </div>
+        <div class="sticky_layout"></div>
+      </div>
+    </main>
+
+    <footer id="footer">
+      <div id="footer-wrap">
+        <div class="copyright">&copy; <span id="year-span"></span> Keshav Dahiya</div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="../../../js/utils.js"></script>
+  <script src="../../../js/main.js"></script>
+  <script>
+    (function () {
+      function setYear(){ var y=document.getElementById('year-span'); if(y) y.textContent=new Date().getFullYear(); }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setYear);
+      else setYear();
+    })();
+  </script>
+</body>
+</html>
