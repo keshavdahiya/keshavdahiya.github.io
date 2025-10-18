@@ -734,12 +734,20 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
 /* -----------------------------------------
 21) Global link color
 -------------------------------------------- */
-a {
-  color: #0000EE;              /* classic blue link color */
-  text-decoration: underline;  /* keep the underlined look */
+/* ---------- Force global standard blue link color ---------- */
+body a,
+#post a,
+#content-inner a,
+.container a {
+  color: #0000EE !important;       /* classic blue */
+  text-decoration: underline;
 }
 
-a:hover,
-a:focus {
-  color: #1a0dab;              /* Google-style modern blue hover */
-  text-decoration: underline;  /* emphasize hover */
+body a:hover,
+#post a:hover,
+#content-inner a:hover,
+.container a:hover,
+body a:focus {
+  color: #1a0dab !important;       /* hover blue */
+  text-decoration: underline;
+}
