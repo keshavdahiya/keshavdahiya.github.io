@@ -731,9 +731,15 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
   background: rgba(255,255,255,.60) !important; /* adjust .75 as you like */
 }
 
-/* Global link style */
-a { 
-  color: var(--link);
-  text-decoration: underline;
-  transition: color .2s ease;
+/* -----------------------------------------
+21) Global link color
+-------------------------------------------- */
+a {
+  color: #0000EE;              /* classic blue link color */
+  text-decoration: underline;  /* keep the underlined look */
 }
+
+a:hover,
+a:focus {
+  color: #1a0dab;              /* Google-style modern blue hover */
+  text-decoration: underline;  /* emphasize hover */
