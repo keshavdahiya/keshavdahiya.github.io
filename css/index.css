@@ -739,10 +739,6 @@ a {
   text-decoration: underline;  /* keep the underlined look */
 }
 
-a:visited {
-  color: #551A8B;              /* standard purple for visited links */
-}
-
 a:hover,
 a:focus {
   color: #1a0dab;              /* Google-style modern blue hover */
