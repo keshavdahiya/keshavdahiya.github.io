@@ -730,3 +730,20 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
 #post #post-info .hero-banner::after{
   background: rgba(255,255,255,.60) !important; /* adjust .75 as you like */
 }
+
+/* -----------------------------------------
+21) Global link color
+-------------------------------------------- */
+a {
+  color: #0000EE;              /* classic blue link color */
+  text-decoration: underline;  /* keep the underlined look */
+}
+
+a:visited {
+  color: #551A8B;              /* standard purple for visited links */
+}
+
+a:hover,
+a:focus {
+  color: #1a0dab;              /* Google-style modern blue hover */
+  text-decoration: underline;  /* emphasize hover */
