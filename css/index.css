@@ -732,14 +732,20 @@ th,td{padding:6px 12px;border:1px solid var(--light-grey);border-top:none;border
 }
 
 /* -----------------------------------------
-21) Global link color
+   21) Global link style (light navy + underline)
 -------------------------------------------- */
 a {
-  color: #0000EE;              /* classic blue link color */
-  text-decoration: underline;  /* keep the underlined look */
+  color: var(--link);
+  text-decoration: underline;   /* ensure all links are underlined */
+  transition: color .2s ease;
 }
 
 a:hover,
 a:focus {
-  color: #1a0dab;              /* Google-style modern blue hover */
-  text-decoration: underline;  /* emphasize hover */
+  color: var(--btn-hover-color); /* this is #2b3a67's hover complement */
+  text-decoration: underline;
+}
+
+a:visited {
+  color: var(--link); /* keep same tone for visited links */
+}
