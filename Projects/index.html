@@ -1,52 +1,276 @@
-<style>
-  /* Left column images: 130% width with left bleed; right panel unchanged */
-  #aside-content { overflow: visible; }
-  .left-pics {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    align-items: stretch;
-    padding-bottom: 12px;
-  }
-  .left-pics figure {
-    margin: 0;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  /* First image starts lower */
-  .left-pics figure:first-child { margin-top: 18px; }
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Projects | Keshav Dahiya</title>
 
-  .left-pics img {
-    width: 130%;
-    height: auto;
-    display: block;
-    border-radius: 8px;
-    opacity: 0.7;
-    transform: translateX(-15%);
-  }
+  <meta name="author" content="Keshav Dahiya" />
+  <meta name="description" content="Projects — Keshav Dahiya" />
+  <meta name="theme-color" content="#ffffff" />
 
-  /* Updated caption styling */
-  .left-pics figcaption {
-    margin-top: 4px;
-    font-size: 0.7rem;     /* smaller */
-    line-height: 1.2;
-    color: #444;
-    font-style: normal;    /* not italic */
-    width: 130%;
-    transform: translateX(-15%);
-    text-align: center;    /* centered below image */
-  }
+  <link rel="canonical" href="https://keshavdahiya.github.io/Projects/" />
+  <link rel="preconnect" href="//cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="/css/index.css?v=22">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;600;700&display=swap" rel="stylesheet">
 
-  .left-pics figure:last-child { margin-bottom: -8px; }
+  <!-- Page-scoped styles -->
+  <style>
+    .section { margin: 0 0 22px; }
+    .section h3 { margin: 12px 0 12px; }
 
-  @media (max-width: 800px) {
-    .left-pics img,
-    .left-pics figcaption {
-      width: 100%;
-      transform: none;
+    /* Two-column project list: date | details */
+    .proj-list { list-style: none; margin: 0; padding: 0; }
+    .proj-list li {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 20px;
+      margin: 0 0 18px;
     }
-  }
-</style>
+    .proj-date { color:#333; white-space:nowrap; }
+    .proj-title { font-style: italic; }
+    .proj-meta { display:block; margin-top:4px; color:#444; }
+
+    .btn {
+      display:inline-block; padding:6px 10px; border:1px solid #d1d5db; border-radius:6px;
+      text-decoration:none; font-size:0.95rem; line-height:1; margin-left:6px;
+      color:#444; background:#f3f4f6;
+    }
+    .btn:hover { background:#e5e7eb; color:#222; }
+
+    /* Left column images: 130% width with left bleed; right panel unchanged */
+    #aside-content { overflow: visible; }
+    .left-pics {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: stretch;
+      padding-bottom: 12px;
+    }
+    .left-pics figure {
+      margin: 0;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    /* First image starts lower */
+    .left-pics figure:first-child { margin-top: 18px; }
+
+    .left-pics img {
+      width: 130%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+      opacity: 0.7;
+      transform: translateX(-15%);
+    }
+
+    /* Updated caption styling */
+    .left-pics figcaption {
+      margin-top: 4px;
+      font-size: 0.7rem;     /* smaller */
+      line-height: 1.2;
+      color: #444;
+      font-style: normal;    /* not italic */
+      width: 130%;
+      transform: translateX(-15%);
+      text-align: center;    /* centered below image */
+    }
+
+    .left-pics figure:last-child { margin-bottom: -8px; }
+
+    @media (max-width: 800px) {
+      .proj-list li { grid-template-columns: 1fr; }
+      .proj-date { font-weight:600; }
+      .left-pics img,
+      .left-pics figcaption {
+        width: 100%;
+        transform: none;
+      }
+    }
+  </style>
+
+  <!-- MathJax (kept for consistency) -->
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$','$$'], ['\\[','\\]']], tags: 'ams', packages: {'[+]': ['ams']} },
+      loader: { load: ['[tex]/ams'] }, chtml: { scale: 1.1 }
+    };
+  </script>
+  <script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+  <script>
+    (() => {
+      const saveToLocal={set:(k,v,t)=>{if(!t)return;const e=Date.now()+t*86400000;localStorage.setItem(k,JSON.stringify({value:v,expiry:e}))},get:(k)=>{const s=localStorage.getItem(k);if(!s)return;const {value,expiry}=JSON.parse(s);if(Date.now()>expiry){localStorage.removeItem(k);return}return value}};
+      const setTheme=(m)=>{document.documentElement.setAttribute('data-theme',m);const x=document.querySelector('meta[name="theme-color"]'); if(x) x.setAttribute('content', m==='dark'?'#0d0d0d':'#ffffff');};
+      const t=saveToLocal.get('theme'); if(t) setTheme(t);
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) document.documentElement.classList.add('apple');
+      window.GLOBAL_CONFIG={ percent:{ toc:false, rightside:true } };
+      window.GLOBAL_CONFIG_SITE={ title:'Projects', isToc:false, pageType:'post' };
+    })();
+  </script>
+</head>
+
+<body>
+  <div id="body-wrap" class="post type-Projects">
+    <header id="page-header" class="not-top-img fixed">
+      <nav id="nav">
+        <div id="blog-info">
+          <a class="nav-site-title" href="/" aria-label="Keshav Dahiya — Home">
+            <span class="site-name">Keshav Dahiya</span>
+          </a>
+        </div>
+        <div id="menus" role="navigation" aria-label="Primary">
+          <div class="menus_items">
+            <div class="menus_item"><a class="site-page" href="/"><i class="fa-solid fa-house" aria-hidden="true"></i><span>Home</span></a></div>
+            <div class="menus_item"><a class="site-page" href="/Research/"><i class="fa-regular fa-pen-to-square" aria-hidden="true"></i><span>Research</span></a></div>
+            <div class="menus_item"><a class="site-page" href="/Teaching/"><i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i><span>Teaching</span></a></div>
+            <div class="menus_item"><a class="site-page" href="/Projects/" aria-current="page"><i class="fa-regular fa-folder-open" aria-hidden="true"></i><span>Projects</span></a></div>
+            <div class="menus_item"><a class="site-page" href="/CV/Keshav_CV_Website.pdf" target="_blank" rel="noopener"><i class="fa-regular fa-id-card" aria-hidden="true"></i><span>CV</span></a></div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main id="content-inner" class="layout">
+      <!-- RIGHT -->
+      <div id="post">
+        <div id="post-info">
+          <h1 class="post-title" style="margin:0 0 8px; padding:0; border:0; font-size:2.3rem; font-weight:700;">Projects</h1>
+          <div id="post-meta">
+            <div class="meta-firstline">
+              <span class="post-meta-date">
+                <i class="fa-fw post-meta-icon fas fa-history"></i>
+                <span class="post-meta-label">Updated</span>
+                <time id="auto-update-time"></time>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <article id="article-container" class="container post-content">
+          <section class="section" id="Project-List">
+            <ul class="proj-list">
+              <li>
+                <div class="proj-date">Fall 2025</div>
+                <div>
+                  <span class="proj-title">Image Caption Generator</span>
+                  <a class="btn" href="https://github.com/keshavdahiya/image_caption_generator" target="_blank" rel="noopener">GitHub</a>
+                  <span class="proj-meta">The Erdős Institute, Deep Learning Bootcamp</span>
+                </div>
+              </li>
+
+              <li>
+                <div class="proj-date">Summer 2025</div>
+                <div>
+                  <span class="proj-title">Quantum Hamming code</span>
+                  <a class="btn" href="https://github.com/keshavdahiya/quantum_Hamming_code" target="_blank" rel="noopener">GitHub</a>&ensp;
+                  <a class="btn" href="/Projects/Slides/quantum_computing_project3_slides.pdf" target="_blank" rel="noopener">Slides</a>
+                  <span class="proj-meta">The Erdős Institute, Quantum Computing Bootcamp</span>
+                </div>
+              </li>
+
+              <li>
+                <div class="proj-date">Summer 2025</div>
+                <div>
+                  <span class="proj-title">Quantum state preparation</span>
+                  <a class="btn" href="https://github.com/keshavdahiya/quantum_state_preparation" target="_blank" rel="noopener">GitHub</a>&ensp;
+                  <a class="btn" href="/Projects/Slides/quantum_computing_project2_slides.pdf" target="_blank" rel="noopener">Slides</a>
+                  <span class="proj-meta">The Erdős Institute, Quantum Computing Bootcamp</span>
+                </div>
+              </li>
+
+              <li>
+                <div class="proj-date">Summer 2025</div>
+                <div>
+                  <span class="proj-title">Quantum circuit for constrained optimization</span>
+                  <a class="btn" href="https://github.com/keshavdahiya/quantum_circuit_for_constrained_optimization" target="_blank" rel="noopener">GitHub</a>&ensp;
+                  <a class="btn" href="/Projects/Slides/quantum_computing_project1_slides.pdf" target="_blank" rel="noopener">Slides</a>
+                  <span class="proj-meta">The Erdős Institute, Quantum Computing Bootcamp</span>
+                </div>
+              </li>
+
+              <li>
+                <div class="proj-date">Spring 2022</div>
+                <div>
+                  <span class="proj-title">q-characters of quantum affine algebras</span>
+                  <a class="btn" href="https://github.com/keshavdahiya/q-characters_quantum_affine_algebras" target="_blank" rel="noopener">GitHub</a>
+                  <span class="proj-meta">Advisor: Evgeny Mukhin, Purdue School of Science, Indianapolis</span>
+                </div>
+              </li>
+
+              <li>
+                <div class="proj-date">Fall 2012</div>
+                <div>
+                  <span class="proj-title">Captcha recognition</span>
+                  <span class="proj-meta">Advisor: Sumeet Agarwal, Indian Institute of Technology, Delhi</span>
+                </div>
+              </li>
+            </ul>
+          </section>
+        </article>
+
+        <div class="tag_share"></div>
+      </div>
+
+      <!-- LEFT pictures -->
+      <div id="aside-content" class="aside-content">
+        <div class="left-pics" aria-hidden="true">
+          <figure>
+            <img src="/Projects/Images/cnn+attention_lstm.png" alt="CNN + Attention LSTM diagram">
+            <figcaption>CNN + Attention LSTM</figcaption>
+          </figure>
+
+          <figure>
+            <img src="/Projects/Images/transformer_encoder_decoder.png" alt="Transformer encoder–decoder diagram">
+            <figcaption>Transformer Encoder–Decoder</figcaption>
+          </figure>
+
+          <figure>
+            <img src="/Projects/Images/project1.png" alt="Quantum constraint optimization diagram">
+            <figcaption>Quantum Constraint Optimization</figcaption>
+          </figure>
+
+          <figure>
+            <img src="/Projects/Images/project2.png" alt="Quantum state preparation diagram">
+            <figcaption>Quantum State Preparation</figcaption>
+          </figure>
+        </div>
+        <div class="sticky_layout"></div>
+      </div>
+    </main>
+
+    <footer id="footer">
+      <div id="footer-wrap">
+        <div class="copyright">&copy; <span id="year-span"></span> Keshav Dahiya</div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="/js/utils.js"></script>
+  <script src="/js/main.js"></script>
+
+  <!-- Auto dates -->
+  <script>
+    (function () {
+      function setUpdated() {
+        var t = document.getElementById('auto-update-time'); if (!t) return;
+        var d = new Date(document.lastModified); if (isNaN(d)) d = new Date();
+        var yyyy = d.getFullYear(), mm = String(d.getMonth()+1).padStart(2,'0'), dd = String(d.getDate()).padStart(2,'0');
+        var formatted = yyyy + '-' + mm + '-' + dd; t.textContent = formatted;
+        t.setAttribute('datetime', d.toISOString()); t.setAttribute('title', 'Updated ' + d.toLocaleString());
+      }
+      function setYear(){ var y=document.getElementById('year-span'); if(y) y.textContent=new Date().getFullYear(); }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function(){ setUpdated(); setYear(); });
+      else { setUpdated(); setYear(); }
+    })();
+  </script>
+</body>
+</html>
