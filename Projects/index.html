@@ -43,12 +43,13 @@
     }
     .btn:hover { background:#e5e7eb; color:#222; }
 
-    /* Left column stacked images with captions (full-width, auto height) */
+    /* Left column images: 130% width with left bleed; right panel unchanged */
+    #aside-content { overflow: visible; } /* allow bleed to show */
     .left-pics {
       display: flex;
       flex-direction: column;
       gap: 12px;
-      align-items: stretch;        /* figures fill the sidebar width */
+      align-items: stretch;     /* figures span sidebar width */
       padding-bottom: 12px;
     }
     .left-pics figure {
@@ -59,21 +60,27 @@
       align-items: center;
       text-align: center;
     }
+    /* First image starts a bit lower */
+    .left-pics figure:first-child { margin-top: 18px; } /* tweak to taste */
+
     .left-pics img {
-      width: 100%;                 /* full width of sidebar */
-      height: auto;                /* preserve aspect ratio; varying heights ok */
+      width: 130%;
+      height: auto;
       display: block;
       border-radius: 8px;
-      opacity: 0.7;                /* matches Teaching vibe */
-      max-width: 100%;
+      opacity: 0.7;
+      transform: translateX(-15%);  /* half of the extra width to the left */
+      will-change: transform;
     }
     .left-pics figcaption {
       margin-top: 4px;
-      font-size: 0.8rem;           /* smaller captions */
+      font-size: 0.8rem;       /* smaller captions */
       line-height: 1.2;
       color: #555;
       font-style: italic;
-      width: 95%;
+      width: 130%;
+      transform: translateX(-15%);
+      text-align: left;        /* matches bleed edge visually; set to center if preferred */
     }
     /* slight bottom bleed */
     .left-pics figure:last-child { margin-bottom: -8px; }
@@ -81,7 +88,12 @@
     @media (max-width: 800px) {
       .proj-list li { grid-template-columns: 1fr; }
       .proj-date { font-weight:600; }
-      .left-pics figcaption { width: 100%; }
+      .left-pics img,
+      .left-pics figcaption {
+        width: 100%;
+        transform: none;       /* no bleed on mobile */
+        text-align: center;
+      }
     }
   </style>
 
@@ -208,24 +220,21 @@
         <div class="tag_share"></div>
       </div>
 
-      <!-- LEFT pictures with smaller captions (full-width, auto-height) -->
+      <!-- LEFT pictures with 130% width + left bleed -->
       <div id="aside-content" class="aside-content">
         <div class="left-pics" aria-hidden="true">
           <figure>
             <img src="/Projects/Images/cnn+attention_lstm.png" alt="CNN + Attention LSTM diagram">
             <figcaption>CNN + Attention LSTM</figcaption>
           </figure>
-
           <figure>
             <img src="/Projects/Images/transformer_encoder_decoder.png" alt="Transformer encoder–decoder diagram">
             <figcaption>Transformer Encoder–Decoder</figcaption>
           </figure>
-
           <figure>
             <img src="/Projects/Images/project1.png" alt="Quantum constraint optimization diagram">
             <figcaption>Quantum Constraint Optimization</figcaption>
           </figure>
-
           <figure>
             <img src="/Projects/Images/project2.png" alt="Quantum state preparation diagram">
             <figcaption>Quantum State Preparation</figcaption>
