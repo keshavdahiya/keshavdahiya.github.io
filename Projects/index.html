@@ -43,17 +43,40 @@
     }
     .btn:hover { background:#e5e7eb; color:#222; }
 
-    /* LEFT PANEL thumbnails (manual positioning) */
-    #aside-content { position: relative; }
-    .manual-thumbs { position: relative; min-height: 900px; }
-    .manual-thumbs img {
-      position: absolute; left: 50%; transform: translateX(-50%);
-      opacity: 0.88; border-radius: 8px; display: block;
+    /* Left column stacked images with captions */
+    .left-pics {
+      position: sticky;
+      top: 96px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
     }
+
+    .left-pics figure {
+      margin: 0;
+      text-align: center;
+    }
+
+    .left-pics img {
+      width: 220px;
+      height: auto;
+      border-radius: 8px;
+      opacity: 0.95;
+      max-width: 100%;
+    }
+
+    .left-pics figcaption {
+      margin-top: 6px;
+      font-size: 0.9rem;
+      color: #555;
+      font-style: italic;
+    }
+
     @media (max-width: 800px) {
       .proj-list li { grid-template-columns: 1fr; }
       .proj-date { font-weight:600; }
-      .manual-thumbs img { max-width: 85%; }
+      .left-pics img { width: 85%; }
     }
   </style>
 
@@ -122,7 +145,7 @@
                 <div class="proj-date">Fall 2025</div>
                 <div>
                   <span class="proj-title">Image Caption Generator</span>
-                  <a class="btn" href="#" target="_blank" rel="noopener">GitHub</a>
+                  <a class="btn" href="https://github.com/keshavdahiya/image_caption_generator" target="_blank" rel="noopener">GitHub</a>
                   <span class="proj-meta">The Erdős Institute, Deep Learning Bootcamp</span>
                 </div>
               </li>
@@ -131,7 +154,8 @@
                 <div class="proj-date">Summer 2025</div>
                 <div>
                   <span class="proj-title">Quantum Hamming code</span>
-                  <a class="btn" href="#" target="_blank" rel="noopener">GitHub</a>
+                  <a class="btn" href="https://github.com/keshavdahiya/quantum_Hamming_code" target="_blank" rel="noopener">GitHub</a>&ensp;
+                    <a class="btn" href="/Projects/Slides/quantum_computing_project3_slides.pdf" target="_blank" rel="noopener">Slides</a>
                   <span class="proj-meta">The Erdős Institute, Quantum Computing Bootcamp</span>
                 </div>
               </li>
@@ -140,7 +164,8 @@
                 <div class="proj-date">Summer 2025</div>
                 <div>
                   <span class="proj-title">Quantum state preparation</span>
-                  <a class="btn" href="#" target="_blank" rel="noopener">GitHub</a>
+                  <a class="btn" href="https://github.com/keshavdahiya/quantum_state_preparation" target="_blank" rel="noopener">GitHub</a>&ensp;
+                    <a class="btn" href="/Projects/Slides/quantum_computing_project2_slides.pdf" target="_blank" rel="noopener">Slides</a>
                   <span class="proj-meta">The Erdős Institute, Quantum Computing Bootcamp</span>
                 </div>
               </li>
@@ -149,7 +174,8 @@
                 <div class="proj-date">Summer 2025</div>
                 <div>
                   <span class="proj-title">Quantum circuit for constrained optimization</span>
-                  <a class="btn" href="#" target="_blank" rel="noopener">GitHub</a>
+                  <a class="btn" href="https://github.com/keshavdahiya/quantum_circuit_for_constrained_optimization" target="_blank" rel="noopener">GitHub</a>&ensp;
+                    <a class="btn" href="/Projects/Slides/quantum_computing_project1_slides.pdf" target="_blank" rel="noopener">Slides</a>
                   <span class="proj-meta">The Erdős Institute, Quantum Computing Bootcamp</span>
                 </div>
               </li>
@@ -158,7 +184,7 @@
                 <div class="proj-date">Spring 2022</div>
                 <div>
                   <span class="proj-title">q-characters of quantum affine algebras</span>
-                  <a class="btn" href="#" target="_blank" rel="noopener">GitHub</a>
+                  <a class="btn" href="https://github.com/keshavdahiya/q-characters_quantum_affine_algebras" target="_blank" rel="noopener">GitHub</a>
                   <span class="proj-meta">Advisor: Evgeny Mukhin, Purdue School of Science, Indianapolis</span>
                 </div>
               </li>
@@ -177,16 +203,28 @@
         <div class="tag_share"></div>
       </div>
 
-      <!-- LEFT thumbnails -->
+      <!-- LEFT pictures with captions -->
       <div id="aside-content" class="aside-content">
-        <div class="manual-thumbs" aria-hidden="true">
-          <!-- Position these to align with rows; tweak top/height -->
-          <img src="/Projects/Images/caption.png" alt="Image Caption Generator thumbnail" style="top: 160px; height: 90px; width: auto; max-width: 100%;">
-          <img src="/Projects/Images/qhc.png" alt="Quantum Hamming code thumbnail" style="top: 270px; height: 90px; width: auto; max-width: 100%;">
-          <img src="/Projects/Images/qsp.png" alt="Quantum state preparation thumbnail" style="top: 380px; height: 90px; width: auto; max-width: 100%;">
-          <img src="/Projects/Images/qco.png" alt="Quantum constrained optimization thumbnail" style="top: 490px; height: 90px; width: auto; max-width: 100%;">
-          <img src="/Projects/Images/qchars.png" alt="q-characters project thumbnail" style="top: 600px; height: 90px; width: auto; max-width: 100%;">
-          <img src="/Projects/Images/captcha.png" alt="Captcha project thumbnail" style="top: 710px; height: 90px; width: auto; max-width: 100%;">
+        <div class="left-pics" aria-hidden="true">
+          <figure>
+            <img src="/Projects/Images/cnn+attention_lstm.png" alt="CNN + Attention LSTM diagram">
+            <figcaption>CNN + Attention LSTM</figcaption>
+          </figure>
+
+          <figure>
+            <img src="/Projects/Images/transformer_encoder_decoder.png" alt="Transformer encoder–decoder diagram">
+            <figcaption>Transformer Encoder–Decoder</figcaption>
+          </figure>
+
+          <figure>
+            <img src="/Projects/Images/project1.png" alt="Quantum constraint optimization diagram">
+            <figcaption>Quantum Constraint Optimization</figcaption>
+          </figure>
+
+          <figure>
+            <img src="/Projects/Images/project2.png" alt="Quantum state preparation diagram">
+            <figcaption>Quantum State Preparation</figcaption>
+          </figure>
         </div>
         <div class="sticky_layout"></div>
       </div>
