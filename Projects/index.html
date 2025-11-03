@@ -43,12 +43,12 @@
     }
     .btn:hover { background:#e5e7eb; color:#222; }
 
-    /* Left column stacked images with (Teaching-page) vibe */
+    /* Left column stacked images with captions (full-width, auto height) */
     .left-pics {
       display: flex;
       flex-direction: column;
       gap: 12px;
-      align-items: center;          /* center in sidebar */
+      align-items: stretch;        /* figures fill the sidebar width */
       padding-bottom: 12px;
     }
     .left-pics figure {
@@ -60,22 +60,20 @@
       text-align: center;
     }
     .left-pics img {
-      width: 75%;                   /* bigger like Teaching */
-      aspect-ratio: 4 / 3;          /* gentle crop */
-      object-fit: cover;
+      width: 100%;                 /* full width of sidebar */
+      height: auto;                /* preserve aspect ratio; varying heights ok */
       display: block;
       border-radius: 8px;
-      opacity: 0.7;                 /* match Teaching opacity */
+      opacity: 0.7;                /* matches Teaching vibe */
       max-width: 100%;
     }
     .left-pics figcaption {
       margin-top: 4px;
-      font-size: 0.8rem;            /* smaller caption */
+      font-size: 0.8rem;           /* smaller captions */
       line-height: 1.2;
       color: #555;
       font-style: italic;
-      width: 75%;
-      text-align: center;
+      width: 95%;
     }
     /* slight bottom bleed */
     .left-pics figure:last-child { margin-bottom: -8px; }
@@ -83,7 +81,7 @@
     @media (max-width: 800px) {
       .proj-list li { grid-template-columns: 1fr; }
       .proj-date { font-weight:600; }
-      .left-pics img, .left-pics figcaption { width: 85%; }
+      .left-pics figcaption { width: 100%; }
     }
   </style>
 
@@ -134,7 +132,7 @@
       <div id="post">
         <div id="post-info">
           <h1 class="post-title" style="margin:0 0 8px; padding:0; border:0; font-size:2.3rem; font-weight:700;">Projects</h1>
-        <div id="post-meta">
+          <div id="post-meta">
             <div class="meta-firstline">
               <span class="post-meta-date">
                 <i class="fa-fw post-meta-icon fas fa-history"></i>
@@ -210,7 +208,7 @@
         <div class="tag_share"></div>
       </div>
 
-      <!-- LEFT pictures with smaller captions (Teaching style) -->
+      <!-- LEFT pictures with smaller captions (full-width, auto-height) -->
       <div id="aside-content" class="aside-content">
         <div class="left-pics" aria-hidden="true">
           <figure>
