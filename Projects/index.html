@@ -43,40 +43,47 @@
     }
     .btn:hover { background:#e5e7eb; color:#222; }
 
-    /* Left column stacked images with captions */
+    /* Left column stacked images with (Teaching-page) vibe */
     .left-pics {
-      position: sticky;
-      top: 96px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;          /* center in sidebar */
+      padding-bottom: 12px;
+    }
+    .left-pics figure {
+      margin: 0;
+      width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 20px;
-    }
-
-    .left-pics figure {
-      margin: 0;
       text-align: center;
     }
-
     .left-pics img {
-      width: 220px;
-      height: auto;
+      width: 75%;                   /* bigger like Teaching */
+      aspect-ratio: 4 / 3;          /* gentle crop */
+      object-fit: cover;
+      display: block;
       border-radius: 8px;
-      opacity: 0.95;
+      opacity: 0.7;                 /* match Teaching opacity */
       max-width: 100%;
     }
-
     .left-pics figcaption {
-      margin-top: 6px;
-      font-size: 0.9rem;
+      margin-top: 4px;
+      font-size: 0.8rem;            /* smaller caption */
+      line-height: 1.2;
       color: #555;
       font-style: italic;
+      width: 75%;
+      text-align: center;
     }
+    /* slight bottom bleed */
+    .left-pics figure:last-child { margin-bottom: -8px; }
 
     @media (max-width: 800px) {
       .proj-list li { grid-template-columns: 1fr; }
       .proj-date { font-weight:600; }
-      .left-pics img { width: 85%; }
+      .left-pics img, .left-pics figcaption { width: 85%; }
     }
   </style>
 
@@ -127,7 +134,7 @@
       <div id="post">
         <div id="post-info">
           <h1 class="post-title" style="margin:0 0 8px; padding:0; border:0; font-size:2.3rem; font-weight:700;">Projects</h1>
-          <div id="post-meta">
+        <div id="post-meta">
             <div class="meta-firstline">
               <span class="post-meta-date">
                 <i class="fa-fw post-meta-icon fas fa-history"></i>
@@ -155,7 +162,7 @@
                 <div>
                   <span class="proj-title">Quantum Hamming code</span>
                   <a class="btn" href="https://github.com/keshavdahiya/quantum_Hamming_code" target="_blank" rel="noopener">GitHub</a>&ensp;
-                    <a class="btn" href="/Projects/Slides/quantum_computing_project3_slides.pdf" target="_blank" rel="noopener">Slides</a>
+                  <a class="btn" href="/Projects/Slides/quantum_computing_project3_slides.pdf" target="_blank" rel="noopener">Slides</a>
                   <span class="proj-meta">The Erdős Institute, Quantum Computing Bootcamp</span>
                 </div>
               </li>
@@ -165,7 +172,7 @@
                 <div>
                   <span class="proj-title">Quantum state preparation</span>
                   <a class="btn" href="https://github.com/keshavdahiya/quantum_state_preparation" target="_blank" rel="noopener">GitHub</a>&ensp;
-                    <a class="btn" href="/Projects/Slides/quantum_computing_project2_slides.pdf" target="_blank" rel="noopener">Slides</a>
+                  <a class="btn" href="/Projects/Slides/quantum_computing_project2_slides.pdf" target="_blank" rel="noopener">Slides</a>
                   <span class="proj-meta">The Erdős Institute, Quantum Computing Bootcamp</span>
                 </div>
               </li>
@@ -175,7 +182,7 @@
                 <div>
                   <span class="proj-title">Quantum circuit for constrained optimization</span>
                   <a class="btn" href="https://github.com/keshavdahiya/quantum_circuit_for_constrained_optimization" target="_blank" rel="noopener">GitHub</a>&ensp;
-                    <a class="btn" href="/Projects/Slides/quantum_computing_project1_slides.pdf" target="_blank" rel="noopener">Slides</a>
+                  <a class="btn" href="/Projects/Slides/quantum_computing_project1_slides.pdf" target="_blank" rel="noopener">Slides</a>
                   <span class="proj-meta">The Erdős Institute, Quantum Computing Bootcamp</span>
                 </div>
               </li>
@@ -203,7 +210,7 @@
         <div class="tag_share"></div>
       </div>
 
-      <!-- LEFT pictures with captions -->
+      <!-- LEFT pictures with smaller captions (Teaching style) -->
       <div id="aside-content" class="aside-content">
         <div class="left-pics" aria-hidden="true">
           <figure>
