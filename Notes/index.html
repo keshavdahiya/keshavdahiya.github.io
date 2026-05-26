@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notes | Keshav Dahiya</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root { --bg: #f8f9fa; --border: #dee2e6; --text: #212529; --accent: #0056b3; }
+        body { display: flex; height: 100vh; margin: 0; font-family: system-ui, -apple-system, sans-serif; color: var(--text); }
+        #left-pane { width: 300px; background: var(--bg); border-right: 1px solid var(--border); overflow-y: auto; padding: 20px; }
+        #right-pane { flex: 1; display: flex; flex-direction: column; }
+        #nav-subpane { height: 200px; border-bottom: 1px solid var(--border); display: flex; padding: 15px; gap: 25px; background: #fff; }
+        #content-pane { flex: 1; padding: 50px; overflow-y: auto; background: #fff; }
+        .list-container { flex: 1; overflow-y: auto; border: 1px solid #eee; padding: 10px; border-radius: 4px; }
+        .item { padding: 8px; cursor: pointer; border-radius: 4px; font-size: 0.9rem; margin-bottom: 3px; border-left: 3px solid transparent; }
+        .item:hover { background: #e9ecef; }
+        .active { border-left: 3px solid var(--accent); background: #e7f1ff; font-weight: 600; }
+        h2, h4 { margin-top: 0; color: var(--accent); }
+    </style>
+</head>
+<body>
+
+<nav id="left-pane">
+    <h2>Projects</h2>
+    <div id="project-list"></div>
+</nav>
+
+<main id="right-pane">
+    <header id="nav-subpane">
+        <div class="list-container">
+            <h4>Sections</h4>
+            <div id="section-list"></div>
+        </div>
+        <div class="list-container">
+            <h4>Subsections</h4>
+            <div id="subsection-list"></div>
+        </div>
+    </header>
+    <article id="content-pane">
+        <div id="math-content">Select a project to begin.</div>
+    </article>
+</main>
+
+<script>
+    let db = {};
+
+    async function init() {
+        const response = await fetch('../data/manifest.json');
+        db = await response.json();
+        const container = document.getElementById('project-list');
+        
+        db.projects.forEach((proj, idx) => {
+            const el = document.createElement('div');
+            el.className = 'item';
+            el.innerText = proj.title;
+            el.onclick = () => {
+                document.querySelectorAll('#project-list .item').forEach(i => i.classList.remove('active'));
+                el.classList.add('active');
+                loadSections(idx);
+            };
+            container.appendChild(el);
+        });
+    }
+
+    function loadSections(pIdx) {
+        const container = document.getElementById('section-list');
+        container.innerHTML = '';
+        document.getElementById('subsection-list').innerHTML = '';
+        db.projects[pIdx].sections.forEach((sec, sIdx) => {
+            const el = document.createElement('div');
+            el.className = 'item';
+            el.innerText = sec.name;
+            el.onclick = () => loadSubsections(pIdx, sIdx);
+            container.appendChild(el);
+        });
+    }
+
+    function loadSubsections(pIdx, sIdx) {
+        const container = document.getElementById('subsection-list');
+        container.innerHTML = '';
+        db.projects[pIdx].sections[sIdx].subsections.forEach(ss => {
+            const el = document.createElement('div');
+            el.className = 'item';
+            el.innerText = ss.name;
+            el.onclick = () => renderContent(ss.file);
+            container.appendChild(el);
+        });
+    }
+
+    async function renderContent(file) {
+        const display = document.getElementById('math-content');
+        display.innerHTML = "Loading...";
+        const resp = await fetch(`../data/notes_content/${file}`);
+        display.innerHTML = await resp.text();
+        if (window.MathJax) MathJax.typesetPromise();
+    }
+
+    init();
+</script>
+</body>
+</html>
