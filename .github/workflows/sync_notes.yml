@@ -6,24 +6,43 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+
       - name: Install LaTeXML
         run: sudo apt-get update && sudo apt-get install -y latexml
+
       - name: Clone Projects
         env:
-          CREDS: ${{ secrets.OVERLEAF_EMAIL }}:${{ secrets.OVERLEAF_PASSWORD }}
+          OVERLEAF_EMAIL: ${{ secrets.OVERLEAF_EMAIL }}
+          OVERLEAF_PASSWORD: ${{ secrets.OVERLEAF_PASSWORD }}
         run: |
           mkdir projects_temp
+          
           IDS=("660a34dc98394a7ad6c3947e", "6609d37779e4eaf2ae58e4e5", "6609d18949d2d5df48ead5f5", "6609d31579e4eaf2ae58ccae", "6609d04373a2d4415454e7b3", "6609a1405fc8a1ebb3d13cb4", "6609d278a8f132e4d3239090", "660a74d8a58796580dcddda9", "660adb531645d8f5a06d1b1c", "660ae12af96d65c9b0092d8a", "660aee636411044ef54a4135", "660aeabb1369f317085b9d94", "660a52208f63f06d39471f6c", "660a44e4c1db7ab7be81543c", "660a4d551a5dec8a20706024", "660a546949d2d5df480098c2", "660a3ed4717a06ecc6733921", "65fd0b42cf8cf5e0e4b505ef", "6609c85960acd1a3ec1e7da6", "679c461fa3ce494f024f6065")
+          
+          # Configure Git to use credentials in memory rather than typing them out in the URL string
+          git config --global credential.helper 'cache --timeout=900'
+          
+          # Use a programmatic block to feed the credentials cleanly to Git
+          python3 -c "
+          import os, subprocess
+          with open(os.path.expanduser('~/.git-credentials'), 'w') as f:
+              f.write(f\"https://{os.environ['OVERLEAF_EMAIL']}:{os.environ['OVERLEAF_PASSWORD']}@git.overleaf.com\n\")
+          "
+          git config --global credential.helper store
+          
+          # Run the safe clone loop
           for id in "${IDS[@]}"; do
-            git clone https://$CREDS@git.overleaf.com/$id projects_temp/$id
+            git clone https://git.overleaf.com/$id projects_temp/$id
           done
+
       - name: Process
         run: python scripts/parse_notes.py
+
       - name: Push to Site
         run: |
-          git config --global user.name "keshavdahiya"
-          git config --global user.email "keshavdahiya@github.com"
+          git config --global user.name "Bot"
+          git config --global user.email "bot@github.com"
           git add data/
           git commit -m "Auto-sync notes" || exit 0
           git push
